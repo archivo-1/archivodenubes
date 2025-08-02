@@ -1,0 +1,21 @@
+{
+  "name": "Archivo de Nubes",
+  "short_name": "Archivo Nubes",
+  "description": "Un atlas interactivo de infraestructuras de datos en Chile.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8E6814",
+  "icons": [
+    {
+      "src": "./assets/icono-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/icono-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

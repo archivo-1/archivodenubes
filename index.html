@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivo de Nubes</title>
+    <link rel="icon" href="./assets/icono.ico" type="image/x-icon">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        canvas {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="landing-page" class="page-section active">
+        <div class="hero-section">
+            <header class="header">
+                <nav class="nav-bar">
+                    <a href="#" class="nav-link">Fuentes</a>
+                    <a href="#" class="nav-link">Proyectos</a>
+                    <a href="#" class="nav-link">Contacto</a>
+                </nav>
+            </header>
+            <div class="hero-content">
+                <h1 class="hero-title"><i>ARCHIVO DE<br>NUBES</i></h1>
+                <p class="hero-subtitle">Cartografía de los <br>Data Centers en Chile</p>
+                <button id="start-map-button" class="explore-button">Explora el Mapa</button>
+            </div>
+        </div>
+
+        <div class="info-section-wrapper">
+            <section class="info-section">
+                <div class="section-title">
+                    <span class="icon-placeholder"></span>
+                    <h2>¿Qué es el Archivo de Nubes?</h2>
+                </div>
+                <p>El Archivo de Nubes es una plataforma interactiva que recopila y analiza datos técnicos sobre centros de datos a nivel nacional. Esta plataforma sentará un precedente al incluir variables técnicas clave como ubicación georreferenciada, dimensiones físicas, tecnologías empleadas, sistemas de refrigeración, eficiencia energética (PUE) e hídrica (WUE), consumo de agua, uso de suelo y datos sobre emisiones. El archivo se implementará como un sitio web responsivo y navegable permitiendo la exploración de un mapa interactivo, la descarga de fichas técnicas individuales y la visualización de gráficos comparativos. Toda la información estará acompañada de sus respectivas fuentes y referencias, con opciones de descarga en formatos abiertos (CSV, GeoJSON, PDF).</p>
+            </section>
+
+            <section class="features-section">
+                <div class="section-title">
+                    <span class="icon-placeholder"></span>
+                    <h2>Mapa Interactivo de los Data Centers en Chile</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="card-icon-placeholder"></div>
+                        <p class="card-text">MAPA INTERACTIVO</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-placeholder"></div>
+                        <p class="card-text">CONSUMOS DE CENTROS DE DATOS</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-placeholder"></div>
+                        <p class="card-text">DATOS COMPARATIVOS</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-placeholder"></div>
+                        <p class="card-text">RECURSOS</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <div id="map-container-wrapper" class="page-section">
+        <button id="back-to-landing-button" class="back-button">⇦ Volver</button>
+        <div class="search-container">
+            <input type="text" id="search-box" placeholder="Buscar por nombre...">
+            <button id="search-button">
+                <span class="icon">🔍</span>
+            </button>
+            <div id="suggestions-list"></div>
+        </div>
+        <div id="map" class="map">
+            <button id="toggle-layer-controls" class="toggle-layer-controls-button">
+                <span class="icon">&#x2630;</span>
+            </button>
+            <div id="layer-controls" class="layer-controls">
+                <h3>Capas</h3>
+                <div>
+                    <input type="checkbox" id="toggle-cables" checked>
+                    <label for="toggle-cables">Cables Submarinos</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="toggle-points" checked>
+                    <label for="toggle-points">Puntos de Aterrizaje</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="toggle-data-centers" checked>
+                    <label for="toggle-data-centers">Centros de Datos</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="toggle-land-cables" checked>
+                    <label for="toggle-land-cables">Cables Terrestres</label>
+                </div>
+            </div>
+        </div>
+        <div id="tooltip" class="ol-tooltip"></div>
+        <div id="info-panel" class="info-panel">
+            <button id="close-panel" class="close-panel">&times;</button>
+            <div id="panel-content">
+                <p>Haz click en un punto o cable para ver más información.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
