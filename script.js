@@ -64,6 +64,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Create a new style for the subtle glow effect.
+    const glowStyle = new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: 'rgba(255, 255, 255, 0.5)',
+            width: 10
+        }),
+        image: new ol.style.Circle({
+            radius: 10,
+            stroke: new ol.style.Stroke({
+                color: 'rgba(255, 255, 255, 0.5)',
+                width: 5
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(255, 255, 255, 0.2)'
+            })
+        })
+    });
+
+    let selectedFeature = null;
+
+    // A utility function to reset the style of a feature.
+    function resetFeatureStyle() {
+        if (selectedFeature) {
+            selectedFeature.setStyle(undefined); // Reset to use the layer's style function again.
+            selectedFeature = null;
+        }
+    }
+
 
     // Crea una fuente y capa vectorial para los datos de cables.
     const cableSource = new ol.source.Vector({
@@ -83,13 +111,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const color = geojsonColor || 'rgba(255, 0, 0, 0.7)';
             const width = geojsonWidth || 3;
             const lineDash = geojsonLineDash || undefined;
-            return new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    color: color,
-                    width: width,
-                    lineDash: lineDash
+            return [
+                // Thicker invisible style for click/hover hitbox
+                new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'rgba(0, 0, 0, 0.01)',
+                        width: 15
+                    })
+                }),
+                // The original visible style
+                new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: color,
+                        width: width,
+                        lineDash: lineDash
+                    })
                 })
-            });
+            ];
         }
     });
 
@@ -244,13 +282,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const color = geojsonColor || 'rgba(0, 0, 255, 0.7)';
             const width = geojsonWidth || 3;
             const lineDash = geojsonLineDash || undefined;
-            return new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    color: color,
-                    width: width,
-                    lineDash: lineDash
+            return [
+                // Thick, invisible style for click/hover hitbox
+                new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'rgba(0, 0, 0, 0.01)',
+                        width: 15
+                    })
+                }),
+                // The original visible style
+                new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: color,
+                        width: width,
+                        lineDash: lineDash
+                    })
                 })
-            });
+            ];
         }
     });
 
@@ -307,6 +355,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close the info panel if it's open and the click is outside
         if (infoPanel.classList.contains('open') && !infoPanel.contains(event.target)) {
             infoPanel.classList.remove('open');
+            // If the info panel is closed by clicking outside, deselect the feature.
+            resetFeatureStyle();
         }
     });
 
@@ -398,6 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     closePanelButton.addEventListener('click', () => {
         infoPanel.classList.remove('open');
+        resetFeatureStyle();
     });
 
     map.on('pointermove', function(event) {
@@ -415,14 +466,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     map.on('click', function(evt) {
-        // Busca una característica en el píxel donde se hizo clic.
-        const feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-            return feature;
+        // Find a feature and its layer at the clicked pixel.
+        let clickedFeature = null;
+        let clickedLayer = null;
+        map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+            clickedFeature = feature;
+            clickedLayer = layer;
         }, {
-            hitTolerance: 5 // Aumenta la tolerancia de clic para una mejor respuesta táctil en móviles.
+            hitTolerance: 5 // Increase click tolerance for better mobile touch response.
         });
 
-        if (feature) {
+        if (clickedFeature) {
+            // Reset the style of the previously selected feature.
+            resetFeatureStyle();
+            
+            // Store the new feature.
+            selectedFeature = clickedFeature;
+            
             isClickOnFeature = true;
 
             // Clear the panel content first to reset the scroll state.
@@ -430,7 +490,7 @@ document.addEventListener('DOMContentLoaded', function() {
             panelContent.scrollTop = 0;
             
             // Then, set the new content.
-            panelContent.innerHTML = getFormattedFeatureInfo(feature);
+            panelContent.innerHTML = getFormattedFeatureInfo(selectedFeature);
             
             infoPanel.classList.add('open');
             if (layerControls.classList.contains('open')) {
@@ -440,10 +500,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            const featureGeometry = feature.getGeometry();
+            const featureGeometry = selectedFeature.getGeometry();
             if (featureGeometry) {
                 let currentMaxZoom = 16;
-                const featureType = feature.get('type');
+                const featureType = selectedFeature.get('type');
 
                 if (featureType && (featureType.toLowerCase() === 'data center')) {
                     currentMaxZoom = 15;
@@ -461,6 +521,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     fitPadding = [50, panelWidth + 20, 50, 50];
                 }
 
+                // Use map.once('moveend') to apply the style after the zoom animation is complete.
+                map.once('moveend', () => {
+                    if (selectedFeature) {
+                        const originalLayerStyleFunction = clickedLayer.getStyle();
+                        let originalStyle = originalLayerStyleFunction(selectedFeature, map.getView().getResolution());
+
+                        if (!Array.isArray(originalStyle)) {
+                            originalStyle = [originalStyle];
+                        }
+                        const combinedStyles = [glowStyle, ...originalStyle];
+                        selectedFeature.setStyle(combinedStyles);
+                    }
+                });
+
                 map.getView().fit(featureGeometry.getExtent(), {
                     duration: 700,
                     padding: fitPadding,
@@ -469,11 +543,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
         } else {
-            // Si no se hizo clic en ninguna característica, pero el panel está abierto, lo cierra.
+            // If no feature was clicked, close the panel and deselect any feature.
             isClickOnFeature = false;
             if (infoPanel.classList.contains('open')) {
                 infoPanel.classList.remove('open');
             }
+            resetFeatureStyle();
         }
     });
 
@@ -516,15 +591,42 @@ function performSearch(searchTerm) {
     }
     
     let foundFeature = null;
-    allFeatures.forEach(feature => {
-        const name = feature.get('name') || feature.get('nombre');
-        if (name && name.toLowerCase().includes(searchTerm.toLowerCase())) {
-            foundFeature = feature;
+    let foundLayer = null;
+    
+    // Find the feature and its layer
+    map.getLayers().forEach(layer => {
+        const source = layer.getSource();
+        if (source && source instanceof ol.source.Vector) {
+            const features = source.getFeatures();
+            features.forEach(feature => {
+                const lowerSearchTerm = searchTerm.toLowerCase();
+                const name = feature.get('name') || feature.get('nombre');
+                const location = feature.get('location') || feature.get('ubicación');
+                const address = feature.get('address') || feature.get('Dirección');
+                const comuna = feature.get('comuna');
+                const empresa = feature.get('Empresa');
+                const operator = feature.get('operator') || feature.get('operador');
+                
+                if (
+                    (name && name.toLowerCase().includes(lowerSearchTerm)) ||
+                    (location && location.toLowerCase().includes(lowerSearchTerm)) ||
+                    (address && address.toLowerCase().includes(lowerSearchTerm)) ||
+                    (comuna && comuna.toLowerCase().includes(lowerSearchTerm)) ||
+                    (empresa && empresa.toLowerCase().includes(lowerSearchTerm)) ||
+                    (operator && operator.toLowerCase().includes(lowerSearchTerm))
+                ) {
+                    foundFeature = feature;
+                    foundLayer = layer;
+                }
+            });
         }
     });
 
     if (foundFeature) {
-        // --- START: Added logic to show the info panel ---
+        resetFeatureStyle();
+        
+        selectedFeature = foundFeature;
+        
         isClickOnFeature = true;
         // Clear the panel content first to reset the scroll state.
         panelContent.innerHTML = '';
@@ -540,8 +642,7 @@ function performSearch(searchTerm) {
                 toggleLayerControlsButton.style.display = 'block';
             }
         }
-        // --- END: Added logic to show the info panel ---
-
+        
         const featureGeometry = foundFeature.getGeometry();
         if (featureGeometry) {
             const view = map.getView();
@@ -563,6 +664,20 @@ function performSearch(searchTerm) {
                 fitPadding = [50, panelWidth + 20, 50, 50];
             }
 
+            // Use map.once('moveend') to apply the style after the zoom animation is complete.
+            map.once('moveend', () => {
+                if (selectedFeature) {
+                    const originalLayerStyleFunction = foundLayer.getStyle();
+                    let originalStyle = originalLayerStyleFunction(selectedFeature, map.getView().getResolution());
+
+                    if (!Array.isArray(originalStyle)) {
+                        originalStyle = [originalStyle];
+                    }
+                    const combinedStyles = [glowStyle, ...originalStyle];
+                    selectedFeature.setStyle(combinedStyles);
+                }
+            });
+            
             view.fit(featureGeometry.getExtent(), {
                 duration: 700,
                 padding: fitPadding,
@@ -587,35 +702,56 @@ searchButton.addEventListener('click', function() {
 searchBox.addEventListener('keyup', function(event) {
     const searchTerm = searchBox.value.trim().toLowerCase();
     suggestionsList.innerHTML = '';
+    const addedFeatureIds = new Set(); // Use a Set to track added features
 
     if (searchTerm.length > 0) {
         const matchingFeatures = allFeatures.filter(feature => {
             const name = feature.get('name') || feature.get('nombre');
             const type = feature.get('type');
-            return (name && name.toLowerCase().includes(searchTerm)) || (type && type.toLowerCase().includes(searchTerm));
-        });
+            const location = feature.get('location') || feature.get('ubicación');
+            const address = feature.get('address') || feature.get('Dirección');
+            const comuna = feature.get('comuna');
+            const empresa = feature.get('Empresa');
+            const operator = feature.get('operator') || feature.get('operador');
 
+            return (
+                (name && name.toLowerCase().includes(searchTerm)) || 
+                (type && type.toLowerCase().includes(searchTerm)) ||
+                (location && location.toLowerCase().includes(searchTerm)) ||
+                (address && address.toLowerCase().includes(searchTerm)) ||
+                (comuna && comuna.toLowerCase().includes(searchTerm)) ||
+                (empresa && empresa.toLowerCase().includes(searchTerm)) ||
+                (operator && operator.toLowerCase().includes(searchTerm))
+            );
+        });
         if (matchingFeatures.length > 0) {
             matchingFeatures.forEach(feature => {
-                const suggestionItem = document.createElement('div');
-                suggestionItem.classList.add('suggestion-item');
-                
-                const nameSpan = document.createElement('span');
-                nameSpan.textContent = feature.get('name') || feature.get('nombre');
-                
-                const typeSpan = document.createElement('span');
-                typeSpan.classList.add('suggestion-type');
-                typeSpan.textContent = feature.get('type') || '';
-                
-                suggestionItem.appendChild(nameSpan);
-                suggestionItem.appendChild(typeSpan);
+                // Get a unique identifier for the feature
+                const featureId = feature.get('name') || feature.get('id');
+                // Check if we've already added a suggestion for this feature
+                if (!addedFeatureIds.has(featureId)) {
+                    addedFeatureIds.add(featureId); // Add the feature's ID to the set
+                    
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.classList.add('suggestion-item');
+                    
+                    const nameSpan = document.createElement('span');
+                    nameSpan.textContent = feature.get('name') || feature.get('nombre');
+                    
+                    const typeSpan = document.createElement('span');
+                    typeSpan.classList.add('suggestion-type');
+                    typeSpan.textContent = feature.get('type') || '';
+                    
+                    suggestionItem.appendChild(nameSpan);
+                    suggestionItem.appendChild(typeSpan);
 
-                suggestionItem.addEventListener('click', function() {
-                    searchBox.value = feature.get('name') || feature.get('nombre');
-                    performSearch(searchBox.value.trim());
-                    suggestionsList.style.display = 'none';
-                });
-                suggestionsList.appendChild(suggestionItem);
+                    suggestionItem.addEventListener('click', function() {
+                        searchBox.value = feature.get('name') || feature.get('nombre');
+                        performSearch(searchBox.value.trim());
+                        suggestionsList.style.display = 'none';
+                    });
+                    suggestionsList.appendChild(suggestionItem);
+                }
             });
             suggestionsList.style.display = 'block';
         } else {
@@ -630,6 +766,14 @@ searchBox.addEventListener('keyup', function(event) {
         suggestionsList.style.display = 'none';
     }
 });
+
+searchBox.addEventListener('click', function() {
+        // Only clear the box if it already contains text.
+        // This prevents the user from typing and having their input deleted.
+        if (this.value.length > 0) {
+            this.value = '';
+        }
+    });
 
 document.addEventListener('click', function(event) {
     if (!event.target.closest('.search-container')) {
