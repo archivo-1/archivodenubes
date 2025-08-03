@@ -1,3 +1,8 @@
+/*
+  @font-face: Define las fuentes personalizadas para la página.
+  'NHaasGroteskDSPro' y 'SourceCodeVariable' se cargan desde la carpeta 'fonts'
+  en varios formatos para asegurar compatibilidad con diferentes navegadores.
+*/
 @font-face {
     font-family: 'NHaasGroteskDSPro';
     src: url('fonts/NHaasGroteskDSPro-65Md.woff2') format('woff2'),
@@ -20,6 +25,12 @@
     font-display: swap;
 }
 
+/*
+  html, body: Estilos básicos para la página.
+  Elimina los márgenes predeterminados, establece la familia de fuentes,
+  y configura la página para que ocupe al menos el 100% de la altura de la ventana
+  y desactive la selección de texto.
+*/
 html, body {
     margin: 0;
     font-family: 'SourceCodeVariable', monospace;
@@ -35,11 +46,20 @@ html, body {
     box-sizing: border-box;
 }
 
+/*
+  *:focus: Elimina el contorno de enfoque predeterminado de los elementos,
+  mejorando la estética pero potencialmente afectando la accesibilidad.
+*/
 *:focus {
     outline: none;
     box-shadow: none;
 }
 
+/*
+  #map: Estilos para el contenedor del mapa.
+  Ocupa el 100% del ancho y alto de su contenedor, con posición relativa
+  y oculta cualquier contenido que se desborde.
+*/
 #map {
     width: 100%;
     height: 100%;
@@ -47,6 +67,11 @@ html, body {
     overflow: hidden;
 }
 
+/*
+  .ol-tooltip: Estilos para la ventana emergente de información (tooltip) en el mapa.
+  Es un elemento con posición absoluta, fondo oscuro, texto blanco, bordes redondeados
+  y se oculta por defecto.
+*/
 .ol-tooltip {
     position: absolute;
     background: rgba(0, 0, 0, 0.7);
@@ -62,6 +87,12 @@ html, body {
     font-family: 'NHaasGroteskDSPro', sans-serif;
 }
 
+/*
+  .info-panel: Estilos para el panel de información lateral.
+  Fijado a la derecha de la ventana, con un ancho máximo de 350px,
+  fondo blanco, sombra y transición para una apertura y cierre suaves.
+  Está inicialmente fuera de la vista (transform: translateX(100%)).
+*/
 .info-panel {
     position: fixed;
     top: 0;
@@ -82,10 +113,17 @@ html, body {
     text-align: left;
 }
 
+/*
+  .info-panel.open: Modificador de clase para el panel de información.
+  Cuando se le añade la clase 'open', el panel se mueve a la vista (transform: translateX(0)).
+*/
 .info-panel.open {
     transform: translateX(0);
 }
 
+/*
+  .info-panel h2: Estilos para los títulos principales dentro del panel de información.
+*/
 .info-panel h2 {
     font-size: 1.5rem;
     color: #2BAB64;
@@ -94,6 +132,9 @@ html, body {
     margin-bottom: 10px;
 }
 
+/*
+  .info-panel h4.subtitle: Estilos para los subtítulos dentro del panel de información.
+*/
 .info-panel h4.subtitle {
     font-size: 1rem;
     font-weight: normal;
@@ -102,17 +143,27 @@ html, body {
     margin-bottom: 15px;
 }
 
+/*
+  .info-item: Estilos para cada línea de información dentro del panel.
+*/
 .info-item {
     font-size: 0.9rem;
     line-height: 1.4;
     margin-bottom: 10px;
 }
 
+/*
+  .info-item strong: Estilos para las etiquetas fuertes dentro de cada línea de información.
+*/
 .info-item strong {
     font-weight: 600;
     margin-right: 5px;
 }
 
+/*
+  .info-panel .close-panel: Estilos para el botón de cierre del panel de información.
+  Posicionado en la esquina superior derecha del panel.
+*/
 .info-panel .close-panel {
     position: absolute;
     top: 10px;
@@ -126,25 +177,44 @@ html, body {
     padding: 0;
 }
 
+/*
+  .info-item.image-container: Estilos para un contenedor de imágenes.
+  Centra la imagen y añade un padding.
+*/
 .info-item.image-container {
     text-align: center;
     padding: 10px 0;
 }
 
+/*
+  .info-item.image-container img: Estilos para las imágenes dentro del contenedor de imágenes.
+  Asegura que la imagen sea responsiva y tenga bordes redondeados.
+*/
 .info-item.image-container img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
 }
 
+/*
+  .close-panel:hover: Cambia el color del botón de cierre cuando el cursor pasa por encima.
+*/
 .close-panel:hover {
     color: #2BAB64;
 }
 
+/*
+  .ol-layer-osm-grayscale canvas: Aplica un filtro de escala de grises al mapa base de OpenStreetMap.
+*/
 .ol-layer-osm-grayscale canvas {
     filter: grayscale(100%);
 }
 
+/*
+  .layer-controls: Estilos para el panel de control de capas.
+  Posicionado en la esquina inferior izquierda, con fondo oscuro semi-transparente,
+  bordes redondeados y sombra.
+*/
 .layer-controls {
     position: absolute;
     top: auto;
@@ -162,6 +232,9 @@ html, body {
     text-align: left;
 }
 
+/*
+  .layer-controls h3: Estilos para el título del panel de control de capas.
+*/
 .layer-controls h3 {
     margin-top: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -169,14 +242,26 @@ html, body {
     text-align: left;
 }
 
+/*
+  .layer-controls input[type="checkbox"]: Estilos para las casillas de verificación dentro del panel de control.
+*/
 .layer-controls input[type="checkbox"] {
     margin-right: 8px;
 }
 
+/*
+  #toggle-layer-controls: Oculta el botón para abrir/cerrar los controles de capa
+  por defecto en vistas de escritorio. Se muestra solo en móviles.
+*/
 #toggle-layer-controls {
     display: none;
 }
 
+/*
+  @media (max-width: 768px): Estilos responsivos para dispositivos móviles.
+  El panel de información y el de control de capas se redimensionan y se posicionan
+  en la parte inferior de la pantalla. El botón de control de capas se hace visible.
+*/
 @media (max-width: 768px) {
     .info-panel {
         top: auto;
@@ -246,6 +331,10 @@ html, body {
     }
 }
 
+/*
+  .page-section: Estilos para las secciones principales de la página (landing y mapa).
+  Ocupan todo el ancho y alto, y están ocultas por defecto.
+*/
 .page-section {
     width: 100%;
     height: 100%;
@@ -259,28 +348,44 @@ html, body {
     box-sizing: border-box;
 }
 
+/*
+  .page-section.active: Modificador de clase para mostrar la sección activa.
+*/
 .page-section.active {
     display: block;
 }
 
+/*
+  .landing-main: Estilos para el contenido principal de la página de inicio.
+  Centrado y con un ancho máximo.
+*/
 .landing-main {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/*
+  .landing-title: Estilos para el título principal de la página de inicio.
+*/
 .landing-title {
     font-family: 'NHaasGroteskDSPro', sans-serif;
     font-size: 3em;
     color: #333;
 }
 
+/*
+  .landing-intro: Estilos para el texto introductorio de la página de inicio.
+*/
 .landing-intro {
     font-family: 'SourceCodeVariable', monospace;
     font-size: 1.2em;
     color: #666;
 }
 
+/*
+  .start-button, .back-button: Estilos comunes para los botones de "empezar" y "volver".
+*/
 .start-button, .back-button {
     font-family: 'SourceCodeVariable', monospace;
     padding: 10px 20px;
@@ -294,23 +399,30 @@ html, body {
     transition: all 0.3s ease;
 }
 
+/*
+  .start-button:hover, .back-button:hover: Estilos para los botones al pasar el cursor.
+*/
 .start-button:hover, .back-button:hover {
     background-color: #227848;
 }
 
-.back-button {
-    position: absolute;
-    top: 9px;
-    left: 10px;
-    z-index: 1001;
-    padding: 8px 12px;
-    font-size: 0.8em;
-}
+/*
+  .back-button: Estilos específicos para el botón "volver".
+  Posicionado en la esquina superior izquierda.
+*/
 
+
+/*
+  .team-section: Estilos para la sección del equipo en la página de inicio.
+*/
 .team-section {
     margin-top: 50px;
 }
 
+/*
+  .team-members: Estilos para el contenedor de los miembros del equipo.
+  Usa flexbox para centrar y distribuir los elementos.
+*/
 .team-members {
     display: flex;
     justify-content: center;
@@ -318,11 +430,18 @@ html, body {
     flex-wrap: wrap;
 }
 
+/*
+  .team-member: Estilos para cada tarjeta de miembro del equipo.
+*/
 .team-member {
     text-align: center;
     width: 200px;
 }
 
+/*
+  .team-photo: Estilos para las fotos de los miembros del equipo.
+  Formato circular con borde.
+*/
 .team-photo {
     width: 150px;
     height: 150px;
@@ -331,33 +450,53 @@ html, body {
     border: 3px solid #8E6814;
 }
 
+/*
+  .team-member h4: Estilos para los nombres de los miembros del equipo.
+*/
 .team-member h4 {
     margin: 10px 0 5px;
     font-family: 'NHaasGroteskDSPro', sans-serif;
 }
 
+/*
+  .team-member p: Estilos para las descripciones de los miembros del equipo.
+*/
 .team-member p {
     margin: 0;
     font-family: 'SourceCodeVariable', monospace;
     color: #666;
 }
 
+/*
+  #map-container-wrapper.active #map: Estilos para el mapa cuando está activo.
+  Ajusta su altura para dejar espacio para la barra superior.
+*/
 #map-container-wrapper.active #map {
     width: 100%;
     height: calc(100% - 50px);
     margin-top: 50px;
 }
 
+/*
+  #map-container-wrapper h1: Oculta el título dentro del contenedor del mapa.
+*/
 #map-container-wrapper h1 {
     display: none;
 }
 
+/*
+  #landing-page: Estilos para la página de inicio.
+*/
 #landing-page {
     background-color: #F8F8F8;
     height: 100vh;
     overflow-y: auto;
 }
 
+/*
+  .hero-section: Estilos para la sección principal de la página de inicio.
+  Utiliza una imagen de fondo y flexbox para la disposición del contenido.
+*/
 .hero-section {
     background: url('./assets/portada.png') no-repeat top center;
     background-size: cover;
@@ -371,11 +510,18 @@ html, body {
     padding-bottom: 20px;
 }
 
+/*
+  .header: Estilos para el encabezado.
+*/
 .header {
     width: 100%;
     padding: 0;
 }
 
+/*
+  .nav-bar: Estilos para la barra de navegación.
+  Usa flexbox para alinear los elementos.
+*/
 .nav-bar {
     display: flex;
     justify-content: flex-end;
@@ -384,17 +530,26 @@ html, body {
     padding: 20px;
 }
 
+/*
+  .nav-bar .logo: Estilos para el logo en la barra de navegación.
+*/
 .nav-bar .logo {
     margin-right: auto;
     height: 30px;
 }
 
+/*
+  .nav-bar .nav-link: Estilos para los enlaces de navegación.
+*/
 .nav-bar .nav-link {
     color: #666;
     text-decoration: none;
     font-family: 'SourceCodeVariable', monospace;
 }
 
+/*
+  .hero-content: Estilos para el contenido principal de la sección hero.
+*/
 .hero-content {
     text-align: left;
     margin: 0 auto;
@@ -404,6 +559,9 @@ html, body {
     margin-top: -100px;
 }
 
+/*
+  .hero-title: Estilos para el título grande de la sección hero.
+*/
 .hero-title {
     font-family: 'NHaasGroteskDSPro', sans-serif;
     font-size: clamp(3rem, 10vw, 6rem);
@@ -411,6 +569,9 @@ html, body {
     line-height: 1;
 }
 
+/*
+  .hero-subtitle: Estilos para el subtítulo de la sección hero.
+*/
 .hero-subtitle {
     font-family: 'SourceCodeVariable', monospace;
     font-size: clamp(1rem, 3vw, 2rem);
@@ -418,6 +579,10 @@ html, body {
     font-weight: 300;
 }
 
+/*
+  .explore-button: Estilos para el botón "Explorar".
+  Centrado y con transición al pasar el cursor.
+*/
 .explore-button {
     font-family: 'SourceCodeVariable', monospace;
     padding: 15px 30px;
@@ -434,20 +599,32 @@ html, body {
     transition: all 0.3s ease;
 }
 
+/*
+  .explore-button:hover: Estilos del botón al pasar el cursor.
+*/
 .explore-button:hover {
     background-color: #1c7d48;
 }
 
+/*
+  .info-section-wrapper: Contenedor para las secciones de información.
+*/
 .info-section-wrapper {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
 }
 
+/*
+  .info-section, .features-section: Espacio entre las secciones de la página de inicio.
+*/
 .info-section, .features-section {
     margin-bottom: 50px;
 }
 
+/*
+  .section-title: Estilos para los títulos de sección con iconos.
+*/
 .section-title {
     display: flex;
     align-items: center;
@@ -455,10 +632,16 @@ html, body {
     margin-bottom: 20px;
 }
 
+/*
+  .section-title h2: Estilos para los títulos de sección.
+*/
 .section-title h2 {
     margin: 0;
 }
 
+/*
+  .icon-placeholder: Estilos genéricos para los iconos de título.
+*/
 .icon-placeholder {
     width: 30px;
     height: 30px;
@@ -467,6 +650,9 @@ html, body {
     background-position: center;
 }
 
+/*
+  .iconA, .iconB: Estilos específicos para los iconos de título.
+*/
 .iconA {
     background-image: url('./assets/ico_nube.png');
 }
@@ -475,12 +661,20 @@ html, body {
     background-image: url('./assets/ico_pc.png');
 }
 
+/*
+  .features-grid: Estilos para la cuadrícula de características.
+  Usa grid para la disposición.
+*/
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }
 
+/*
+  .feature-card: Estilos para cada tarjeta de característica.
+  Fondo blanco, bordes redondeados y efectos al pasar el cursor.
+*/
 .feature-card {
     background-color: #FFFFFF;
     border: 1px solid #E0E0E0;
@@ -490,11 +684,17 @@ html, body {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+/*
+  .feature-card:hover: Efectos visuales de la tarjeta al pasar el cursor.
+*/
 .feature-card:hover {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transform: translateY(-5px);
 }
 
+/*
+  .card-icon-placeholder: Estilos genéricos para los iconos de la tarjeta.
+*/
 .card-icon-placeholder {
     width: 50px;
     height: 50px;
@@ -505,6 +705,9 @@ html, body {
     transition: background-image 0.3s ease-in-out;
 }
 
+/*
+  .icon-1, .icon-2, .icon-3, .icon-4: Estilos específicos para los iconos de las tarjetas.
+*/
 .icon-1 {
     background-image: url('./assets/ico_mapa.png');
 }
@@ -522,12 +725,19 @@ html, body {
 }
 
 
+/*
+  .card-text: Estilos para el texto de las tarjetas.
+*/
 .card-text {
     font-family: 'NHaasGroteskDSPro', sans-serif;
     font-size: 1.1rem;
     margin: 0;
 }
 
+/*
+  @media (max-width: 768px): Estilos responsivos para la barra de navegación y la sección hero.
+  Ajusta el tamaño de la fuente, el padding y la alineación para dispositivos móviles.
+*/
 @media (max-width: 768px) {
     .nav-bar {
         justify-content: space-between;
@@ -582,25 +792,27 @@ html, body {
     }
 }
 
-.search-container {
-    position: absolute;
-    top: 8px;
-    left: 105px; 
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    z-index: 1000;
-}
+/*
+  .search-container: Estilos para la barra de búsqueda.
+  Posicionado en la parte superior izquierda del mapa.
+*/
 
+
+/*
+  #search-box: Estilos para el campo de entrada de texto de la búsqueda.
+*/
 #search-box {
     padding: 9px 12px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-family: 'SourceCodeVariable', monospace;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     width: 250px;
 }
 
+/*
+  #search-button: Estilos para el botón de búsqueda.
+*/
 #search-button {
     padding: 9px 12px;
     background-color: #aeaeae;
@@ -609,6 +821,9 @@ html, body {
     cursor: pointer;
 }
 
+/*
+  #search-button .icon: Estilos para el icono de lupa dentro del botón de búsqueda.
+*/
 #search-button .icon {
     background-image: url('./assets/ico_lupa.png');
     background-size: contain;
@@ -616,12 +831,16 @@ html, body {
     background-position: center;
     display: block; 
     width: 18px; 
-    height: 18px; 
+    height: 16px; 
     font-size: 0; 
     color: transparent;
     filter: brightness(0) invert(1)
 }
 
+/*
+  @media (max-width: 768px): Estilos responsivos para la barra de búsqueda en móviles.
+  Se reposiciona y se ajusta su ancho.
+*/
 @media (max-width: 768px) {
     .search-container {
         top: 5px;
@@ -635,6 +854,10 @@ html, body {
     }
 }
 
+/*
+  #suggestions-list: Estilos para la lista de sugerencias de búsqueda.
+  Se muestra debajo del campo de búsqueda y está oculta por defecto.
+*/
 #suggestions-list {
     position: absolute;
     top: 100%;
@@ -653,6 +876,9 @@ html, body {
     border-radius: 0 0 5px 5px;
 }
 
+/*
+  .suggestion-item: Estilos para cada elemento de la lista de sugerencias.
+*/
 .suggestion-item {
     display: flex;
     flex-direction: column;
@@ -664,16 +890,25 @@ html, body {
     text-align: left; 
 }
 
+/*
+  .suggestion-item:hover: Cambia el color de fondo de un elemento de la lista al pasar el cursor.
+*/
 .suggestion-item:hover {
     background-color: #f0f0f0;
 }
 
+/*
+  .suggestion-type: Estilos para el texto de tipo de la sugerencia.
+*/
 .suggestion-type {
     font-size: 0.8rem;
     color: #888;
     margin-top: 2px;
 }
 
+/*
+  .no-results-message: Estilos para el mensaje de "no hay resultados".
+*/
 .no-results-message {
     padding: 10px;
     font-size: 0.9rem;
@@ -681,8 +916,42 @@ html, body {
     text-align: center;
 }
 
+/*
+  @media (max-width: 768px): Oculta los tooltips del mapa en móviles.
+*/
 @media (max-width: 768px) {
     .ol-tooltip {
         display: none !important;
     }
+}
+
+/* Nuevo contenedor para los controles superiores del mapa */
+.back-button {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    z-index: 1001;
+    padding: 8px 12px;
+    font-size: 0.9em;
+}
+
+.search-container {
+    position: absolute;
+    top: 8px;
+    left: 112px; 
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 1000;
+}
+
+/* Corrigiendo la media query para móviles */
+@media (max-width: 768px) {
+    .search-container {
+        top: 8px;
+        left: 60%;
+        transform: translateX(-40%);
+        width: calc(78% - 100px);
+    }
+    
 }
