@@ -4,140 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Cerrillos Data Center",        
-        "type": "Data Center",
-        "shape": "square",
-        "color": "#2BAB64",
-        "size": 6,
-        "Empresa": "Inversiones y servicio Dataluna Ltda.",
-        "Año": 2019,
-        "Comuna": "Cerrillos",
-        "address": "Av. Lonquen esq. Av. Lo Espejo",
-        "Consultora": "Jacobs Chile S.A.",
-        "Superficie predial": "230.000 m²",
-        "Superficie construida": "70.034,28 m²",
-        "Inversion": "200.000.000 USD",
-        "sistemas_refrigeracion": "Agua - Sistema cerrado con reposición de agua.",
-        "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
-        "Evaluacion Ambiental": "Retirado",
-        "image": "https://placehold.co/600x400",
-        "reference_link": "http://ejemplo.com/algo.pdf",
-        "source": "http://ejemplo.com/algo.pdf"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -70.72602167999229,
-              -33.52396056338858
-            ],
-            [
-              -70.72551878335106,
-              -33.524168532970265
-            ],
-            [
-              -70.72532262448533,
-              -33.52425773024068
-            ],
-            [
-              -70.72521860084437,
-              -33.52430976193916
-            ],
-            [
-              -70.7251012027357,
-              -33.52437046554694
-            ],
-            [
-              -70.72366934738649,
-              -33.52491236169572
-            ],
-            [
-              -70.72360390690258,
-              -33.52479418688579
-            ],
-            [
-              -70.7213015944893,
-              -33.52140556744906
-            ],
-            [
-              -70.71754533489242,
-              -33.522649785447
-            ],
-            [
-              -70.71633849902622,
-              -33.520675808248406
-            ],
-            [
-              -70.71771035513513,
-              -33.52022665246427
-            ],
-            [
-              -70.71783437498546,
-              -33.5201635644411
-            ],
-            [
-              -70.71802565983808,
-              -33.52008645679384
-            ],
-            [
-              -70.71836402922351,
-              -33.51999346340802
-            ],
-            [
-              -70.71850043260304,
-              -33.51993712979387
-            ],
-            [
-              -70.71873252598427,
-              -33.51984926859003
-            ],
-            [
-              -70.72130422912123,
-              -33.51897250015203
-            ],
-            [
-              -70.7213309266988,
-              -33.5189991837485
-            ],
-            [
-              -70.72194795741706,
-              -33.51878822945563
-            ],
-            [
-              -70.7223210278973,
-              -33.51924096035528
-            ],
-            [
-              -70.72235670817496,
-              -33.51930458513748
-            ],
-            [
-              -70.72243755930234,
-              -33.519407216235926
-            ],
-            [
-              -70.72307728869235,
-              -33.520279591307954
-            ],
-            [
-              -70.72376741809303,
-              -33.52123005938094
-            ],
-            [
-              -70.72602167999229,
-              -33.52396056338858
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Proyecto ODATA San Bernardo",        
+        "name": "Proyecto ODATA San Bernardo",
         "type": "Data Center",
         "shape": "square",
         "color": "#2BAB64",
@@ -152,8 +19,8 @@
         "Inversion": "250.000.000 USD",
         "sistemas_refrigeracion": "Chillers + sistema hidráulico cerrado",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -205,456 +72,6 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 1
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "SCALA Data Center Campus",        
-        "type": "Data Center",
-        "shape": "square",
-        "color": "#2BAB64",
-        "size": 6,
-        "Empresa": "Scala Chile Data Centers SpA",
-        "Año": 2023,
-        "Comuna": "Curauma",
-        "address": "Av. N/A #0000",
-        "Consultora": "GIZA INGENIERÍA SPA",
-        "Superficie predial": "81.444 m²",
-        "Superficie construida": "25.832 m²",
-        "Inversion": "65.000.000 USD",
-        "tecnologias": "N/A",
-        "sistemas_refrigeracion": "Chillers",
-        "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
-        "Evaluacion Ambiental": "Aprobado",
-        "image": "https://placehold.co/600x400",
-        "reference_link": "http://ejemplo.com/algo.pdf",
-        "source": "N/A"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -70.74241870546633,
-              -33.286745750176294
-            ],
-            [
-              -70.74465180270906,
-              -33.28858663928509
-            ],
-            [
-              -70.74091035072922,
-              -33.294487439052595
-            ],
-            [
-              -70.73921068653539,
-              -33.29292387000125
-            ],
-            [
-              -70.74229032248259,
-              -33.287031464577296
-            ],
-            [
-              -70.74241870546633,
-              -33.286745750176294
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
-        "type": "Data Center",
-        "shape": "square",
-        "color": "#2BAB64",
-        "size": 6,
-        "Empresa": "Digital holdings chile SpA",
-        "Año": 2011,
-        "Comuna": "Paine",
-        "address": "Av. Pdte. Prieto 226",
-        "Consultora": "MHO CONSULTORES ASOCIADOS SpA",
-        "Superficie predial": "30.379,5 m²",
-        "Superficie construida": "4842 m²",
-        "Inversion": "31.000.000 USD",
-        "sistemas_refrigeracion": "Chillers",
-        "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
-        "Evaluacion Ambiental": "Aprobado",
-        "image": "https://placehold.co/600x400",
-        "reference_link": "http://ejemplo.com/algo.pdf",
-        "source": "N/A"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -70.74954063301116,
-              -33.811044715590675
-            ],
-            [
-              -70.7498450066137,
-              -33.812878341386885
-            ],
-            [
-              -70.74818842211229,
-              -33.81306832639144
-            ],
-            [
-              -70.74788418795526,
-              -33.81123439782514
-            ],
-            [
-              -70.74954063301116,
-              -33.811044715590675
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Data Center SCL04",
-        "type": "Data Center",
-        "shape": "square",
-        "color": "#2BAB64",
-        "size": 6,
-        "Empresa": "EdgeConnex Chile II SPA",
-        "Año": 2023,
-        "Comuna": "Colina",
-        "address": "Av. N/A #0000",
-        "Consultora": "GIZA INGENIERÍA SPA",
-        "Superficie predial": "65.000 m²",
-        "Superficie construida": "34.200 m²",
-        "Inversion": "40.000.000 USD",
-        "sistemas_refrigeracion": "Chillers",
-        "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
-        "Evaluacion Ambiental": "Aprobado",
-        "image": "https://placehold.co/600x400",
-        "reference_link": "http://ejemplo.com/algo.pdf",
-        "source": "N/A"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -70.70618798645998,
-              -33.29617872340039
-            ],
-            [
-              -70.70850220941175,
-              -33.29655822525151
-            ],
-            [
-              -70.70786516119058,
-              -33.29949455655391
-            ],
-            [
-              -70.70710961729657,
-              -33.299377609216116
-            ],
-            [
-              -70.70693941159361,
-              -33.300101839927294
-            ],
-            [
-              -70.70634715222322,
-              -33.29999782605956
-            ],
-            [
-              -70.70651735792595,
-              -33.299281295131955
-            ],
-            [
-              -70.70555983498684,
-              -33.29910776897503
-            ],
-            [
-              -70.70618798645998,
-              -33.29617872340039
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Proyecto ODATA Datacenter ST 01",
-        "type": "Data Center",
-        "shape": "square",
-        "color": "#2BAB64",
-        "size": 6,
-        "Empresa": "N/A.",
-        "Año": 2000,
-        "Comuna": "Comuna",
-        "address": "Av. N/A #0000",
-        "Consultora": "N/A Asociados SA",
-        "Superficie predial": "00.000 m²",
-        "Superficie construida": "00.000 m²",
-        "Inversion": "00.000.000 USD",
-        "tecnologias": "N/A",
-        "sistemas_refrigeracion": "N/A",
-        "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
-        "Evaluacion Ambiental": "Aprobado",
-        "image": "https://placehold.co/600x400",
-        "reference_link": "http://ejemplo.com/algo.pdf",
-        "source": "N/A"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -70.7276950116272,
-              -33.30642805930537
-            ],
-            [
-              -70.72936109854614,
-              -33.30725811209613
-            ],
-            [
-              -70.72870214413027,
-              -33.30807754775949
-            ],
-            [
-              -70.72731098714715,
-              -33.30729435438607
-            ],
-            [
-              -70.7276950116272,
-              -33.30642805930537
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Proyecto ODATA Datacenter ST 02",
-        "type": "Data Center",
-        "shape": "square",
-        "color": "#2BAB64",
-        "size": 6,
-        "Empresa": "N/A.",
-        "Año": 2000,
-        "Comuna": "Comuna",
-        "address": "Av. N/A #0000",
-        "Consultora": "N/A Asociados SA",
-        "Superficie predial": "00.000 m²",
-        "Superficie construida": "00.000 m²",
-        "Inversion": "00.000.000 USD",
-        "tecnologias": "N/A",
-        "sistemas_refrigeracion": "N/A",
-        "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
-        "Evaluacion Ambiental": "Aprobado",
-        "image": "https://placehold.co/600x400",
-        "reference_link": "http://ejemplo.com/algo.pdf",
-        "source": "N/A"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -70.7293614642061,
-              -33.30725673084813
-            ],
-            [
-              -70.73275171973683,
-              -33.30894905781694
-            ],
-            [
-              -70.73200075358474,
-              -33.30993910056029
-            ],
-            [
-              -70.7287020544742,
-              -33.30807758297288
-            ],
-            [
-              -70.7293614642061,
-              -33.30725673084813
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Data Center SCL02",
-        "type": "Data Center",
-        "shape": "square",
-        "color": "#2BAB64",
-        "size": 6,
-        "Empresa": "EdgeConnex Chile II SPA",
-        "Año": 2021,
-        "Comuna": "Colina",
-        "address": "Av. N/A #0000",
-        "Consultora": "GIZA INGENIERÍA SPA",
-        "Superficie predial": "127.388 m²",
-        "Superficie construida": "6.677 m²",
-        "Inversion": "100.000.000 USD",
-        "sistemas_refrigeracion": "Chillers",
-        "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
-        "Evaluacion Ambiental": "Aprobado",
-        "image": "https://placehold.co/600x400",
-        "reference_link": "http://ejemplo.com/algo.pdf",
-        "source": "N/A"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -70.70409307798157,
-              -33.296031778340016
-            ],
-            [
-              -70.70372992926038,
-              -33.29763238692221
-            ],
-            [
-              -70.70311578799017,
-              -33.29753528907622
-            ],
-            [
-              -70.70347925857675,
-              -33.295933849529106
-            ],
-            [
-              -70.70409307798157,
-              -33.296031778340016
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Data Center SCL03",
-        "type": "Data Center",
-        "shape": "square",
-        "color": "#2BAB64",
-        "size": 6,
-        "Empresa": "EdgeConnex Chile II SPA",
-        "Año": 2022,
-        "Comuna": "Colina",
-        "address": "Av. N/A #0000",
-        "Consultora": "GIZA INGENIERÍA SPA",
-        "Superficie predial": "127.388 m²",
-        "Superficie construida": "9.691 m²",
-        "Inversion": "73.000.000 USD [SCL02+SCL03]",
-        "tecnologias": "N/A",
-        "sistemas_refrigeracion": "Equipos condensadores CRAC modelo DS250",
-        "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
-        "Evaluacion Ambiental": "Aprobado",
-        "image": "https://placehold.co/600x400",
-        "reference_link": "http://ejemplo.com/algo.pdf",
-        "source": "N/A"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -70.70601990669235,
-              -33.29636357274896
-            ],
-            [
-              -70.7056559945917,
-              -33.29796528879781
-            ],
-            [
-              -70.70504255787631,
-              -33.29786795584147
-            ],
-            [
-              -70.70540559559251,
-              -33.296265601721856
-            ],
-            [
-              -70.70601990669235,
-              -33.29636357274896
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Data Center EDCSCL01",
-        "type": "Data Center",
-        "shape": "square",
-        "color": "#2BAB64",
-        "size": 6,
-        "Empresa": "EdgeConnex Chile II SPA",
-        "Año": 2021,
-        "Comuna": "Colina",
-        "address": "Av. N/A #0000",
-        "Consultora": "GIZA INGENIERÍA SPA",
-        "Superficie predial": "127.388 m²",
-        "Superficie construida": "6.677 m²",
-        "Inversion": "100.000.000 USD",
-        "tecnologias": "N/A",
-        "sistemas_refrigeracion": "Chillers",
-        "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
-        "Evaluacion Ambiental": "Aprobado",
-        "image": "https://placehold.co/600x400",
-        "reference_link": "http://ejemplo.com/algo.pdf",
-        "source": "N/A"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -70.70443142106207,
-              -33.29610407365454
-            ],
-            [
-              -70.7050448859583,
-              -33.2962011175016
-            ],
-            [
-              -70.70468118250675,
-              -33.29780315941086
-            ],
-            [
-              -70.7040668470051,
-              -33.297705220977086
-            ],
-            [
-              -70.70443142106207,
-              -33.29610407365454
-            ]
-          ]
-        ],
-        "type": "Polygon"
       }
     },
     {
@@ -676,8 +93,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -841,8 +258,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 10
+      }
     },
     {
       "type": "Feature",
@@ -863,8 +279,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -904,8 +320,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 11
+      }
     },
     {
       "type": "Feature",
@@ -926,8 +341,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -967,8 +382,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 12
+      }
     },
     {
       "type": "Feature",
@@ -989,8 +403,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1058,8 +472,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 13
+      }
     },
     {
       "type": "Feature",
@@ -1080,8 +493,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1137,8 +550,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 14
+      }
     },
     {
       "type": "Feature",
@@ -1159,8 +571,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1192,8 +604,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 15
+      }
     },
     {
       "type": "Feature",
@@ -1214,8 +625,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1247,8 +658,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 16
+      }
     },
     {
       "type": "Feature",
@@ -1269,8 +679,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1322,8 +732,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 17
+      }
     },
     {
       "type": "Feature",
@@ -1344,8 +753,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1377,8 +786,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 18
+      }
     },
     {
       "type": "Feature",
@@ -1399,8 +807,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1452,8 +860,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 19
+      }
     },
     {
       "type": "Feature",
@@ -1474,8 +881,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1519,8 +926,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 20
+      }
     },
     {
       "type": "Feature",
@@ -1541,8 +947,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1610,8 +1016,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 21
+      }
     },
     {
       "type": "Feature",
@@ -1632,8 +1037,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1705,8 +1110,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 22
+      }
     },
     {
       "type": "Feature",
@@ -1727,8 +1131,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1812,8 +1216,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 23
+      }
     },
     {
       "type": "Feature",
@@ -1834,8 +1237,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -1927,8 +1330,7 @@
           ]
         ],
         "type": "Polygon"
-      },
-      "id": 24
+      }
     },
     {
       "type": "Feature",
@@ -1949,8 +1351,8 @@
         "tecnologias": "N/A",
         "sistemas_refrigeracion": "N/A",
         "emisiones": "N/A",
-        "pue": 1.00,
-        "wue": 1.0,
+        "pue": 1,
+        "wue": 1,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -2042,8 +1444,966 @@
           ]
         ],
         "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Anacondaweb: Temuco Downtown Data Center",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "N/A.",
+        "Año": 2000,
+        "Comuna": "Temuco",
+        "address": "Bernardo O'Higgins 485",
+        "Consultora": "N/A Asociados SA",
+        "Superficie predial": "00.000 m²",
+        "Superficie construida": "00.000 m²",
+        "Inversion": "00.000.000 USD",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "N/A",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "https://www.datacenters.com/anacondaweb-temuco-downtown",
+        "source": "N/A"
       },
-      "id": 25
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -72.59593374197179,
+              -38.74245273863845
+            ],
+            [
+              -72.59603501146405,
+              -38.74283673523672
+            ],
+            [
+              -72.59584649440956,
+              -38.74286225392517
+            ],
+            [
+              -72.59574366692539,
+              -38.74248554855499
+            ],
+            [
+              -72.59593374197179,
+              -38.74245273863845
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Opciones Concepción",
+        "type": "Data Centers",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "Opciones S.A.",
+        "Año": 2000,
+        "Comuna": "Concepción",
+        "address": "Ongolmo 1280",
+        "Consultora": "N/A Asociados SA",
+        "Superficie predial": "00.000 m²",
+        "Superficie construida": "00.000 m²",
+        "Inversion": "00.000.000 USD",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "N/A",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.04854584869416,
+              -36.81564501344162
+            ],
+            [
+              -73.0484633813524,
+              -36.81578292321606
+            ],
+            [
+              -73.04793375775711,
+              -36.815574591333004
+            ],
+            [
+              -73.04801255988365,
+              -36.81543961544483
+            ],
+            [
+              -73.04854584869416,
+              -36.81564501344162
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Apoapsis",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "Apoapsis SpA",
+        "Año": 2000,
+        "Comuna": "Punta Arenas",
+        "address": "Av. Las Loicas 1160",
+        "Consultora": "N/A Asociados SA",
+        "Superficie predial": "5,200 m²",
+        "Superficie construida": "00.000 m²",
+        "Inversion": "00.000.000 USD",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "N/A",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "https://www.datacentermap.com/chile/punta-arenas/apoapsis/",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          -70.8785070415211,
+          -53.039990117546644
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Opciones Puerto Montt",
+        "type": "Data Centers",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "N/A.",
+        "Año": 2000,
+        "Comuna": "Puerto Montt",
+        "address": "Seminario 372",
+        "Consultora": "N/A Asociados SA",
+        "Superficie predial": "00.000 m²",
+        "Superficie construida": "00.000 m²",
+        "Inversion": "00.000.000 USD",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "N/A",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "https://www.datacentermap.com/chile/puerto-montt/opciones-puerto-montt/",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -72.94033865847551,
+              -41.46750364131749
+            ],
+            [
+              -72.94038178653385,
+              -41.46773649052976
+            ],
+            [
+              -72.94027673100202,
+              -41.467749065905465
+            ],
+            [
+              -72.940230285401,
+              -41.46751538809073
+            ],
+            [
+              -72.94033865847551,
+              -41.46750364131749
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DATACENTER TIER III - TELEFÓNICA DEL SUR - GRUPO GTD",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "GTD Chile",
+        "Año": 2019,
+        "Comuna": "Puerto Montt",
+        "address": "Ruta 5 Sur 1028",
+        "Consultora": "N/A Asociados SA",
+        "Superficie predial": "00.000 m²",
+        "Superficie construida": "00.000 m²",
+        "Inversion": "00.000.000 USD",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "N/A",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "https://www.datacentermap.com/chile/puerto-montt/gtd-puerto-montt/specs/",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.02320928407046,
+              -41.48674459801338
+            ],
+            [
+              -73.023518739509,
+              -41.48697075942674
+            ],
+            [
+              -73.02316022406146,
+              -41.48728173008131
+            ],
+            [
+              -73.02290360247859,
+              -41.48708949385246
+            ],
+            [
+              -73.02312625944036,
+              -41.48690291108557
+            ],
+            [
+              -73.02306587789144,
+              -41.48686333285354
+            ],
+            [
+              -73.02320928407046,
+              -41.48674459801338
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equinix ST4",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "N/A.",
+        "Año": 2000,
+        "Comuna": "Comuna",
+        "address": "Av. N/A #0000",
+        "Consultora": "N/A Asociados SA",
+        "Superficie predial": "00.000 m²",
+        "Superficie construida": "00.000 m²",
+        "Inversion": "00.000.000 USD",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "N/A",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -71.39974854149969,
+              -33.95577511801181
+            ],
+            [
+              -71.39975451972772,
+              -33.95580288703382
+            ],
+            [
+              -71.3998501713781,
+              -33.95579892002921
+            ],
+            [
+              -71.39986093218836,
+              -33.95592883926484
+            ],
+            [
+              -71.39980951942465,
+              -33.955933798011344
+            ],
+            [
+              -71.3998143020069,
+              -33.956005203913726
+            ],
+            [
+              -71.3999099536564,
+              -33.95599726992788
+            ],
+            [
+              -71.3999290839863,
+              -33.956157933005294
+            ],
+            [
+              -71.39970191131911,
+              -33.95617975142453
+            ],
+            [
+              -71.39970669390134,
+              -33.95627099202539
+            ],
+            [
+              -71.399634955164,
+              -33.9562749590064
+            ],
+            [
+              -71.39963973774717,
+              -33.95632851322441
+            ],
+            [
+              -71.39961582483413,
+              -33.95632851322441
+            ],
+            [
+              -71.399634955164,
+              -33.95653479582382
+            ],
+            [
+              -71.39951060802012,
+              -33.95655066369458
+            ],
+            [
+              -71.39948908639869,
+              -33.95632652973519
+            ],
+            [
+              -71.399505825437,
+              -33.956324546245924
+            ],
+            [
+              -71.3994890864054,
+              -33.95616785046598
+            ],
+            [
+              -71.3996087217281,
+              -33.956161899983634
+            ],
+            [
+              -71.39957046106832,
+              -33.95578701901526
+            ],
+            [
+              -71.39974854149969,
+              -33.95577511801181
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": 22
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cerrillos Data Center",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "Inversiones y servicio Dataluna Ltda.",
+        "Año": 2019,
+        "Comuna": "Cerrillos",
+        "address": "Av. Lonquen esq. Av. Lo Espejo",
+        "Consultora": "Jacobs Chile S.A.",
+        "Superficie predial": "230.000 m²",
+        "Superficie construida": "70.034,28 m²",
+        "Inversion": "200.000.000 USD",
+        "sistemas_refrigeracion": "Agua - Sistema cerrado con reposición de agua.",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Retirado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "http://ejemplo.com/algo.pdf"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -70.72602167999229,
+              -33.52396056338858
+            ],
+            [
+              -70.72551878335106,
+              -33.524168532970265
+            ],
+            [
+              -70.72532262448533,
+              -33.52425773024068
+            ],
+            [
+              -70.72521860084437,
+              -33.52430976193916
+            ],
+            [
+              -70.7251012027357,
+              -33.52437046554694
+            ],
+            [
+              -70.72366934738649,
+              -33.52491236169572
+            ],
+            [
+              -70.72360390690258,
+              -33.52479418688579
+            ],
+            [
+              -70.7213015944893,
+              -33.52140556744906
+            ],
+            [
+              -70.71754533489242,
+              -33.522649785447
+            ],
+            [
+              -70.71633849902622,
+              -33.520675808248406
+            ],
+            [
+              -70.71771035513513,
+              -33.52022665246427
+            ],
+            [
+              -70.71783437498546,
+              -33.5201635644411
+            ],
+            [
+              -70.71802565983808,
+              -33.52008645679384
+            ],
+            [
+              -70.71836402922351,
+              -33.51999346340802
+            ],
+            [
+              -70.71850043260304,
+              -33.51993712979387
+            ],
+            [
+              -70.71873252598427,
+              -33.51984926859003
+            ],
+            [
+              -70.72130422912123,
+              -33.51897250015203
+            ],
+            [
+              -70.7213309266988,
+              -33.5189991837485
+            ],
+            [
+              -70.72194795741706,
+              -33.51878822945563
+            ],
+            [
+              -70.7223210278973,
+              -33.51924096035528
+            ],
+            [
+              -70.72235670817496,
+              -33.51930458513748
+            ],
+            [
+              -70.72243755930234,
+              -33.519407216235926
+            ],
+            [
+              -70.72307728869235,
+              -33.520279591307954
+            ],
+            [
+              -70.72376741809303,
+              -33.52123005938094
+            ],
+            [
+              -70.72602167999229,
+              -33.52396056338858
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SCALA Data Center Campus",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "Scala Chile Data Centers SpA",
+        "Año": 2023,
+        "Comuna": "Curauma",
+        "address": "Av. N/A #0000",
+        "Consultora": "GIZA INGENIERÍA SPA",
+        "Superficie predial": "81.444 m²",
+        "Superficie construida": "25.832 m²",
+        "Inversion": "65.000.000 USD",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "Chillers",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -70.74241870546633,
+              -33.286745750176294
+            ],
+            [
+              -70.74465180270906,
+              -33.28858663928509
+            ],
+            [
+              -70.74091035072922,
+              -33.294487439052595
+            ],
+            [
+              -70.73921068653539,
+              -33.29292387000125
+            ],
+            [
+              -70.74229032248259,
+              -33.287031464577296
+            ],
+            [
+              -70.74241870546633,
+              -33.286745750176294
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "Digital holdings chile SpA",
+        "Año": 2011,
+        "Comuna": "Paine",
+        "address": "Av. Pdte. Prieto 226",
+        "Consultora": "MHO CONSULTORES ASOCIADOS SpA",
+        "Superficie predial": "30.379,5 m²",
+        "Superficie construida": "4842 m²",
+        "Inversion": "31.000.000 USD",
+        "sistemas_refrigeracion": "Chillers",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -70.74954063301116,
+              -33.811044715590675
+            ],
+            [
+              -70.7498450066137,
+              -33.812878341386885
+            ],
+            [
+              -70.74818842211229,
+              -33.81306832639144
+            ],
+            [
+              -70.74788418795526,
+              -33.81123439782514
+            ],
+            [
+              -70.74954063301116,
+              -33.811044715590675
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Data Center SCL04",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "EdgeConnex Chile II SPA",
+        "Año": 2023,
+        "Comuna": "Colina",
+        "address": "Av. N/A #0000",
+        "Consultora": "GIZA INGENIERÍA SPA",
+        "Superficie predial": "65.000 m²",
+        "Superficie construida": "34.200 m²",
+        "Inversion": "40.000.000 USD",
+        "sistemas_refrigeracion": "Chillers",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -70.70618798645998,
+              -33.29617872340039
+            ],
+            [
+              -70.70850220941175,
+              -33.29655822525151
+            ],
+            [
+              -70.70786516119058,
+              -33.29949455655391
+            ],
+            [
+              -70.70710961729657,
+              -33.299377609216116
+            ],
+            [
+              -70.70693941159361,
+              -33.300101839927294
+            ],
+            [
+              -70.70634715222322,
+              -33.29999782605956
+            ],
+            [
+              -70.70651735792595,
+              -33.299281295131955
+            ],
+            [
+              -70.70555983498684,
+              -33.29910776897503
+            ],
+            [
+              -70.70618798645998,
+              -33.29617872340039
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Proyecto ODATA Datacenter ST 01",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "N/A.",
+        "Año": 2000,
+        "Comuna": "Comuna",
+        "address": "Av. N/A #0000",
+        "Consultora": "N/A Asociados SA",
+        "Superficie predial": "00.000 m²",
+        "Superficie construida": "00.000 m²",
+        "Inversion": "00.000.000 USD",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "N/A",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -70.7276950116272,
+              -33.30642805930537
+            ],
+            [
+              -70.72936109854614,
+              -33.30725811209613
+            ],
+            [
+              -70.72870214413027,
+              -33.30807754775949
+            ],
+            [
+              -70.72731098714715,
+              -33.30729435438607
+            ],
+            [
+              -70.7276950116272,
+              -33.30642805930537
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Proyecto ODATA Datacenter ST 02",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "N/A.",
+        "Año": 2000,
+        "Comuna": "Comuna",
+        "address": "Av. N/A #0000",
+        "Consultora": "N/A Asociados SA",
+        "Superficie predial": "00.000 m²",
+        "Superficie construida": "00.000 m²",
+        "Inversion": "00.000.000 USD",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "N/A",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -70.7293614642061,
+              -33.30725673084813
+            ],
+            [
+              -70.73275171973683,
+              -33.30894905781694
+            ],
+            [
+              -70.73200075358474,
+              -33.30993910056029
+            ],
+            [
+              -70.7287020544742,
+              -33.30807758297288
+            ],
+            [
+              -70.7293614642061,
+              -33.30725673084813
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Data Center SCL02",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "EdgeConnex Chile II SPA",
+        "Año": 2021,
+        "Comuna": "Colina",
+        "address": "Av. N/A #0000",
+        "Consultora": "GIZA INGENIERÍA SPA",
+        "Superficie predial": "127.388 m²",
+        "Superficie construida": "6.677 m²",
+        "Inversion": "100.000.000 USD",
+        "sistemas_refrigeracion": "Chillers",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -70.70409307798157,
+              -33.296031778340016
+            ],
+            [
+              -70.70372992926038,
+              -33.29763238692221
+            ],
+            [
+              -70.70311578799017,
+              -33.29753528907622
+            ],
+            [
+              -70.70347925857675,
+              -33.295933849529106
+            ],
+            [
+              -70.70409307798157,
+              -33.296031778340016
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Data Center SCL03",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "EdgeConnex Chile II SPA",
+        "Año": 2022,
+        "Comuna": "Colina",
+        "address": "Av. N/A #0000",
+        "Consultora": "GIZA INGENIERÍA SPA",
+        "Superficie predial": "127.388 m²",
+        "Superficie construida": "9.691 m²",
+        "Inversion": "73.000.000 USD [SCL02+SCL03]",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "Equipos condensadores CRAC modelo DS250",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -70.70601990669235,
+              -33.29636357274896
+            ],
+            [
+              -70.7056559945917,
+              -33.29796528879781
+            ],
+            [
+              -70.70504255787631,
+              -33.29786795584147
+            ],
+            [
+              -70.70540559559251,
+              -33.296265601721856
+            ],
+            [
+              -70.70601990669235,
+              -33.29636357274896
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Data Center EDCSCL01",
+        "type": "Data Center",
+        "shape": "square",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": "EdgeConnex Chile II SPA",
+        "Año": 2021,
+        "Comuna": "Colina",
+        "address": "Av. N/A #0000",
+        "Consultora": "GIZA INGENIERÍA SPA",
+        "Superficie predial": "127.388 m²",
+        "Superficie construida": "6.677 m²",
+        "Inversion": "100.000.000 USD",
+        "tecnologias": "N/A",
+        "sistemas_refrigeracion": "Chillers",
+        "emisiones": "N/A",
+        "pue": 1,
+        "wue": 1,
+        "Evaluacion Ambiental": "Aprobado",
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": "N/A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -70.70443142106207,
+              -33.29610407365454
+            ],
+            [
+              -70.7050448859583,
+              -33.2962011175016
+            ],
+            [
+              -70.70468118250675,
+              -33.29780315941086
+            ],
+            [
+              -70.7040668470051,
+              -33.297705220977086
+            ],
+            [
+              -70.70443142106207,
+              -33.29610407365454
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
     }
   ]
 }
