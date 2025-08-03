@@ -458,7 +458,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (feature) {
             overlay.setPosition(event.coordinate);
-            tooltip.innerHTML = feature.get('nombre') || feature.get('name') || '';
+            // Updated to display name in bold and type below
+            const featureName = feature.get('nombre') || feature.get('name') || '';
+            const featureType = feature.get('type') || '';
+            let tooltipContent = `<strong>${featureName}</strong>`;
+            if (featureType) {
+                tooltipContent += `<br>${featureType}`;
+            }
+            tooltip.innerHTML = tooltipContent;
+            tooltip.style.textAlign = 'left';
             tooltip.style.display = 'block';
         } else {
             tooltip.style.display = 'none';
@@ -608,7 +616,7 @@ function performSearch(searchTerm) {
                 const operator = feature.get('operator') || feature.get('operador');
                 
                 if (
-                    (name && name.toLowerCase().includes(lowerSearchTerm)) ||
+                    (name && name.toLowerCase().includes(lowerSearchTerm)) || 
                     (location && location.toLowerCase().includes(lowerSearchTerm)) ||
                     (address && address.toLowerCase().includes(lowerSearchTerm)) ||
                     (comuna && comuna.toLowerCase().includes(lowerSearchTerm)) ||
