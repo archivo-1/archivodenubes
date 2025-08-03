@@ -210,13 +210,26 @@ html, body {
         color: white;
         border: none;
         border-radius: 8px;
-        font-size: 2em;
+        
+        /* --- NEW CODE for the image icon --- */
+        font-size: 0; /* Hides the emoji text */
+        background-image: url('assets/ico_layers.png');
+        background-size: 60%; /* Adjust the size of the icon within the button */
+        background-repeat: no-repeat;
+        background-position: center;
+        
+        
+        /* --- END NEW CODE --- */
+        
         line-height: 1;
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         z-index: 1000;
         transition: all 0.3s ease;
+        
     }
+    
+    
     
     .layer-controls {
         top: auto;
@@ -459,8 +472,17 @@ html, body {
 .icon-placeholder {
     width: 30px;
     height: 30px;
-    background-color: #D3D3D3;
-    border-radius: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.iconA {
+    background-image: url('assets/ico_nube.png');
+}
+
+.iconB {
+    background-image: url('assets/ico_pc.png');
 }
 
 .features-grid {
@@ -486,10 +508,30 @@ html, body {
 .card-icon-placeholder {
     width: 50px;
     height: 50px;
-    background-color: #8E6814;
     margin: 0 auto 15px;
-    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-image 0.3s ease-in-out; /* Smooth transition for the image change */
 }
+
+/* Individual default images for each icon */
+.icon-1 {
+    background-image: url('assets/ico_mapa.png');
+}
+
+.icon-2 {
+    background-image: url('assets/ico_agua.png');
+}
+
+.icon-3 {
+    background-image: url('assets/ico_chart.png');
+}
+
+.icon-4 {
+    background-image: url('assets/ico_libros.png');
+}
+
 
 .card-text {
     font-family: 'NHaasGroteskDSPro', sans-serif;
@@ -559,7 +601,7 @@ html, body {
     left: 105px; /* Aligns with the back button */
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 4px;
     z-index: 1000;
 }
 
@@ -581,8 +623,18 @@ html, body {
 }
 
 #search-button .icon {
-    font-size: 0.9rem;
-    color: white;
+    /* New styling to use a background image */
+    background-image: url('assets/ico_lupa.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block; /* Important to make it a block element to have dimensions */
+    width: 18px; /* Adjust size to fit your icon */
+    height: 18px; /* Adjust size to fit your icon */
+    /* Original properties, but adjusted to hide the emoji */
+    font-size: 0; 
+    color: transparent;
+    filter: brightness(0) invert(1)
 }
 
 /* --- Responsive styles for mobile --- */
@@ -644,4 +696,10 @@ html, body {
     font-size: 0.9rem;
     color: #888;
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    .ol-tooltip {
+        display: none !important;
+    }
 }
