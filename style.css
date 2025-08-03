@@ -255,6 +255,13 @@ html, body {
 */
 #toggle-layer-controls {
     display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: auto;
+    width: 50px;
+    height: 50px;
+    
 }
 
 /*
