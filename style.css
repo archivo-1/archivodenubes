@@ -211,15 +211,11 @@ html, body {
         border: none;
         border-radius: 8px;
         
-        /* --- NEW CODE for the image icon --- */
-        font-size: 0; /* Hides the emoji text */
+        font-size: 0; 
         background-image: url('./assets/ico_layers.png');
-        background-size: 60%; /* Adjust the size of the icon within the button */
+        background-size: 60%; 
         background-repeat: no-repeat;
         background-position: center;
-        
-        
-        /* --- END NEW CODE --- */
         
         line-height: 1;
         cursor: pointer;
@@ -250,7 +246,6 @@ html, body {
     }
 }
 
-/* --- LANDING PAGE STYLES --- */
 .page-section {
     width: 100%;
     height: 100%;
@@ -357,10 +352,6 @@ html, body {
     display: none;
 }
 
-/* ======================================
-    NEW LANDING PAGE STYLES
-    ======================================
-*/
 #landing-page {
     background-color: #F8F8F8;
     height: 100vh;
@@ -399,7 +390,6 @@ html, body {
 }
 
 .nav-bar .nav-link {
-    /* FIX: Set the link color to grey for desktop */
     color: #666;
     text-decoration: none;
     font-family: 'SourceCodeVariable', monospace;
@@ -512,10 +502,9 @@ html, body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    transition: background-image 0.3s ease-in-out; /* Smooth transition for the image change */
+    transition: background-image 0.3s ease-in-out;
 }
 
-/* Individual default images for each icon */
 .icon-1 {
     background-image: url('./assets/ico_mapa.png');
 }
@@ -544,7 +533,6 @@ html, body {
         justify-content: space-between;
         align-items: center;
         gap: 10px;
-        /* FIX: Use a relative unit for vertical padding to scale with screen height */
         padding: 2vh 20px;
     }
 
@@ -594,11 +582,10 @@ html, body {
     }
 }
 
-/* --- Search Box Styles --- */
 .search-container {
     position: absolute;
     top: 8px;
-    left: 105px; /* Aligns with the back button */
+    left: 105px; 
     display: flex;
     align-items: center;
     gap: 4px;
@@ -623,21 +610,18 @@ html, body {
 }
 
 #search-button .icon {
-    /* New styling to use a background image */
     background-image: url('./assets/ico_lupa.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    display: block; /* Important to make it a block element to have dimensions */
-    width: 18px; /* Adjust size to fit your icon */
-    height: 18px; /* Adjust size to fit your icon */
-    /* Original properties, but adjusted to hide the emoji */
+    display: block; 
+    width: 18px; 
+    height: 18px; 
     font-size: 0; 
     color: transparent;
     filter: brightness(0) invert(1)
 }
 
-/* --- Responsive styles for mobile --- */
 @media (max-width: 768px) {
     .search-container {
         top: 5px;
@@ -677,7 +661,7 @@ html, body {
     cursor: pointer;
     border-bottom: 1px solid #e0e0e0;
     transition: background-color 0.2s ease;
-    text-align: left; /* FIX: Ensure all text inside the item is left-aligned */
+    text-align: left; 
 }
 
 .suggestion-item:hover {
@@ -690,7 +674,6 @@ html, body {
     margin-top: 2px;
 }
 
-/* --- No Results Message Style --- */
 .no-results-message {
     padding: 10px;
     font-size: 0.9rem;
@@ -703,4 +686,3 @@ html, body {
         display: none !important;
     }
 }
-
