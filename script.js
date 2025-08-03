@@ -1,7 +1,4 @@
-// --- Integrated Script.js ---
-// All functionality is now inside a single DOMContentLoaded event listener to prevent conflicts.
 document.addEventListener('DOMContentLoaded', function() {
-    // --- START: Landing Page and Page Switching Logic ---
     const landingPage = document.getElementById('landing-page');
     const mapContainer = document.getElementById('map-container-wrapper');
     const startButton = document.getElementById('start-map-button');
@@ -22,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
             pointLayer.setVisible(true);
             dataCenterLayer.setVisible(true);
             landCableLayer.setVisible(true);
-            // This is crucial: Force the map to re-render after its container becomes visible.
             if (map) {
                 map.updateSize();
             }
@@ -36,27 +32,21 @@ document.addEventListener('DOMContentLoaded', function() {
             landingPage.scrollTo(0, 0);
         });
     }
-    // --- END: Landing Page and Page Switching Logic ---
 
-    // --- START: Original Map and Layer Controls Logic ---
-
-    // Crea una nueva instancia del mapa con una capa base de OpenStreetMap.
     const map = new ol.Map({
-        target: 'map', // El ID del elemento div donde se renderizará el mapa.
+        target: 'map',
         layers: [
             new ol.layer.Tile({
-                source: new ol.source.OSM(), // OpenStreetMap como capa base.
-                className: 'ol-layer-osm-grayscale' // Aplica una clase CSS para el efecto de escala de grises.
+                source: new ol.source.OSM(),
+                className: 'ol-layer-osm-grayscale'
             })
         ],
         view: new ol.View({
-            // Define una vista inicial del mapa.
-            center: ol.proj.fromLonLat([-70.0, -35.0]), // Centro inicial del mapa (aproximadamente Chile).
-            zoom: 4 // Nivel de zoom inicial.
+            center: ol.proj.fromLonLat([-70.0, -35.0]),
+            zoom: 4
         })
     });
 
-    // Desactiva la rotación del mapa para dispositivos táctiles.
     const interactions = map.getInteractions().getArray();
     interactions.forEach(function(interaction) {
         if (interaction instanceof ol.interaction.PinchRotate) {
@@ -64,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Create a new style for the subtle glow effect.
     const glowStyle = new ol.style.Style({
         stroke: new ol.style.Stroke({
             color: 'rgba(255, 255, 255, 0.5)',
@@ -84,16 +73,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let selectedFeature = null;
 
-    // A utility function to reset the style of a feature.
     function resetFeatureStyle() {
         if (selectedFeature) {
-            selectedFeature.setStyle(undefined); // Reset to use the layer's style function again.
+            selectedFeature.setStyle(undefined);
             selectedFeature = null;
         }
     }
 
-
-    // Crea una fuente y capa vectorial para los datos de cables.
     const cableSource = new ol.source.Vector({
         format: new ol.format.GeoJSON({
             dataProjection: 'EPSG:4326',
@@ -112,14 +98,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const width = geojsonWidth || 3;
             const lineDash = geojsonLineDash || undefined;
             return [
-                // Thicker invisible style for click/hover hitbox
                 new ol.style.Style({
                     stroke: new ol.style.Stroke({
                         color: 'rgba(0, 0, 0, 0.01)',
                         width: 15
                     })
                 }),
-                // The original visible style
                 new ol.style.Style({
                     stroke: new ol.style.Stroke({
                         color: color,
@@ -131,7 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Crea una fuente y capa vectorial para los datos de puntos.
     const pointSource = new ol.source.Vector({
         format: new ol.format.GeoJSON({
             dataProjection: 'EPSG:4326',
@@ -196,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Crea una fuente y capa vectorial para los datos de centros de datos.
     const dataCenterSource = new ol.source.Vector({
         format: new ol.format.GeoJSON({
             dataProjection: 'EPSG:4326',
@@ -264,7 +246,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Crea una fuente y capa vectorial para los datos de cables terrestres.
     const landCableSource = new ol.source.Vector({
         format: new ol.format.GeoJSON({
             dataProjection: 'EPSG:4326',
@@ -283,14 +264,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const width = geojsonWidth || 3;
             const lineDash = geojsonLineDash || undefined;
             return [
-                // Thick, invisible style for click/hover hitbox
                 new ol.style.Style({
                     stroke: new ol.style.Stroke({
                         color: 'rgba(0, 0, 0, 0.01)',
                         width: 15
                     })
                 }),
-                // The original visible style
                 new ol.style.Style({
                     stroke: new ol.style.Stroke({
                         color: color,
@@ -302,24 +281,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Agrega las capas al mapa en el orden correcto.
     map.addLayer(cableLayer);
     map.addLayer(landCableLayer);
     map.addLayer(pointLayer);
     map.addLayer(dataCenterLayer);
 
-    // --- START: Layer Toggle Functionality ---
     const toggleLayerControlsButton = document.getElementById('toggle-layer-controls');
     const layerControls = document.getElementById('layer-controls');
     const infoPanel = document.getElementById('info-panel');
     const closePanelButton = document.getElementById('close-panel');
-    let isClickOnFeature = false; // Flag to track if the click was on a map feature
+    let isClickOnFeature = false;
 
     toggleLayerControlsButton.addEventListener('click', () => {
         layerControls.classList.toggle('open');
-        // Hide the toggle button when the panel is open
         toggleLayerControlsButton.style.display = layerControls.classList.contains('open') ? 'none' : 'block';
-        // Ensure the info panel is closed when opening the layer controls
         if (infoPanel.classList.contains('open')) {
             infoPanel.classList.remove('open');
         }
@@ -338,29 +313,23 @@ document.addEventListener('DOMContentLoaded', function() {
         landCableLayer.setVisible(this.checked);
     });
 
-    // Logic to close panels on click outside
     document.addEventListener('click', function(event) {
-        // If the click was on a feature, we don't want to close the panels.
         if (isClickOnFeature) {
             isClickOnFeature = false;
             return;
         }
 
-        // Close the layer controls panel if it's open and the click is outside
         if (layerControls.classList.contains('open') && !layerControls.contains(event.target) && !toggleLayerControlsButton.contains(event.target)) {
             layerControls.classList.remove('open');
             toggleLayerControlsButton.style.display = 'block';
         }
 
-        // Close the info panel if it's open and the click is outside
         if (infoPanel.classList.contains('open') && !infoPanel.contains(event.target)) {
             infoPanel.classList.remove('open');
-            // If the info panel is closed by clicking outside, deselect the feature.
             resetFeatureStyle();
         }
     });
 
-    // Stop propagation for clicks inside the panels so they don't close it
     if (infoPanel) {
         infoPanel.addEventListener('click', function(event) {
             event.stopPropagation();
@@ -372,9 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.stopPropagation();
         });
     }
-    // --- END: Layer Toggle Functionality ---
 
-    // --- START: Info Panel and Tooltip Logic ---
     const panelContent = document.getElementById('panel-content');
     const tooltip = document.getElementById('tooltip');
     const overlay = new ol.Overlay({
@@ -458,7 +425,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (feature) {
             overlay.setPosition(event.coordinate);
-            // Updated to display name in bold and type below
             const featureName = feature.get('nombre') || feature.get('name') || '';
             const featureType = feature.get('type') || '';
             let tooltipContent = `<strong>${featureName}</strong>`;
@@ -474,30 +440,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     map.on('click', function(evt) {
-        // Find a feature and its layer at the clicked pixel.
         let clickedFeature = null;
         let clickedLayer = null;
         map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
             clickedFeature = feature;
             clickedLayer = layer;
         }, {
-            hitTolerance: 5 // Increase click tolerance for better mobile touch response.
+            hitTolerance: 5
         });
 
         if (clickedFeature) {
-            // Reset the style of the previously selected feature.
             resetFeatureStyle();
             
-            // Store the new feature.
             selectedFeature = clickedFeature;
             
             isClickOnFeature = true;
 
-            // Clear the panel content first to reset the scroll state.
             panelContent.innerHTML = '';
             panelContent.scrollTop = 0;
             
-            // Then, set the new content.
             panelContent.innerHTML = getFormattedFeatureInfo(selectedFeature);
             
             infoPanel.classList.add('open');
@@ -529,7 +490,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     fitPadding = [50, panelWidth + 20, 50, 50];
                 }
 
-                // Use map.once('moveend') to apply the style after the zoom animation is complete.
                 map.once('moveend', () => {
                     if (selectedFeature) {
                         const originalLayerStyleFunction = clickedLayer.getStyle();
@@ -551,7 +511,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
         } else {
-            // If no feature was clicked, close the panel and deselect any feature.
             isClickOnFeature = false;
             if (infoPanel.classList.contains('open')) {
                 infoPanel.classList.remove('open');
@@ -560,232 +519,215 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-// --- START: Search Functionality with Suggestions ---
-const searchBox = document.getElementById('search-box');
-const searchButton = document.getElementById('search-button');
-const suggestionsList = document.getElementById('suggestions-list');
+    const searchBox = document.getElementById('search-box');
+    const searchButton = document.getElementById('search-button');
+    const suggestionsList = document.getElementById('suggestions-list');
 
-// Use a variable to store features after they have been loaded.
-let allFeatures = [];
+    let allFeatures = [];
 
-// This function will be called once all layers are loaded.
-function initializeSearchFeatures() {
-    const layersToSearch = [pointLayer, dataCenterLayer, landCableLayer, cableLayer];
-    layersToSearch.forEach(layer => {
-        const source = layer.getSource();
-        if (source) {
-            // Wait for the source to load before pushing features
-            source.on('change', function() {
+    function initializeSearchFeatures() {
+        const layersToSearch = [pointLayer, dataCenterLayer, landCableLayer, cableLayer];
+        layersToSearch.forEach(layer => {
+            const source = layer.getSource();
+            if (source) {
+                source.on('change', function() {
+                    if (source.getState() === 'ready') {
+                        allFeatures.push(...source.getFeatures());
+                    }
+                });
                 if (source.getState() === 'ready') {
                     allFeatures.push(...source.getFeatures());
                 }
-            });
-            // In case the source is already ready, push features immediately
-            if (source.getState() === 'ready') {
-                allFeatures.push(...source.getFeatures());
             }
-        }
-    });
-}
-
-// Call this function to start the process of collecting features from all layers
-initializeSearchFeatures();
-
-
-function performSearch(searchTerm) {
-    if (!searchTerm) {
-        alert('Por favor, ingresa un término de búsqueda.');
-        return;
+        });
     }
-    
-    let foundFeature = null;
-    let foundLayer = null;
-    
-    // Find the feature and its layer
-    map.getLayers().forEach(layer => {
-        const source = layer.getSource();
-        if (source && source instanceof ol.source.Vector) {
-            const features = source.getFeatures();
-            features.forEach(feature => {
-                const lowerSearchTerm = searchTerm.toLowerCase();
+
+    initializeSearchFeatures();
+
+    function performSearch(searchTerm) {
+        if (!searchTerm) {
+            alert('Por favor, ingresa un término de búsqueda.');
+            return;
+        }
+        
+        let foundFeature = null;
+        let foundLayer = null;
+        
+        map.getLayers().forEach(layer => {
+            const source = layer.getSource();
+            if (source && source instanceof ol.source.Vector) {
+                const features = source.getFeatures();
+                features.forEach(feature => {
+                    const lowerSearchTerm = searchTerm.toLowerCase();
+                    const name = feature.get('name') || feature.get('nombre');
+                    const location = feature.get('location') || feature.get('ubicación');
+                    const address = feature.get('address') || feature.get('Dirección');
+                    const comuna = feature.get('comuna');
+                    const empresa = feature.get('Empresa');
+                    const operator = feature.get('operator') || feature.get('operador');
+                    
+                    if (
+                        (name && name.toLowerCase().includes(lowerSearchTerm)) || 
+                        (location && location.toLowerCase().includes(lowerSearchTerm)) ||
+                        (address && address.toLowerCase().includes(lowerSearchTerm)) ||
+                        (comuna && comuna.toLowerCase().includes(lowerSearchTerm)) ||
+                        (empresa && empresa.toLowerCase().includes(lowerSearchTerm)) ||
+                        (operator && operator.toLowerCase().includes(lowerSearchTerm))
+                    ) {
+                        foundFeature = feature;
+                        foundLayer = layer;
+                    }
+                });
+            }
+        });
+
+        if (foundFeature) {
+            resetFeatureStyle();
+            
+            selectedFeature = foundFeature;
+            
+            isClickOnFeature = true;
+            panelContent.innerHTML = '';
+            panelContent.scrollTop = 0;
+            
+            panelContent.innerHTML = getFormattedFeatureInfo(foundFeature);
+            
+            infoPanel.classList.add('open');
+            if (layerControls.classList.contains('open')) {
+                layerControls.classList.remove('open');
+                if (window.innerWidth <= 768) {
+                    toggleLayerControlsButton.style.display = 'block';
+                }
+            }
+            
+            const featureGeometry = foundFeature.getGeometry();
+            if (featureGeometry) {
+                const view = map.getView();
+                let maxZoom = 14;
+                const featureType = foundFeature.get('type');
+
+                if (featureType && (featureType.toLowerCase() === 'punto de aterrizaje')) {
+                    maxZoom = 13;
+                } else if (featureType && (featureType.toLowerCase() === 'data center')) {
+                    maxZoom = 15;
+                }
+
+                let fitPadding = [50, 50, 50, 50];
+                const mobileBreakpoint = 768;
+                if (window.innerWidth <= mobileBreakpoint) {
+                    fitPadding = [50, 50, infoPanel.offsetHeight + 20, 50];
+                } else {
+                    const panelWidth = infoPanel.offsetWidth;
+                    fitPadding = [50, panelWidth + 20, 50, 50];
+                }
+
+                map.once('moveend', () => {
+                    if (selectedFeature) {
+                        const originalLayerStyleFunction = foundLayer.getStyle();
+                        let originalStyle = originalLayerStyleFunction(selectedFeature, map.getView().getResolution());
+
+                        if (!Array.isArray(originalStyle)) {
+                            originalStyle = [originalStyle];
+                        }
+                        const combinedStyles = [glowStyle, ...originalStyle];
+                        selectedFeature.setStyle(combinedStyles);
+                    }
+                });
+                
+                view.fit(featureGeometry.getExtent(), {
+                    duration: 700,
+                    padding: fitPadding,
+                    maxZoom: maxZoom
+                });
+            }
+        } else {
+            const noResultsMessage = document.createElement('div');
+            noResultsMessage.classList.add('no-results-message');
+            noResultsMessage.textContent = 'No matches were found.';
+            suggestionsList.appendChild(noResultsMessage);
+            suggestionsList.style.display = 'block';
+        }
+    }
+
+    searchButton.addEventListener('click', function() {
+        performSearch(searchBox.value.trim());
+        suggestionsList.style.display = 'none';
+    });
+
+    searchBox.addEventListener('keyup', function(event) {
+        const searchTerm = searchBox.value.trim().toLowerCase();
+        suggestionsList.innerHTML = '';
+        const addedFeatureIds = new Set(); 
+
+        if (searchTerm.length > 0) {
+            const matchingFeatures = allFeatures.filter(feature => {
                 const name = feature.get('name') || feature.get('nombre');
+                const type = feature.get('type');
                 const location = feature.get('location') || feature.get('ubicación');
                 const address = feature.get('address') || feature.get('Dirección');
                 const comuna = feature.get('comuna');
                 const empresa = feature.get('Empresa');
                 const operator = feature.get('operator') || feature.get('operador');
-                
-                if (
-                    (name && name.toLowerCase().includes(lowerSearchTerm)) || 
-                    (location && location.toLowerCase().includes(lowerSearchTerm)) ||
-                    (address && address.toLowerCase().includes(lowerSearchTerm)) ||
-                    (comuna && comuna.toLowerCase().includes(lowerSearchTerm)) ||
-                    (empresa && empresa.toLowerCase().includes(lowerSearchTerm)) ||
-                    (operator && operator.toLowerCase().includes(lowerSearchTerm))
-                ) {
-                    foundFeature = feature;
-                    foundLayer = layer;
-                }
+
+                return (
+                    (name && name.toLowerCase().includes(searchTerm)) || 
+                    (type && type.toLowerCase().includes(searchTerm)) ||
+                    (location && location.toLowerCase().includes(searchTerm)) ||
+                    (address && address.toLowerCase().includes(searchTerm)) ||
+                    (comuna && comuna.toLowerCase().includes(searchTerm)) ||
+                    (empresa && empresa.toLowerCase().includes(searchTerm)) ||
+                    (operator && operator.toLowerCase().includes(searchTerm))
+                );
             });
-        }
-    });
+            if (matchingFeatures.length > 0) {
+                matchingFeatures.forEach(feature => {
+                    const featureId = feature.get('name') || feature.get('id');
+                    if (!addedFeatureIds.has(featureId)) {
+                        addedFeatureIds.add(featureId); 
+                        
+                        const suggestionItem = document.createElement('div');
+                        suggestionItem.classList.add('suggestion-item');
+                        
+                        const nameSpan = document.createElement('span');
+                        nameSpan.textContent = feature.get('name') || feature.get('nombre');
+                        
+                        const typeSpan = document.createElement('span');
+                        typeSpan.classList.add('suggestion-type');
+                        typeSpan.textContent = feature.get('type') || '';
+                        
+                        suggestionItem.appendChild(nameSpan);
+                        suggestionItem.appendChild(typeSpan);
 
-    if (foundFeature) {
-        resetFeatureStyle();
-        
-        selectedFeature = foundFeature;
-        
-        isClickOnFeature = true;
-        // Clear the panel content first to reset the scroll state.
-        panelContent.innerHTML = '';
-        panelContent.scrollTop = 0;
-        
-        // Then, set the new content.
-        panelContent.innerHTML = getFormattedFeatureInfo(foundFeature);
-        
-        infoPanel.classList.add('open');
-        if (layerControls.classList.contains('open')) {
-            layerControls.classList.remove('open');
-            if (window.innerWidth <= 768) {
-                toggleLayerControlsButton.style.display = 'block';
-            }
-        }
-        
-        const featureGeometry = foundFeature.getGeometry();
-        if (featureGeometry) {
-            const view = map.getView();
-            let maxZoom = 14;
-            const featureType = foundFeature.get('type');
-
-            if (featureType && (featureType.toLowerCase() === 'punto de aterrizaje')) {
-                maxZoom = 13;
-            } else if (featureType && (featureType.toLowerCase() === 'data center')) {
-                maxZoom = 15;
-            }
-
-            let fitPadding = [50, 50, 50, 50];
-            const mobileBreakpoint = 768;
-            if (window.innerWidth <= mobileBreakpoint) {
-                fitPadding = [50, 50, infoPanel.offsetHeight + 20, 50];
-            } else {
-                const panelWidth = infoPanel.offsetWidth;
-                fitPadding = [50, panelWidth + 20, 50, 50];
-            }
-
-            // Use map.once('moveend') to apply the style after the zoom animation is complete.
-            map.once('moveend', () => {
-                if (selectedFeature) {
-                    const originalLayerStyleFunction = foundLayer.getStyle();
-                    let originalStyle = originalLayerStyleFunction(selectedFeature, map.getView().getResolution());
-
-                    if (!Array.isArray(originalStyle)) {
-                        originalStyle = [originalStyle];
+                        suggestionItem.addEventListener('click', function() {
+                            searchBox.value = feature.get('name') || feature.get('nombre');
+                            performSearch(searchBox.value.trim());
+                            suggestionsList.style.display = 'none';
+                        });
+                        suggestionsList.appendChild(suggestionItem);
                     }
-                    const combinedStyles = [glowStyle, ...originalStyle];
-                    selectedFeature.setStyle(combinedStyles);
-                }
-            });
-            
-            view.fit(featureGeometry.getExtent(), {
-                duration: 700,
-                padding: fitPadding,
-                maxZoom: maxZoom
-            });
-        }
-    } else {
-                // Show "No results" message directly in the suggestions box
+                });
+                suggestionsList.style.display = 'block';
+            } else {
                 const noResultsMessage = document.createElement('div');
                 noResultsMessage.classList.add('no-results-message');
-                noResultsMessage.textContent = 'No matches were found.';
+                noResultsMessage.textContent = `No se encontraron resultados para "${searchTerm}".`;
                 suggestionsList.appendChild(noResultsMessage);
                 suggestionsList.style.display = 'block';
             }
-}
-
-searchButton.addEventListener('click', function() {
-    performSearch(searchBox.value.trim());
-    suggestionsList.style.display = 'none';
-});
-
-searchBox.addEventListener('keyup', function(event) {
-    const searchTerm = searchBox.value.trim().toLowerCase();
-    suggestionsList.innerHTML = '';
-    const addedFeatureIds = new Set(); // Use a Set to track added features
-
-    if (searchTerm.length > 0) {
-        const matchingFeatures = allFeatures.filter(feature => {
-            const name = feature.get('name') || feature.get('nombre');
-            const type = feature.get('type');
-            const location = feature.get('location') || feature.get('ubicación');
-            const address = feature.get('address') || feature.get('Dirección');
-            const comuna = feature.get('comuna');
-            const empresa = feature.get('Empresa');
-            const operator = feature.get('operator') || feature.get('operador');
-
-            return (
-                (name && name.toLowerCase().includes(searchTerm)) || 
-                (type && type.toLowerCase().includes(searchTerm)) ||
-                (location && location.toLowerCase().includes(searchTerm)) ||
-                (address && address.toLowerCase().includes(searchTerm)) ||
-                (comuna && comuna.toLowerCase().includes(searchTerm)) ||
-                (empresa && empresa.toLowerCase().includes(searchTerm)) ||
-                (operator && operator.toLowerCase().includes(searchTerm))
-            );
-        });
-        if (matchingFeatures.length > 0) {
-            matchingFeatures.forEach(feature => {
-                // Get a unique identifier for the feature
-                const featureId = feature.get('name') || feature.get('id');
-                // Check if we've already added a suggestion for this feature
-                if (!addedFeatureIds.has(featureId)) {
-                    addedFeatureIds.add(featureId); // Add the feature's ID to the set
-                    
-                    const suggestionItem = document.createElement('div');
-                    suggestionItem.classList.add('suggestion-item');
-                    
-                    const nameSpan = document.createElement('span');
-                    nameSpan.textContent = feature.get('name') || feature.get('nombre');
-                    
-                    const typeSpan = document.createElement('span');
-                    typeSpan.classList.add('suggestion-type');
-                    typeSpan.textContent = feature.get('type') || '';
-                    
-                    suggestionItem.appendChild(nameSpan);
-                    suggestionItem.appendChild(typeSpan);
-
-                    suggestionItem.addEventListener('click', function() {
-                        searchBox.value = feature.get('name') || feature.get('nombre');
-                        performSearch(searchBox.value.trim());
-                        suggestionsList.style.display = 'none';
-                    });
-                    suggestionsList.appendChild(suggestionItem);
-                }
-            });
-            suggestionsList.style.display = 'block';
         } else {
-            // FIX: Display a "no results" message in the suggestions list
-            const noResultsMessage = document.createElement('div');
-            noResultsMessage.classList.add('no-results-message');
-            noResultsMessage.textContent = `No se encontraron resultados para "${searchTerm}".`;
-            suggestionsList.appendChild(noResultsMessage);
-            suggestionsList.style.display = 'block';
+            suggestionsList.style.display = 'none';
         }
-    } else {
-        suggestionsList.style.display = 'none';
-    }
-});
+    });
 
-searchBox.addEventListener('click', function() {
-        // Only clear the box if it already contains text.
-        // This prevents the user from typing and having their input deleted.
+    searchBox.addEventListener('click', function() {
         if (this.value.length > 0) {
             this.value = '';
         }
     });
 
-document.addEventListener('click', function(event) {
-    if (!event.target.closest('.search-container')) {
-        suggestionsList.style.display = 'none';
-    }
-});
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.search-container')) {
+            suggestionsList.style.display = 'none';
+        }
+    });
 });
