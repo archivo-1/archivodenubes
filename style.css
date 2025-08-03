@@ -213,7 +213,7 @@ html, body {
         
         /* --- NEW CODE for the image icon --- */
         font-size: 0; /* Hides the emoji text */
-        background-image: url('assets/ico_layers.png');
+        background-image: url('./assets/ico_layers.png');
         background-size: 60%; /* Adjust the size of the icon within the button */
         background-repeat: no-repeat;
         background-position: center;
@@ -478,11 +478,11 @@ html, body {
 }
 
 .iconA {
-    background-image: url('assets/ico_nube.png');
+    background-image: url('./assets/ico_nube.png');
 }
 
 .iconB {
-    background-image: url('assets/ico_pc.png');
+    background-image: url('./assets/ico_pc.png');
 }
 
 .features-grid {
@@ -517,19 +517,19 @@ html, body {
 
 /* Individual default images for each icon */
 .icon-1 {
-    background-image: url('assets/ico_mapa.png');
+    background-image: url('./assets/ico_mapa.png');
 }
 
 .icon-2 {
-    background-image: url('assets/ico_agua.png');
+    background-image: url('./assets/ico_agua.png');
 }
 
 .icon-3 {
-    background-image: url('assets/ico_chart.png');
+    background-image: url('./assets/ico_chart.png');
 }
 
 .icon-4 {
-    background-image: url('assets/ico_libros.png');
+    background-image: url('./assets/ico_libros.png');
 }
 
 
@@ -624,7 +624,7 @@ html, body {
 
 #search-button .icon {
     /* New styling to use a background image */
-    background-image: url('assets/ico_lupa.png');
+    background-image: url('./assets/ico_lupa.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -703,3 +703,4 @@ html, body {
         display: none !important;
     }
 }
+
