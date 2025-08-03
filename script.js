@@ -1,688 +1,733 @@
-@font-face {
-    font-family: 'NHaasGroteskDSPro';
-    src: url('fonts/NHaasGroteskDSPro-65Md.woff2') format('woff2'),
-         url('fonts/NHaasGroteskDSPro-65Md.woff') format('woff'),
-         url('fonts/NHaasGroteskDSPro-65Md.ttf') format('truetype'),
-         url('fonts/NHaasGroteskDSPro-65Md.otf') format('opentype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const landingPage = document.getElementById('landing-page');
+    const mapContainer = document.getElementById('map-container-wrapper');
+    const startButton = document.getElementById('start-map-button');
+    const backButton = document.getElementById('back-to-landing-button');
 
-@font-face {
-    font-family: 'SourceCodeVariable';
-    src: url('fonts/SourceCodeVariable-Roman.woff2') format('woff2'),
-         url('fonts/SourceCodeVariable-Roman.woff') format('woff'),
-         url('fonts/SourceCodeVariable-Roman.ttf') format('truetype'),
-         url('fonts/SourceCodeVariable-Roman.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+    if (startButton) {
+        startButton.addEventListener('click', function() {
+            landingPage.classList.remove('active');
+            mapContainer.classList.add('active');
+            map.getView().setCenter(ol.proj.fromLonLat([-70.0, -30.0]));
+            map.getView().setZoom(3);
+            document.getElementById('toggle-cables').checked = true;
+            document.getElementById('toggle-points').checked = true;
+            document.getElementById('toggle-data-centers').checked = true;
+            document.getElementById('toggle-land-cables').checked = true;
 
-html, body {
-    margin: 0;
-    font-family: 'SourceCodeVariable', monospace;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    box-sizing: border-box;
-}
-
-*:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-#map {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-.ol-tooltip {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 4px;
-    white-space: nowrap;
-    z-index: 10;
-    display: none;
-    pointer-events: none;
-    transform: translate(-50%, -100%);
-    margin-top: -10px;
-    font-family: 'NHaasGroteskDSPro', sans-serif;
-}
-
-.info-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 350px;
-    max-width: 90%;
-    overflow-y: auto;
-    background-color: rgb(255, 255, 255);
-    color: #000000;
-    padding: 20px;
-    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-out;
-    font-family: 'NHaasGroteskDSPro', sans-serif;
-    box-sizing: border-box;
-    text-align: left;
-}
-
-.info-panel.open {
-    transform: translateX(0);
-}
-
-.info-panel h2 {
-    font-size: 1.5rem;
-    color: #2BAB64;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-}
-
-.info-panel h4.subtitle {
-    font-size: 1rem;
-    font-weight: normal;
-    color: #555;
-    margin-top: -5px;
-    margin-bottom: 15px;
-}
-
-.info-item {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin-bottom: 10px;
-}
-
-.info-item strong {
-    font-weight: 600;
-    margin-right: 5px;
-}
-
-.info-panel .close-panel {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 1.5em;
-    color: #000000;
-    cursor: pointer;
-    line-height: 1;
-    padding: 0;
-}
-
-.info-item.image-container {
-    text-align: center;
-    padding: 10px 0;
-}
-
-.info-item.image-container img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.close-panel:hover {
-    color: #2BAB64;
-}
-
-.ol-layer-osm-grayscale canvas {
-    filter: grayscale(100%);
-}
-
-.layer-controls {
-    position: absolute;
-    top: auto;
-    right: auto;
-    bottom: 10px;
-    left: 10px;
-    width: 250px;
-    background-color: rgba(0, 0, 0, 0.607);
-    color: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    z-index: 900;
-    accent-color: #8E6814;
-    text-align: left;
-}
-
-.layer-controls h3 {
-    margin-top: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 5px;
-    text-align: left;
-}
-
-.layer-controls input[type="checkbox"] {
-    margin-right: 8px;
-}
-
-#toggle-layer-controls {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .info-panel {
-        top: auto;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        max-width: 100%;
-        max-height: 60vh;
-        overflow-y: auto;
-        transform: translateY(100%);
-        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease-in-out;
-        font-family: 'NHaasGroteskDSPro', sans-serif;
-        text-align: left;
+            cableLayer.setVisible(true);
+            pointLayer.setVisible(true);
+            dataCenterLayer.setVisible(true);
+            landCableLayer.setVisible(true);
+            if (map) {
+                map.updateSize();
+            }
+        });
     }
-    
-    .info-panel.open {
-        transform: translateY(0);
+
+    if (backButton) {
+        backButton.addEventListener('click', function() {
+            mapContainer.classList.remove('active');
+            landingPage.classList.add('active');
+            landingPage.scrollTo(0, 0);
+        });
     }
-    
-    #toggle-layer-controls {
-        display: block;
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        right: auto;
-        width: 50px;
-        height: 50px;
-        background-color: #8E6814;
-        color: white;
-        border: none;
-        border-radius: 8px;
+
+    const map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM(),
+                className: 'ol-layer-osm-grayscale'
+            })
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([-70.0, -35.0]),
+            zoom: 4
+        })
+    });
+
+    const interactions = map.getInteractions().getArray();
+    interactions.forEach(function(interaction) {
+        if (interaction instanceof ol.interaction.PinchRotate) {
+            interaction.setActive(false);
+        }
+    });
+
+    const glowStyle = new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: 'rgba(255, 255, 255, 0.5)',
+            width: 10
+        }),
+        image: new ol.style.Circle({
+            radius: 10,
+            stroke: new ol.style.Stroke({
+                color: 'rgba(255, 255, 255, 0.5)',
+                width: 5
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(255, 255, 255, 0.2)'
+            })
+        })
+    });
+
+    let selectedFeature = null;
+
+    function resetFeatureStyle() {
+        if (selectedFeature) {
+            selectedFeature.setStyle(undefined);
+            selectedFeature = null;
+        }
+    }
+
+    const cableSource = new ol.source.Vector({
+        format: new ol.format.GeoJSON({
+            dataProjection: 'EPSG:4326',
+            featureProjection: 'EPSG:3857'
+        }),
+        url: 'data/cable.geojson',
+        wrapX: false
+    });
+    const cableLayer = new ol.layer.Vector({
+        source: cableSource,
+        style: function(feature) {
+            const geojsonColor = feature.get('color');
+            const geojsonWidth = feature.get('width');
+            const geojsonLineDash = feature.get('lineDash');
+            const color = geojsonColor || 'rgba(255, 0, 0, 0.7)';
+            const width = geojsonWidth || 3;
+            const lineDash = geojsonLineDash || undefined;
+            return [
+                new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'rgba(0, 0, 0, 0.01)',
+                        width: 15
+                    })
+                }),
+                new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: color,
+                        width: width,
+                        lineDash: lineDash
+                    })
+                })
+            ];
+        }
+    });
+
+    const pointSource = new ol.source.Vector({
+        format: new ol.format.GeoJSON({
+            dataProjection: 'EPSG:4326',
+            featureProjection: 'EPSG:3857'
+        }),
+        url: 'data/puntos.geojson',
+        wrapX: false
+    });
+    const pointLayer = new ol.layer.Vector({
+        source: pointSource,
+        style: function(feature) {
+            const shape = feature.get('shape');
+            const color = feature.get('color');
+            const size = feature.get('size');
+            let fillColor = color || '#FFD700';
+            let strokeColor = '#333';
+            let pointSize = size || 5;
+            let pointStyle;
+            if (shape && shape.toLowerCase() === 'circle') {
+                pointStyle = new ol.style.Style({
+                    image: new ol.style.Circle({
+                        radius: pointSize,
+                        fill: new ol.style.Fill({
+                            color: fillColor
+                        }),
+                        stroke: new ol.style.Stroke({
+                            color: strokeColor,
+                            width: 1
+                        })
+                    })
+                });
+            } else if (shape && shape.toLowerCase() === 'square') {
+                pointStyle = new ol.style.Style({
+                    image: new ol.style.RegularShape({
+                        points: 4,
+                        radius: pointSize,
+                        angle: Math.PI / 4,
+                        fill: new ol.style.Fill({
+                            color: fillColor
+                        }),
+                        stroke: new ol.style.Stroke({
+                            color: strokeColor,
+                            width: 1
+                        })
+                    })
+                });
+            } else {
+                pointStyle = new ol.style.Style({
+                    image: new ol.style.Circle({
+                        radius: pointSize,
+                        fill: new ol.style.Fill({
+                            color: fillColor
+                        }),
+                        stroke: new ol.style.Stroke({
+                            color: strokeColor,
+                            width: 1
+                        })
+                    })
+                });
+            }
+            return pointStyle;
+        }
+    });
+
+    const dataCenterSource = new ol.source.Vector({
+        format: new ol.format.GeoJSON({
+            dataProjection: 'EPSG:4326',
+            featureProjection: 'EPSG:3857'
+        }),
+        url: 'data/data_centers.geojson',
+        wrapX: false
+    });
+    const dataCenterLayer = new ol.layer.Vector({
+        source: dataCenterSource,
+        style: function(feature) {
+            const geometryType = feature.getGeometry().getType();
+            const zoom = map.getView().getZoom();
+            const color = feature.get('color');
+            const size = feature.get('size');
+            const shape = feature.get('shape');
+            let fillColor = color || '#5DADE2';
+            let strokeColor = '#333';
+            let pointSize = size || 8;
+            const styles = [];
+            let pointGeometry = feature.getGeometry();
+            if (geometryType === 'Polygon' || geometryType === 'MultiPolygon') {
+                pointGeometry = ol.geom.Polygon.prototype.getInteriorPoint.call(feature.getGeometry());
+            }
+            let pointImage;
+            if (shape && shape.toLowerCase() === 'circle') {
+                pointImage = new ol.style.Circle({
+                    radius: pointSize,
+                    fill: new ol.style.Fill({
+                        color: fillColor
+                    }),
+                    stroke: new ol.style.Stroke({
+                        color: strokeColor,
+                        width: 1
+                    })
+                });
+            } else {
+                pointImage = new ol.style.RegularShape({
+                    points: 4,
+                    radius: pointSize,
+                    angle: Math.PI / 4,
+                    fill: new ol.style.Fill({
+                        color: fillColor
+                    }),
+                    stroke: new ol.style.Stroke({
+                        color: strokeColor,
+                        width: 1
+                    })
+                });
+            }
+            styles.push(new ol.style.Style({
+                image: pointImage,
+                geometry: pointGeometry
+            }));
+            if ((geometryType === 'Polygon' || geometryType === 'MultiPolygon') && zoom >= 13) {
+                styles.push(new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: '#2BAB64',
+                        width: 2,
+                        lineDash: [10, 10]
+                    })
+                }));
+            }
+            return styles;
+        }
+    });
+
+    const landCableSource = new ol.source.Vector({
+        format: new ol.format.GeoJSON({
+            dataProjection: 'EPSG:4326',
+            featureProjection: 'EPSG:3857'
+        }),
+        url: 'data/land_cables.geojson',
+        wrapX: false
+    });
+    const landCableLayer = new ol.layer.Vector({
+        source: landCableSource,
+        style: function(feature) {
+            const geojsonColor = feature.get('color');
+            const geojsonWidth = feature.get('width');
+            const geojsonLineDash = feature.get('lineDash');
+            const color = geojsonColor || 'rgba(0, 0, 255, 0.7)';
+            const width = geojsonWidth || 3;
+            const lineDash = geojsonLineDash || undefined;
+            return [
+                new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'rgba(0, 0, 0, 0.01)',
+                        width: 15
+                    })
+                }),
+                new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: color,
+                        width: width,
+                        lineDash: lineDash
+                    })
+                })
+            ];
+        }
+    });
+
+    map.addLayer(cableLayer);
+    map.addLayer(landCableLayer);
+    map.addLayer(pointLayer);
+    map.addLayer(dataCenterLayer);
+
+    const toggleLayerControlsButton = document.getElementById('toggle-layer-controls');
+    const layerControls = document.getElementById('layer-controls');
+    const infoPanel = document.getElementById('info-panel');
+    const closePanelButton = document.getElementById('close-panel');
+    let isClickOnFeature = false;
+
+    toggleLayerControlsButton.addEventListener('click', () => {
+        layerControls.classList.toggle('open');
+        toggleLayerControlsButton.style.display = layerControls.classList.contains('open') ? 'none' : 'block';
+        if (infoPanel.classList.contains('open')) {
+            infoPanel.classList.remove('open');
+        }
+    });
+
+    document.getElementById('toggle-cables').addEventListener('change', function() {
+        cableLayer.setVisible(this.checked);
+    });
+    document.getElementById('toggle-points').addEventListener('change', function() {
+        pointLayer.setVisible(this.checked);
+    });
+    document.getElementById('toggle-data-centers').addEventListener('change', function() {
+        dataCenterLayer.setVisible(this.checked);
+    });
+    document.getElementById('toggle-land-cables').addEventListener('change', function() {
+        landCableLayer.setVisible(this.checked);
+    });
+
+    document.addEventListener('click', function(event) {
+        if (isClickOnFeature) {
+            isClickOnFeature = false;
+            return;
+        }
+
+        if (layerControls.classList.contains('open') && !layerControls.contains(event.target) && !toggleLayerControlsButton.contains(event.target)) {
+            layerControls.classList.remove('open');
+            toggleLayerControlsButton.style.display = 'block';
+        }
+
+        if (infoPanel.classList.contains('open') && !infoPanel.contains(event.target)) {
+            infoPanel.classList.remove('open');
+            resetFeatureStyle();
+        }
+    });
+
+    if (infoPanel) {
+        infoPanel.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    }
+
+    if (layerControls) {
+        layerControls.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    }
+
+    const panelContent = document.getElementById('panel-content');
+    const tooltip = document.getElementById('tooltip');
+    const overlay = new ol.Overlay({
+        element: tooltip,
+        offset: [10, 0],
+        positioning: 'bottom-left'
+    });
+    map.addOverlay(overlay);
+
+    const translationDict = {
+        'name': 'Nombre',
+        'type': 'Tipo',
+        'empresa': 'Empresa',
+        'shape': 'Forma',
+        'color': 'Color',
+        'size': 'Tamaño',
+        'address': 'Dirección',
+        'pue': 'Eficiencia Energética (PUE)',
+        'wue': 'Eficiencia Hídrica (WUE)',
+        'dimensiones': 'Dimensiones Físicas',
+        'tecnologias': 'Tecnologías Empleadas',
+        'sistemas_refrigeracion': 'Sistemas de Refrigeración',
+        'consumo_agua': 'Consumo de Agua',
+        'uso_suelo': 'Uso de Suelo',
+        'emisiones': 'Datos sobre Emisiones',
+        'source': 'Fuente',
+        'reference_link': 'Enlace de Referencia',
+        'length_km': 'Longitud (km)',
+        'image': 'Imagen',
+        'width': 'Ancho',
+        'año': 'Año',
+        'consultora': 'Consultora',
+        'superficie_predial': 'Superficie Predial',
+        'superficie_construida': 'Superficie Construida',
+        'inversion': 'Inversión',
+        'tipo_de_refrigeracion': 'Tipo de Refrigeración',
+        'evaluacion_ambiental': 'Evaluación Ambiental',
+        'comuna': 'Comuna'
+    };
+    const excludedKeys = ['name', 'type', 'shape', 'color', 'size', 'opacity', 'geometry', 'width', 'lineDash', 'id'];
+
+    function getFormattedFeatureInfo(feature) {
+        const properties = feature.getProperties();
+        let content = '';
+        const name = properties['name'] || 'Información del Elemento';
+        const type = properties['type'] || 'Elemento';
+        content += `<h2>${name}</h2>`;
+        content += `<h4 class="subtitle">${type}</h4>`;
+
+        for (const key in properties) {
+            const lowercaseKey = key.toLowerCase();
+            if (properties.hasOwnProperty(key) && !excludedKeys.includes(lowercaseKey) && properties[key]) {
+                const translatedKey = translationDict[lowercaseKey] || key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                let value = properties[key];
+
+                if (lowercaseKey === 'image' && value) {
+                    if (typeof value === 'string' && value.startsWith('http')) {
+                        content += `<div class="info-item image-container"><img src="${value}" alt="${name}"></div>`;
+                    }
+                } else if (lowercaseKey === 'reference_link' && value) {
+                    content += `<div class="info-item"><strong>${translatedKey}:</strong> <a href="${value}" target="_blank" rel="noopener noreferrer">Ver Referencia</a></div>`;
+                } else {
+                    if (value !== null && value !== undefined && value !== '') {
+                        content += `<div class="info-item"><strong>${translatedKey}:</strong> ${value}</div>`;
+                    }
+                }
+            }
+        }
+        return content;
+    }
+
+    closePanelButton.addEventListener('click', () => {
+        infoPanel.classList.remove('open');
+        resetFeatureStyle();
+    });
+
+    map.on('pointermove', function(event) {
+        const feature = map.forEachFeatureAtPixel(event.pixel, function(feature) {
+            return feature;
+        });
+
+        if (feature) {
+            overlay.setPosition(event.coordinate);
+            const featureName = feature.get('nombre') || feature.get('name') || '';
+            const featureType = feature.get('type') || '';
+            let tooltipContent = `<strong>${featureName}</strong>`;
+            if (featureType) {
+                tooltipContent += `<br>${featureType}`;
+            }
+            tooltip.innerHTML = tooltipContent;
+            tooltip.style.textAlign = 'left';
+            tooltip.style.display = 'block';
+        } else {
+            tooltip.style.display = 'none';
+        }
+    });
+
+    map.on('click', function(evt) {
+        let clickedFeature = null;
+        let clickedLayer = null;
+        map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+            clickedFeature = feature;
+            clickedLayer = layer;
+        }, {
+            hitTolerance: 5
+        });
+
+        if (clickedFeature) {
+            resetFeatureStyle();
+            
+            selectedFeature = clickedFeature;
+            
+            isClickOnFeature = true;
+
+            panelContent.innerHTML = '';
+            panelContent.scrollTop = 0;
+            
+            panelContent.innerHTML = getFormattedFeatureInfo(selectedFeature);
+            
+            infoPanel.classList.add('open');
+            if (layerControls.classList.contains('open')) {
+                layerControls.classList.remove('open');
+                if (window.innerWidth <= 768) {
+                    toggleLayerControlsButton.style.display = 'block';
+                }
+            }
+
+            const featureGeometry = selectedFeature.getGeometry();
+            if (featureGeometry) {
+                let currentMaxZoom = 16;
+                const featureType = selectedFeature.get('type');
+
+                if (featureType && (featureType.toLowerCase() === 'data center')) {
+                    currentMaxZoom = 15;
+                } else if (featureType && (featureType.toLowerCase() === 'punto de aterrizaje')) {
+                    currentMaxZoom = 13;
+                }
+                
+                let fitPadding = [50, 50, 50, 50];
+                const mobileBreakpoint = 768;
+
+                if (window.innerWidth <= mobileBreakpoint) {
+                    fitPadding = [50, 50, infoPanel.offsetHeight + 20, 50];
+                } else {
+                    const panelWidth = infoPanel.offsetWidth;
+                    fitPadding = [50, panelWidth + 20, 50, 50];
+                }
+
+                map.once('moveend', () => {
+                    if (selectedFeature) {
+                        const originalLayerStyleFunction = clickedLayer.getStyle();
+                        let originalStyle = originalLayerStyleFunction(selectedFeature, map.getView().getResolution());
+
+                        if (!Array.isArray(originalStyle)) {
+                            originalStyle = [originalStyle];
+                        }
+                        const combinedStyles = [glowStyle, ...originalStyle];
+                        selectedFeature.setStyle(combinedStyles);
+                    }
+                });
+
+                map.getView().fit(featureGeometry.getExtent(), {
+                    duration: 700,
+                    padding: fitPadding,
+                    maxZoom: currentMaxZoom
+                });
+            }
+
+        } else {
+            isClickOnFeature = false;
+            if (infoPanel.classList.contains('open')) {
+                infoPanel.classList.remove('open');
+            }
+            resetFeatureStyle();
+        }
+    });
+
+    const searchBox = document.getElementById('search-box');
+    const searchButton = document.getElementById('search-button');
+    const suggestionsList = document.getElementById('suggestions-list');
+
+    let allFeatures = [];
+
+    function initializeSearchFeatures() {
+        const layersToSearch = [pointLayer, dataCenterLayer, landCableLayer, cableLayer];
+        layersToSearch.forEach(layer => {
+            const source = layer.getSource();
+            if (source) {
+                source.on('change', function() {
+                    if (source.getState() === 'ready') {
+                        allFeatures.push(...source.getFeatures());
+                    }
+                });
+                if (source.getState() === 'ready') {
+                    allFeatures.push(...source.getFeatures());
+                }
+            }
+        });
+    }
+
+    initializeSearchFeatures();
+
+    function performSearch(searchTerm) {
+        if (!searchTerm) {
+            alert('Por favor, ingresa un término de búsqueda.');
+            return;
+        }
         
-        font-size: 0; 
-        background-image: url('./assets/ico_layers.png');
-        background-size: 60%; 
-        background-repeat: no-repeat;
-        background-position: center;
+        let foundFeature = null;
+        let foundLayer = null;
         
-        line-height: 1;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        transition: all 0.3s ease;
-        
-    }
-    
-    
-    
-    .layer-controls {
-        top: auto;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        max-height: 50vh;
-        border-radius: 8px 8px 0 0;
-        transform: translateY(100%);
-        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease-in-out;
-        text-align: left;
-    }
-    
-    .layer-controls.open {
-        transform: translateY(0);
-    }
-}
+        map.getLayers().forEach(layer => {
+            const source = layer.getSource();
+            if (source && source instanceof ol.source.Vector) {
+                const features = source.getFeatures();
+                features.forEach(feature => {
+                    const lowerSearchTerm = searchTerm.toLowerCase();
+                    const name = feature.get('name') || feature.get('nombre');
+                    const location = feature.get('location') || feature.get('ubicación');
+                    const address = feature.get('address') || feature.get('Dirección');
+                    const comuna = feature.get('comuna');
+                    const empresa = feature.get('Empresa');
+                    const operator = feature.get('operator') || feature.get('operador');
+                    
+                    if (
+                        (name && name.toLowerCase().includes(lowerSearchTerm)) || 
+                        (location && location.toLowerCase().includes(lowerSearchTerm)) ||
+                        (address && address.toLowerCase().includes(lowerSearchTerm)) ||
+                        (comuna && comuna.toLowerCase().includes(lowerSearchTerm)) ||
+                        (empresa && empresa.toLowerCase().includes(lowerSearchTerm)) ||
+                        (operator && operator.toLowerCase().includes(lowerSearchTerm))
+                    ) {
+                        foundFeature = feature;
+                        foundLayer = layer;
+                    }
+                });
+            }
+        });
 
-.page-section {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #F8F8F8;
-    display: none;
-    text-align: center;
-    padding-top: 0;
-    box-sizing: border-box;
-}
+        if (foundFeature) {
+            resetFeatureStyle();
+            
+            selectedFeature = foundFeature;
+            
+            isClickOnFeature = true;
+            panelContent.innerHTML = '';
+            panelContent.scrollTop = 0;
+            
+            panelContent.innerHTML = getFormattedFeatureInfo(foundFeature);
+            
+            infoPanel.classList.add('open');
+            if (layerControls.classList.contains('open')) {
+                layerControls.classList.remove('open');
+                if (window.innerWidth <= 768) {
+                    toggleLayerControlsButton.style.display = 'block';
+                }
+            }
+            
+            const featureGeometry = foundFeature.getGeometry();
+            if (featureGeometry) {
+                const view = map.getView();
+                let maxZoom = 14;
+                const featureType = foundFeature.get('type');
 
-.page-section.active {
-    display: block;
-}
+                if (featureType && (featureType.toLowerCase() === 'punto de aterrizaje')) {
+                    maxZoom = 13;
+                } else if (featureType && (featureType.toLowerCase() === 'data center')) {
+                    maxZoom = 15;
+                }
 
-.landing-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
+                let fitPadding = [50, 50, 50, 50];
+                const mobileBreakpoint = 768;
+                if (window.innerWidth <= mobileBreakpoint) {
+                    fitPadding = [50, 50, infoPanel.offsetHeight + 20, 50];
+                } else {
+                    const panelWidth = infoPanel.offsetWidth;
+                    fitPadding = [50, panelWidth + 20, 50, 50];
+                }
 
-.landing-title {
-    font-family: 'NHaasGroteskDSPro', sans-serif;
-    font-size: 3em;
-    color: #333;
-}
+                map.once('moveend', () => {
+                    if (selectedFeature) {
+                        const originalLayerStyleFunction = foundLayer.getStyle();
+                        let originalStyle = originalLayerStyleFunction(selectedFeature, map.getView().getResolution());
 
-.landing-intro {
-    font-family: 'SourceCodeVariable', monospace;
-    font-size: 1.2em;
-    color: #666;
-}
-
-.start-button, .back-button {
-    font-family: 'SourceCodeVariable', monospace;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    background-color: #2BAB64;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin-top: 0.6px;
-    transition: all 0.3s ease;
-}
-
-.start-button:hover, .back-button:hover {
-    background-color: #227848;
-}
-
-.back-button {
-    position: absolute;
-    top: 9px;
-    left: 10px;
-    z-index: 1001;
-    padding: 8px 12px;
-    font-size: 0.8em;
-}
-
-.team-section {
-    margin-top: 50px;
-}
-
-.team-members {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.team-member {
-    text-align: center;
-    width: 200px;
-}
-
-.team-photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #8E6814;
-}
-
-.team-member h4 {
-    margin: 10px 0 5px;
-    font-family: 'NHaasGroteskDSPro', sans-serif;
-}
-
-.team-member p {
-    margin: 0;
-    font-family: 'SourceCodeVariable', monospace;
-    color: #666;
-}
-
-#map-container-wrapper.active #map {
-    width: 100%;
-    height: calc(100% - 50px);
-    margin-top: 50px;
-}
-
-#map-container-wrapper h1 {
-    display: none;
-}
-
-#landing-page {
-    background-color: #F8F8F8;
-    height: 100vh;
-    overflow-y: auto;
-}
-
-.hero-section {
-    background: url('./assets/portada.png') no-repeat top center;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0;
-    min-height: 50vh;
-    color: rgb(0, 0, 0);
-    padding-bottom: 20px;
-}
-
-.header {
-    width: 100%;
-    padding: 0;
-}
-
-.nav-bar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.nav-bar .logo {
-    margin-right: auto;
-    height: 30px;
-}
-
-.nav-bar .nav-link {
-    color: #666;
-    text-decoration: none;
-    font-family: 'SourceCodeVariable', monospace;
-}
-
-.hero-content {
-    text-align: left;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 20px;
-    margin-top: -100px;
-}
-
-.hero-title {
-    font-family: 'NHaasGroteskDSPro', sans-serif;
-    font-size: clamp(3rem, 10vw, 6rem);
-    margin: 0;
-    line-height: 1;
-}
-
-.hero-subtitle {
-    font-family: 'SourceCodeVariable', monospace;
-    font-size: clamp(1rem, 3vw, 2rem);
-    margin-top: 10px;
-    font-weight: 300;
-}
-
-.explore-button {
-    font-family: 'SourceCodeVariable', monospace;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    background-color: #2BAB64;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin-top: 40px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    transition: all 0.3s ease;
-}
-
-.explore-button:hover {
-    background-color: #1c7d48;
-}
-
-.info-section-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
-
-.info-section, .features-section {
-    margin-bottom: 50px;
-}
-
-.section-title {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.section-title h2 {
-    margin: 0;
-}
-
-.icon-placeholder {
-    width: 30px;
-    height: 30px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.iconA {
-    background-image: url('./assets/ico_nube.png');
-}
-
-.iconB {
-    background-image: url('./assets/ico_pc.png');
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.feature-card {
-    background-color: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.feature-card:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transform: translateY(-5px);
-}
-
-.card-icon-placeholder {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto 15px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: background-image 0.3s ease-in-out;
-}
-
-.icon-1 {
-    background-image: url('./assets/ico_mapa.png');
-}
-
-.icon-2 {
-    background-image: url('./assets/ico_agua.png');
-}
-
-.icon-3 {
-    background-image: url('./assets/ico_chart.png');
-}
-
-.icon-4 {
-    background-image: url('./assets/ico_libros.png');
-}
-
-
-.card-text {
-    font-family: 'NHaasGroteskDSPro', sans-serif;
-    font-size: 1.1rem;
-    margin: 0;
-}
-
-@media (max-width: 768px) {
-    .nav-bar {
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-        padding: 2vh 20px;
+                        if (!Array.isArray(originalStyle)) {
+                            originalStyle = [originalStyle];
+                        }
+                        const combinedStyles = [glowStyle, ...originalStyle];
+                        selectedFeature.setStyle(combinedStyles);
+                    }
+                });
+                
+                view.fit(featureGeometry.getExtent(), {
+                    duration: 700,
+                    padding: fitPadding,
+                    maxZoom: maxZoom
+                });
+            }
+        } else {
+            const noResultsMessage = document.createElement('div');
+            noResultsMessage.classList.add('no-results-message');
+            noResultsMessage.textContent = 'No matches were found.';
+            suggestionsList.appendChild(noResultsMessage);
+            suggestionsList.style.display = 'block';
+        }
     }
 
-    .nav-bar .nav-link {
-        color: #666;
-        font-size: 0.8rem;
-    }
-    
-    .hero-section {
-        height: auto;
-        min-height: 50vh;
-        padding-bottom: 20px;
-        padding-top: 20px;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        padding: 0 20px;
-    }
-    
-    .hero-content {
-        margin-top: 0;
-        padding-top: 50px;
-        padding-left: 0;
-        padding-right: 0;
-        text-align: left;
-        align-self: flex-start;
-    }
+    searchButton.addEventListener('click', function() {
+        performSearch(searchBox.value.trim());
+        suggestionsList.style.display = 'none';
+    });
 
-    .hero-title, .hero-subtitle {
-        padding-left: 0;
-        padding-right: 0;
-    }
+    searchBox.addEventListener('keyup', function(event) {
+        const searchTerm = searchBox.value.trim().toLowerCase();
+        suggestionsList.innerHTML = '';
+        const addedFeatureIds = new Set(); 
 
-    .hero-title {
-        font-size: clamp(2rem, 12vw, 4rem);
-    }
+        if (searchTerm.length > 0) {
+            const matchingFeatures = allFeatures.filter(feature => {
+                const name = feature.get('name') || feature.get('nombre');
+                const type = feature.get('type');
+                const location = feature.get('location') || feature.get('ubicación');
+                const address = feature.get('address') || feature.get('Dirección');
+                const comuna = feature.get('comuna');
+                const empresa = feature.get('Empresa');
+                const operator = feature.get('operator') || feature.get('operador');
 
-    .hero-subtitle {
-        font-size: clamp(0.8rem, 4vw, 1.5rem);
-    }
-    
-    .explore-button {
-        font-size: 1rem;
-        padding: 12px 25px;
-        margin: 0;
-        display: block;
-    }
-}
+                return (
+                    (name && name.toLowerCase().includes(searchTerm)) || 
+                    (type && type.toLowerCase().includes(searchTerm)) ||
+                    (location && location.toLowerCase().includes(searchTerm)) ||
+                    (address && address.toLowerCase().includes(searchTerm)) ||
+                    (comuna && comuna.toLowerCase().includes(searchTerm)) ||
+                    (empresa && empresa.toLowerCase().includes(searchTerm)) ||
+                    (operator && operator.toLowerCase().includes(searchTerm))
+                );
+            });
+            if (matchingFeatures.length > 0) {
+                matchingFeatures.forEach(feature => {
+                    const featureId = feature.get('name') || feature.get('id');
+                    if (!addedFeatureIds.has(featureId)) {
+                        addedFeatureIds.add(featureId); 
+                        
+                        const suggestionItem = document.createElement('div');
+                        suggestionItem.classList.add('suggestion-item');
+                        
+                        const nameSpan = document.createElement('span');
+                        nameSpan.textContent = feature.get('name') || feature.get('nombre');
+                        
+                        const typeSpan = document.createElement('span');
+                        typeSpan.classList.add('suggestion-type');
+                        typeSpan.textContent = feature.get('type') || '';
+                        
+                        suggestionItem.appendChild(nameSpan);
+                        suggestionItem.appendChild(typeSpan);
 
-.search-container {
-    position: absolute;
-    top: 8px;
-    left: 105px; 
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    z-index: 1000;
-}
+                        suggestionItem.addEventListener('click', function() {
+                            searchBox.value = feature.get('name') || feature.get('nombre');
+                            performSearch(searchBox.value.trim());
+                            suggestionsList.style.display = 'none';
+                        });
+                        suggestionsList.appendChild(suggestionItem);
+                    }
+                });
+                suggestionsList.style.display = 'block';
+            } else {
+                const noResultsMessage = document.createElement('div');
+                noResultsMessage.classList.add('no-results-message');
+                noResultsMessage.textContent = `No se encontraron resultados para "${searchTerm}".`;
+                suggestionsList.appendChild(noResultsMessage);
+                suggestionsList.style.display = 'block';
+            }
+        } else {
+            suggestionsList.style.display = 'none';
+        }
+    });
 
-#search-box {
-    padding: 9px 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-family: 'SourceCodeVariable', monospace;
-    font-size: 0.9rem;
-    width: 250px;
-}
+    searchBox.addEventListener('click', function() {
+        if (this.value.length > 0) {
+            this.value = '';
+        }
+    });
 
-#search-button {
-    padding: 9px 12px;
-    background-color: #aeaeae;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#search-button .icon {
-    background-image: url('./assets/ico_lupa.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: block; 
-    width: 18px; 
-    height: 18px; 
-    font-size: 0; 
-    color: transparent;
-    filter: brightness(0) invert(1)
-}
-
-@media (max-width: 768px) {
-    .search-container {
-        top: 5px;
-        left: 60%;
-        transform: translateX(-50%);
-        width: calc(90% - 100px);
-    }
-    
-    #search-box {
-        width: 100%;
-    }
-}
-
-#suggestions-list {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-top: none;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 999;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: none;
-    border-radius: 0 0 5px 5px;
-}
-
-.suggestion-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #e0e0e0;
-    transition: background-color 0.2s ease;
-    text-align: left; 
-}
-
-.suggestion-item:hover {
-    background-color: #f0f0f0;
-}
-
-.suggestion-type {
-    font-size: 0.8rem;
-    color: #888;
-    margin-top: 2px;
-}
-
-.no-results-message {
-    padding: 10px;
-    font-size: 0.9rem;
-    color: #888;
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-    .ol-tooltip {
-        display: none !important;
-    }
-}
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.search-container')) {
+            suggestionsList.style.display = 'none';
+        }
+    });
+});
