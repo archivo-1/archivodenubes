@@ -669,22 +669,20 @@
         "color": "#2BAB64",
         "size": 6,
         "Empresa": "N/A.",
-        "Año": 2000,
-        "Comuna": "Comuna",
-        "address": "Av. N/A #0000",
-        "Consultora": "N/A Asociados SA",
-        "Superficie predial": "00.000 m²",
-        "Superficie construida": "00.000 m²",
-        "Inversion": "00.000.000 USD",
-        "tecnologias": "N/A",
-        "sistemas_refrigeracion": "N/A",
-        "emisiones": "N/A",
-        "pue": 1,
-        "wue": 1,
+        "Año": 2021,
+        "Comuna": "Quilicura",
+        "address": "Caupolicán 860",
+        "Consultora": "-",
+        "Superficie predial": "68.000 m²",
+        "Superficie construida": "28.029 m²",
+        "Inversion": "317.000.000 USD",
+        "sistemas_refrigeracion": "Refrigeración evaporativa directa",
+        "pue": 1.86,
+        "wue": 1,34
         "Evaluacion Ambiental": "Aprobado",
-        "image": "https://placehold.co/600x400",
+        "image": "https://ascenty.com/wp-content/uploads/2022/11/Chile-1-oficial_-4.jpg",
         "reference_link": "http://ejemplo.com/algo.pdf",
-        "source": "N/A"
+        "source": "http://ejemplo.com/algo.html"
       },
       "geometry": {
         "coordinates": [
@@ -2407,3 +2405,4 @@
     }
   ]
 }
+
