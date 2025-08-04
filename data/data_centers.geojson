@@ -680,7 +680,7 @@
         "pue": 1.86,
         "wue": 1.34,
         "Evaluacion Ambiental": "Aprobado",
-        "image": "https://ascenty.com/wp-content/uploads/2022/11/Chile-1-oficial_-4.jpg",
+        "image": "https://placehold.co/600x400",
         "reference_link": "http://ejemplo.com/algo.pdf",
         "source": "http://ejemplo.com/algo.html"
       },
@@ -2405,3 +2405,4 @@
     }
   ]
 }
+
