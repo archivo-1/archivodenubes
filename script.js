@@ -263,21 +263,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const color = geojsonColor || 'rgba(0, 0, 255, 0.7)';
             const width = geojsonWidth || 3;
             const lineDash = geojsonLineDash || undefined;
-            return [
-                new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: 'rgba(0, 0, 0, 0.01)',
-                        width: 15
-                    })
-                }),
-                new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: color,
-                        width: width,
-                        lineDash: lineDash
-                    })
+            return new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    color: color,
+                    width: width,
+                    lineDash: lineDash
                 })
-            ];
+            });
         }
     });
 
