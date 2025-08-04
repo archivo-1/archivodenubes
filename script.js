@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'evaluacion_ambiental': 'Evaluación Ambiental',
         'comuna': 'Comuna'
     };
-    const excludedKeys = ['name', 'type', 'shape', 'color', 'size', 'opacity', 'geometry', 'width', 'lineDash', 'id'];
+    const excludedKeys = ['name', 'type', 'shape', 'color', 'size', 'opacity', 'geometry', 'width', 'linedash', 'LineDash', 'id'];
 
     function getFormattedFeatureInfo(feature) {
         const properties = feature.getProperties();
