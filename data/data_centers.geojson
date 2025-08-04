@@ -678,7 +678,7 @@
         "Inversion": "317.000.000 USD",
         "sistemas_refrigeracion": "Refrigeración evaporativa directa",
         "pue": 1.86,
-        "wue": 1,34
+        "wue": 1,34,
         "Evaluacion Ambiental": "Aprobado",
         "image": "https://ascenty.com/wp-content/uploads/2022/11/Chile-1-oficial_-4.jpg",
         "reference_link": "http://ejemplo.com/algo.pdf",
@@ -2405,4 +2405,5 @@
     }
   ]
 }
+
 
