@@ -4,22 +4,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "San Antonio, Chile",
+        "name": "Colón, Panamá",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3,
-        "address": "Muelle San Antonio",
-        "capacity": "200 Tbps",
-        "date_commissioned": "2018-05-15",
-        "operator": "Google",
-        "connections": "Humboldt",
-        "source": "-",
-        "reference_link": "https://www.submarinenetworks.com/en/systems/trans-pacific/humboldt-cable"
-  },
+        "size": 3
+      },
       "geometry": {
-        "type": "Point",
-        "coordinates": [-71.6225737059049, -33.59621502851639]
+        "coordinates": [
+          -79.89973186555146,
+          9.366620719565702
+        ],
+        "type": "Point"
       }
     },
     {
@@ -31,150 +27,13 @@
         "color": "#2BAB64",
         "size": 3,
         "address": "-"
-  },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            -62.47759538580638,
-            10.72155556735558
-          ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Buenaventura, Colombia",
-        "type": "Landing Point",
-        "shape": "circle",
-        "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
-  },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            -77.07984235853618,
-            3.8861908270169607
-          ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Lurin, Perú",
-        "type": "Landing Point",
-        "shape": "circle",
-        "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
-  },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            -76.88221806108898,
-            -12.286994742382134
-          ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Fortaleza, Brasil",
-        "type": "Landing Point",
-        "shape": "circle",
-        "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
-  },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            -38.50941016554367,
-            -3.720055215982839
-          ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Rio de Janeiro, Brasil",
-        "type": "Landing Point",
-        "shape": "circle",
-        "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
-  },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            -43.189050059124185,
-            -22.988088948471045
-          ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Praia Grande, Brasil",
-        "type": "Landing Point",
-        "shape": "circle",
-        "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
-  },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            -46.27357491811287,
-            -24.014981802465826
-          ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Las Toninas, Argentina",
-        "type": "Landing Point",
-        "shape": "circle",
-        "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
-  },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            -56.696495808697335,
-            -36.461023456118205
-          ]
-      }
-    },     
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Valparaíso, Chile",
-        "type": "Landing Point",
-        "shape": "circle",
-        "color": "#2BAB64",
-        "size": 3,
-        "address": "Playa Las Torpederas"
-  },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-71.64433602372792,-33.022109861313254]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Balboa, Panama",
-        "type": "Landing Point",
-        "shape": "circle",
-        "color": "#2BAB64",
-        "size": 3
       },
       "geometry": {
-        "type": "Point",
-        "coordinates": [-79.55, 8.95]
+        "coordinates": [
+          -67.03416140693645,
+          10.608642488043614
+        ],
+        "type": "Point"
       }
     },
     {
@@ -187,22 +46,130 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
-        "coordinates": [-118.41, 33.91]
+        "coordinates": [
+          -118.41,
+          33.91
+        ],
+        "type": "Point"
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Papeete, Polinesia Francesa",
+        "name": "Puerto Barrios, Panamá",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
         "size": 3
       },
       "geometry": {
-        "type": "Point",
-        "coordinates": [-149.5710, -17.5375]
+        "coordinates": [
+          -88.58503468185076,
+          15.743342966039151
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Barranquilla, Colombia",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -74.78551815964704,
+          11.080923386812103
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Boca Raton, Florida (EE.UU.)",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -80.08888836545725,
+          26.350615732492173
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Punta Cana, República Dominicana",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -68.3393318451435,
+          18.636442393346
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "San Juán, Puerto Rico (EE.UU)",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -66.10535431331733,
+          18.4676859518503
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Salvador, Brasil",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -38.451227266005645,
+          -13.003661334307111
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lurin, Perú",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3,
+        "address": "-"
+      },
+      "geometry": {
+        "coordinates": [
+          -76.88221806108898,
+          -12.286994742382134
+        ],
+        "type": "Point"
       }
     },
     {
@@ -215,8 +182,328 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
-        "coordinates": [-208.7907, -33.8688]
+        "coordinates": [
+          -208.7907,
+          -33.8688
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tanguisson, Guam",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -215.18801608394642,
+          13.435757997303199
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tinian, Islas Marinas del Norte",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -214.36264015024182,
+          15.011637384475321
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "t.b.d. Polinesia Francesa 1",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -149.45649270520354,
+          -17.637335374176757
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "t.b.d. Polinesia Francesa 2",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -149.21326455770856,
+          -17.80436728567257
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Puerto San José, Guatemala",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -90.82701592550627,
+          13.916634875822893
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Salina, Ecuador",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -80.99612606605535,
+          -2.2002379044386657
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "St. Coix, Virgin Islands (EE.UU.)",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -64.81171660538196,
+          17.77207271816546
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Macora, Perú",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -81.07779520680802,
+          -4.112997553908642
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Punta Carnero, Ecuador",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -80.92062692398875,
+          -2.276405722533042
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "San Antonio, Chile",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3,
+        "address": "Muelle San Antonio",
+        "capacity": "200 Tbps",
+        "date_commissioned": "2018-05-15",
+        "operator": "Google",
+        "connections": "Humboldt",
+        "source": "-",
+        "reference_link": "https://www.submarinenetworks.com/en/systems/trans-pacific/humboldt-cable"
+      },
+      "geometry": {
+        "coordinates": [
+          -71.6225737059049,
+          -33.59621502851639
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Buenaventura, Colombia",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3,
+        "address": "-"
+      },
+      "geometry": {
+        "coordinates": [
+          -77.07984235853618,
+          3.8861908270169607
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Fortaleza, Brasil",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3,
+        "address": "-"
+      },
+      "geometry": {
+        "coordinates": [
+          -38.50941016554367,
+          -3.720055215982839
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rio de Janeiro, Brasil",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3,
+        "address": "-"
+      },
+      "geometry": {
+        "coordinates": [
+          -43.189050059124185,
+          -22.988088948471045
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Praia Grande, Brasil",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3,
+        "address": "-"
+      },
+      "geometry": {
+        "coordinates": [
+          -46.27357491811287,
+          -24.014981802465826
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Las Toninas, Argentina",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3,
+        "address": "-"
+      },
+      "geometry": {
+        "coordinates": [
+          -56.696495808697335,
+          -36.461023456118205
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Valparaíso, Chile",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3,
+        "address": "Playa Las Torpederas"
+      },
+      "geometry": {
+        "coordinates": [
+          -71.64433602372792,
+          -33.022109861313254
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Balboa, Panama",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -79.55,
+          8.95
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Papeete, Polinesia Francesa",
+        "type": "Landing Point",
+        "shape": "circle",
+        "color": "#2BAB64",
+        "size": 3
+      },
+      "geometry": {
+        "coordinates": [
+          -149.571,
+          -17.5375
+        ],
+        "type": "Point"
       }
     },
     {
@@ -229,11 +516,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -70.31977463507152,
           -18.50293267378119
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -246,11 +533,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -70.15738109194581,
           -20.216785310129623
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -263,11 +550,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -70.19842836322643,
           -22.08825930956222
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -280,11 +567,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -70.39717600529086,
           -23.637313377642954
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -297,11 +584,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -70.8184993036733,
           -27.063670872432283
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -314,11 +601,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -71.27360052238251,
           -29.89750369802499
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -331,11 +618,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -71.60646469155193,
           -33.548982272885226
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -348,11 +635,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -72.42415392598356,
           -35.32292712186572
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -365,11 +652,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -73.15395829208408,
           -36.83075825200422
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -382,11 +669,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -73.39930566132992,
           -38.78519164532564
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -399,11 +686,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -72.9388167768664,
           -41.47270675839056
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -416,11 +703,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
-            -73.20729836937184,
-            -41.79439869374565
-          ]
+          -73.20729836937184,
+          -41.79439869374565
+        ],
+        "type": "Point"
       }
     },
     {
@@ -433,11 +720,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
-            -73.5164572355063,
-            -41.97353913386836
-          ]
+          -73.5164572355063,
+          -41.97353913386836
+        ],
+        "type": "Point"
       }
     },
     {
@@ -450,11 +737,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
-            -72.82440089631388,
-            -45.4617877989182
-          ]
+          -72.82440089631388,
+          -45.4617877989182
+        ],
+        "type": "Point"
       }
     },
     {
@@ -467,11 +754,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
-            -73.48244956803546,
-            -43.1423999935397
-          ]
+          -73.48244956803546,
+          -43.1423999935397
+        ],
+        "type": "Point"
       }
     },
     {
@@ -484,11 +771,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -73.55328237206784,
           -47.80326287333649
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -501,11 +788,11 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -70.88459486036106,
           -53.149467227264346
-        ]
+        ],
+        "type": "Point"
       }
     },
     {
@@ -518,13 +805,12 @@
         "size": 3
       },
       "geometry": {
-        "type": "Point",
         "coordinates": [
           -67.60713923068067,
           -54.933502337834625
-        ]
+        ],
+        "type": "Point"
       }
     }
-    
   ]
 }
