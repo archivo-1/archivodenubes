@@ -53,12 +53,12 @@ def convert_to_geojson(df):
     
     return geojson_data
 
-def update_github_file(repo_name, file_path, new_content, branch, github_token):
+def update_github_file(repo_url, file_path, new_content, branch, github_token):
     """
     Updates a file in a GitHub repository with new content.
     """
     g = Github(github_token)
-    repo = g.get_user().get_repo(repo_name)
+    repo = g.get_repo(repo_url)
     
     try:
         contents = repo.get_contents(file_path, ref=branch)
@@ -89,8 +89,7 @@ def main():
 
     credentials_path = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
     github_token = os.environ.get('GITHUB_TOKEN')
-    repo_url = os.environ.get('GITHUB_REPOSITORY', 'archivo-1/archivodenubes')
-    repo_name = repo_url.split('/')[-1]
+    repo_url = os.environ.get('GITHUB_REPOSITORY')
     
     if not credentials_path or not github_token:
         raise ValueError("Environment variables GOOGLE_APPLICATION_CREDENTIALS and GITHUB_TOKEN must be set.")
@@ -103,7 +102,7 @@ def main():
     new_content = json.dumps(geojson_data, indent=2)
 
     # Update the GeoJSON file on GitHub
-    update_github_file(repo_name, args.geojson_path, new_content, args.branch, github_token)
+    update_github_file(repo_url, args.geojson_path, new_content, args.branch, github_token)
 
 if __name__ == '__main__':
     main()
