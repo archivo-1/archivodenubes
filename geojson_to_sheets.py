@@ -60,6 +60,10 @@ def convert_to_dataframe(geojson_data):
     cols = [col for col in df.columns if col != '__geometry__'] + ['__geometry__']
     df = df[cols]
     
+    # Clean the dataframe by replacing NaN and inf with a value that can be written to a sheet
+    df = df.replace([np.inf, -np.inf], np.nan)
+    df = df.fillna('')
+    
     return df
 
 def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
