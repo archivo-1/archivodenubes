@@ -33,7 +33,7 @@ def convert_to_dataframe(geojson_data):
     features = geojson_data.get('features', [])
     
     if not features:
-        raise ValueError("GeoJSON file is empty or missing 'features'.")
+        return pd.DataFrame()
 
     data = []
     
@@ -47,7 +47,6 @@ def convert_to_dataframe(geojson_data):
 
     df = pd.DataFrame(data)
     
-    # Ensure all columns are present, even if some features are missing a property
     all_keys = set()
     for feature in features:
         all_keys.update(feature.get('properties', {}).keys())
@@ -56,21 +55,22 @@ def convert_to_dataframe(geojson_data):
         if key not in df.columns:
             df[key] = None
     
-    # Reorder columns to have __geometry__ at the end
     cols = [col for col in df.columns if col != '__geometry__'] + ['__geometry__']
     df = df[cols]
     
-    # Clean the dataframe by replacing NaN and inf with a value that can be written to a sheet
     df = df.replace([np.inf, -np.inf], np.nan)
     df = df.fillna('')
     
-    # Convert lists and dictionaries within properties to JSON strings
     for col in df.columns:
         if col != '__geometry__':
             df[col] = df[col].apply(
                 lambda x: json.dumps(x) if isinstance(x, (list, dict)) else x
             )
-    
+            
+    # Add a final conversion to handle any remaining complex types
+    for col in df.columns:
+        df[col] = df[col].astype(str)
+
     return df
 
 def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
@@ -81,8 +81,18 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
     try:
         gc = gspread.service_account(filename=credentials_path)
         sh = gc.open_by_key(sheet_id)
-        worksheet = sh.worksheet(worksheet_name)
         
+        try:
+            worksheet = sh.worksheet(worksheet_name)
+        except gspread.exceptions.WorksheetNotFound:
+            print(f"Worksheet '{worksheet_name}' not found. Creating a new one.")
+            worksheet = sh.add_worksheet(title=worksheet_name, rows=100, cols=20)
+        
+        if df.empty:
+            print(f"No data to update for worksheet '{worksheet_name}'. Clearing the sheet.")
+            worksheet.clear()
+            return
+            
         all_values = [df.columns.values.tolist()] + df.values.tolist()
         worksheet.clear()
         worksheet.update(all_values)
@@ -169,8 +179,6 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
             worksheet.client.batch_update(sh.id, {'requests': requests_body})
         
         print(f"Successfully updated and formatted sheet with ID '{sheet_id}'.")
-    except gspread.exceptions.WorksheetNotFound:
-        raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
     except gspread.exceptions.APIError as e:
         print(f"Google Sheets API Error: {e}")
         raise
