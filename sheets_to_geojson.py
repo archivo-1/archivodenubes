@@ -6,48 +6,60 @@ import os
 import requests
 import numpy as np
 import sys
+import re
 
 def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
     """
     Reads data from a Google Sheet using its ID and returns it as a pandas DataFrame.
-    This version uses get_all_values() for more robust data handling.
     """
     try:
         gc = gspread.service_account(filename=credentials_path)
         sh = gc.open_by_key(sheet_id)
         worksheet = sh.worksheet(worksheet_name)
         
-        # Get all values from the worksheet
         all_values = worksheet.get_all_values()
         
         if not all_values:
             raise ValueError("The worksheet is empty. Please check the sheet and its contents.")
         
-        # The first row is the header
         header = all_values[0]
-        # The remaining rows are the data
         data = all_values[1:]
         
         df = pd.DataFrame(data, columns=header)
         
-        # Check for empty dataframe and raise a specific error
         if df.empty:
             raise ValueError("The DataFrame is empty. This might be due to a problem with the header row or no data rows.")
         
         print(f"Successfully read data from sheet with ID '{sheet_id}'.")
         return df
     except gspread.exceptions.SpreadsheetNotFound:
-        raise ValueError(f"Spreadsheet with ID '{sheet_id}' not not found. Check the ID and sharing permissions.")
+        raise ValueError(f"Spreadsheet with ID '{sheet_id}' not found. Check the ID and sharing permissions.")
     except gspread.exceptions.WorksheetNotFound:
         raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
     except Exception as e:
         print(f"An unexpected error occurred while reading the sheet: {e}", file=sys.stderr)
         raise
 
+def clean_data(df):
+    """
+    Cleans the DataFrame by ensuring all text is valid UTF-8 and replacing
+    NaN/inf with empty strings.
+    """
+    df = df.replace([np.inf, -np.inf], np.nan)
+    
+    # Force encode and decode to handle bad characters
+    for col in df.columns:
+        df[col] = df[col].astype(str).apply(lambda x: x.encode('utf-8', 'ignore').decode('utf-8'))
+    
+    return df.fillna('')
+
 def convert_to_geojson(df):
     """
     Converts a pandas DataFrame back into a GeoJSON structure.
     """
+    # Clean the data before conversion
+    df = clean_data(df)
+
     features = []
     
     # Split the DataFrame into properties and geometry
@@ -127,14 +139,11 @@ def main():
     if not credentials_path or not github_token:
         raise ValueError("Environment variables GOOGLE_APPLICATION_CREDENTIALS and GITHUB_TOKEN must be set.")
 
-    # Get data from Google Sheets
     df = get_data_from_google_sheet(args.sheet_id, 'Sheet1', credentials_path)
 
-    # Convert to GeoJSON
     geojson_data = convert_to_geojson(df)
     new_content = json.dumps(geojson_data, indent=2)
 
-    # Update the GeoJSON file on GitHub
     update_github_file(repo_url, args.geojson_path, new_content, args.branch, github_token)
 
 if __name__ == '__main__':
