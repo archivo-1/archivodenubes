@@ -16,12 +16,17 @@ def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
     try:
         gc = gspread.service_account(filename=credentials_path)
         sh = gc.open_by_key(sheet_id)
-        worksheet = sh.worksheet(worksheet_name)
         
+        try:
+            worksheet = sh.worksheet(worksheet_name)
+        except gspread.exceptions.WorksheetNotFound:
+            print(f"Warning: Worksheet '{worksheet_name}' not found. Returning empty DataFrame.")
+            return pd.DataFrame()
+            
         all_values = worksheet.get_all_values()
         
         if not all_values or not any(row for row in all_values):
-            print(f"Warning: Sheet with ID '{sheet_id}' is empty.")
+            print(f"Warning: Worksheet '{worksheet_name}' is empty.")
             return pd.DataFrame()
         
         header = all_values[0]
@@ -30,15 +35,13 @@ def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
         df = pd.DataFrame(data, columns=header)
         
         if df.empty:
-            print(f"Warning: DataFrame is empty for sheet ID '{sheet_id}'. This may be due to only a header row existing.")
+            print(f"Warning: DataFrame is empty for worksheet '{worksheet_name}'. This may be due to only a header row existing.")
             return pd.DataFrame()
         
         print(f"Successfully read data from sheet with ID '{sheet_id}'.")
         return df
     except gspread.exceptions.SpreadsheetNotFound:
         raise ValueError(f"Spreadsheet with ID '{sheet_id}' not found. Check the ID and sharing permissions.")
-    except gspread.exceptions.WorksheetNotFound:
-        raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
     except Exception as e:
         print(f"An unexpected error occurred while reading the sheet: {e}", file=sys.stderr)
         raise
@@ -71,7 +74,6 @@ def convert_to_geojson(df):
         try:
             properties_raw = row.drop('__geometry__').to_dict()
             
-            # This is the new, more robust fix
             geometry_string = str(row['__geometry__'])
             
             properties = {}
