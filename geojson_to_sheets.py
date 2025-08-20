@@ -97,9 +97,10 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
         worksheet.clear()
         worksheet.update(all_values)
         
-        requests_body = []
+        # Part 1: General formatting (bold, freeze, wrap)
+        general_requests = []
         
-        requests_body.append({
+        general_requests.append({
             'updateSheetProperties': {
                 'properties': {
                     'sheetId': worksheet.id,
@@ -111,7 +112,7 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
             }
         })
 
-        requests_body.append({
+        general_requests.append({
             'repeatCell': {
                 'range': {
                     'sheetId': worksheet.id,
@@ -131,7 +132,7 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
         
         num_columns = df.shape[1]
         if num_columns > 1:
-            requests_body.append({
+            general_requests.append({
                 'repeatCell': {
                     'range': {
                         'sheetId': worksheet.id,
@@ -147,13 +148,18 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
                     'fields': 'userEnteredFormat.wrapStrategy'
                 }
             })
-
+            
+        if general_requests:
+            worksheet.client.batch_update(sh.id, {'requests': general_requests})
+        
+        # Part 2: Color formatting (sent in a separate request)
+        color_requests = []
         hex_code_pattern = re.compile(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')
         
         for row_index, row in enumerate(all_values):
             for col_index, value in enumerate(row):
                 if isinstance(value, str) and hex_code_pattern.match(value):
-                    requests_body.append({
+                    color_requests.append({
                         'repeatCell': {
                             'range': {
                                 'sheetId': worksheet.id,
@@ -175,8 +181,8 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
                         }
                     })
 
-        if requests_body:
-            worksheet.client.batch_update(sh.id, {'requests': requests_body})
+        if color_requests:
+            worksheet.client.batch_update(sh.id, {'requests': color_requests})
         
         print(f"Successfully updated and formatted sheet with ID '{sheet_id}'.")
     except gspread.exceptions.APIError as e:
