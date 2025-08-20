@@ -4,11 +4,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Colón, Panamá",
+        "name": "Col\u00f3n, Panam\u00e1",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -25,8 +32,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
+        "size": "3",
+        "address": "-",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -43,7 +56,14 @@
         "type": "Landing Point",
         "shape": "circler",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -56,11 +76,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Puerto Barrios, Panamá",
+        "name": "Puerto Barrios, Panam\u00e1",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -77,7 +104,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -91,9 +125,17 @@
       "type": "Feature",
       "properties": {
         "name": "Boca Raton, Florida (EE.UU.)",
+        "type": "",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -106,11 +148,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Punta Cana, República Dominicana",
+        "name": "Punta Cana, Rep\u00fablica Dominicana",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -123,11 +172,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "San Juán, Puerto Rico (EE.UU)",
+        "name": "San Ju\u00e1n, Puerto Rico (EE.UU)",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -144,7 +200,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -157,12 +220,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Lurin, Perú",
+        "name": "Lurin, Per\u00fa",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
+        "size": "3",
+        "address": "-",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -179,7 +248,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -196,7 +272,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -213,7 +296,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -227,9 +317,17 @@
       "type": "Feature",
       "properties": {
         "name": "t.b.d. Polinesia Francesa 1",
+        "type": "",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -243,9 +341,17 @@
       "type": "Feature",
       "properties": {
         "name": "t.b.d. Polinesia Francesa 2",
+        "type": "",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -258,11 +364,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Puerto San José, Guatemala",
+        "name": "Puerto San Jos\u00e9, Guatemala",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -279,7 +392,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -296,7 +416,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -309,11 +436,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Macora, Perú",
+        "name": "Macora, Per\u00fa",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -330,7 +464,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -347,7 +488,7 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3,
+        "size": "3",
         "address": "Muelle San Antonio",
         "capacity": "200 Tbps",
         "date_commissioned": "2018-05-15",
@@ -371,8 +512,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
+        "size": "3",
+        "address": "-",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -389,8 +536,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
+        "size": "3",
+        "address": "-",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -407,8 +560,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
+        "size": "3",
+        "address": "-",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -425,8 +584,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
+        "size": "3",
+        "address": "-",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -443,8 +608,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3,
-        "address": "-"
+        "size": "3",
+        "address": "-",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -457,12 +628,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Valparaíso, Chile",
+        "name": "Valpara\u00edso, Chile",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3,
-        "address": "Playa Las Torpederas"
+        "size": "3",
+        "address": "Playa Las Torpederas",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -479,7 +656,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -496,7 +680,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -513,7 +704,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -526,11 +724,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Iquique, Trarapacá",
+        "name": "Iquique, Trarapac\u00e1",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -547,7 +752,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -564,7 +776,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -581,7 +800,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -598,7 +824,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -611,11 +844,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Cartagena, Valparaíso",
+        "name": "Cartagena, Valpara\u00edso",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -628,11 +868,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Constitución, Maule",
+        "name": "Constituci\u00f3n, Maule",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -645,11 +892,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Concepción, Biobío",
+        "name": "Concepci\u00f3n, Biob\u00edo",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -662,11 +916,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Puerto Saavedra, Araucanía",
+        "name": "Puerto Saavedra, Araucan\u00eda",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -683,7 +944,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -696,11 +964,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Maimén, Los Lagos",
+        "name": "Maim\u00e9n, Los Lagos",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -717,7 +992,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -730,11 +1012,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Puerto Chacabuco, Aysén",
+        "name": "Puerto Chacabuco, Ays\u00e9n",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -747,11 +1036,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Quellón, Los Lagos",
+        "name": "Quell\u00f3n, Los Lagos",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -764,11 +1060,18 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Tortel, Aysén",
+        "name": "Tortel, Ays\u00e9n",
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -785,7 +1088,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
@@ -802,7 +1112,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": 3
+        "size": "3",
+        "address": "",
+        "capacity": "",
+        "date_commissioned": "",
+        "operator": "",
+        "connections": "",
+        "source": "",
+        "reference_link": ""
       },
       "geometry": {
         "coordinates": [
