@@ -5,6 +5,7 @@ import argparse
 import os
 import requests
 import numpy as np
+import sys
 
 def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
     """
@@ -16,12 +17,20 @@ def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
         worksheet = sh.worksheet(worksheet_name)
         data = worksheet.get_all_records()
         df = pd.DataFrame(data)
+
+        # Check for empty dataframe and raise a specific error
+        if df.empty:
+            raise ValueError("The DataFrame is empty. This might be due to a problem reading the sheet or a missing header row.")
+
         print(f"Successfully read data from sheet with ID '{sheet_id}'.")
         return df
     except gspread.exceptions.SpreadsheetNotFound:
         raise ValueError(f"Spreadsheet with ID '{sheet_id}' not found. Check the ID and sharing permissions.")
     except gspread.exceptions.WorksheetNotFound:
         raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
+    except Exception as e:
+        print(f"An unexpected error occurred while reading the sheet: {e}", file=sys.stderr)
+        raise
 
 def convert_to_geojson(df):
     """
@@ -62,7 +71,7 @@ def update_github_file(repo_url, file_path, new_content, branch, github_token):
     
     headers = {
         "Authorization": f"token {github_token}",
-        "Accept": "application/vnd.github.v3+json"
+        "Accept": "application/vnd.github.com.v3+json"
     }
 
     # Get the current file's SHA to update it
