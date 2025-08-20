@@ -81,8 +81,20 @@ def update_google_sheet(df, sheet_title, worksheet_name, credentials_path):
         
         requests_body = []
         
-        # 1. Bold the header row
-        header_range = f'A1:{rowcol_to_a1(1, df.shape[1])}'
+        # 1. Freeze the header row
+        requests_body.append({
+            'updateSheetProperties': {
+                'properties': {
+                    'sheetId': worksheet.id,
+                    'gridProperties': {
+                        'frozenRowCount': 1
+                    }
+                },
+                'fields': 'gridProperties.frozenRowCount'
+            }
+        })
+
+        # 2. Bold the header row
         requests_body.append({
             'repeatCell': {
                 'range': {
@@ -101,7 +113,27 @@ def update_google_sheet(df, sheet_title, worksheet_name, credentials_path):
             }
         })
         
-        # 2. Collect all hex code coloring requests
+        # 3. Clip text for all columns except the last one (__geometry__)
+        num_columns = df.shape[1]
+        if num_columns > 1:
+            requests_body.append({
+                'repeatCell': {
+                    'range': {
+                        'sheetId': worksheet.id,
+                        'startRowIndex': 0,
+                        'endRowIndex': worksheet.row_count,
+                        'endColumnIndex': num_columns - 1
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'wrapStrategy': 'CLIP'
+                        }
+                    },
+                    'fields': 'userEnteredFormat.wrapStrategy'
+                }
+            })
+
+        # 4. Collect all hex code coloring requests
         hex_code_pattern = re.compile(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')
         
         for row_index, row in enumerate(all_values):
@@ -152,7 +184,7 @@ def main():
 
     credentials_path = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
     github_token = os.environ.get('GITHUB_TOKEN')
-    repo_url = 'https://github.com/archivo-1/archivodenubes'
+    repo_url = os.environ.get('GITHUB_REPOSITORY')
     
     if not credentials_path or not github_token:
         raise ValueError("Environment variables GOOGLE_APPLICATION_CREDENTIALS and GITHUB_TOKEN must be set.")
