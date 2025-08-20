@@ -4,6 +4,7 @@ import json
 import argparse
 import os
 import requests
+import numpy as np
 
 def get_data_from_github(repo_url, branch, file_path, github_token):
     """
@@ -14,6 +15,13 @@ def get_data_from_github(repo_url, branch, file_path, github_token):
     response = requests.get(raw_url, headers=headers)
     response.raise_for_status()
     return response.json()
+
+def clean_data(df):
+    """
+    Removes non-JSON-compliant values like NaN and inf from the DataFrame.
+    """
+    df = df.replace([np.inf, -np.inf], np.nan)
+    return df.fillna('')
 
 def convert_to_dataframe(geojson_data):
     """
@@ -29,7 +37,14 @@ def convert_to_dataframe(geojson_data):
     df = pd.DataFrame(data)
     geometry_col = '__geometry__'
     cols = [col for col in df.columns if col != geometry_col] + [geometry_col]
-    return df[cols]
+    
+    # Reindex to ensure all columns are present, filling with None
+    all_cols = list(set(df.columns) | set(data[0].keys() if data else []))
+    df = df.reindex(columns=all_cols, fill_value=None)
+    
+    df = clean_data(df)
+    
+    return df
 
 def update_google_sheet(df, sheet_title, worksheet_name, credentials_path):
     """
@@ -42,10 +57,14 @@ def update_google_sheet(df, sheet_title, worksheet_name, credentials_path):
         worksheet.clear()
         worksheet.update([df.columns.values.tolist()] + df.values.tolist())
         print(f"Successfully updated sheet '{sheet_title}'.")
-    except gspread.exceptions.SpreadsheetNotFound:
-        raise ValueError(f"Spreadsheet '{sheet_title}' not found. Check the title and sharing permissions.")
     except gspread.exceptions.WorksheetNotFound:
         raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
+    except gspread.exceptions.APIError as e:
+        print(f"Google Sheets API Error: {e}")
+        raise
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        raise
 
 def main():
     parser = argparse.ArgumentParser(description='Update Google Sheets from GeoJSON files.')
