@@ -44,14 +44,14 @@ def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
 def clean_data(df):
     """
     Cleans the DataFrame by ensuring all text is valid UTF-8 and replacing
-    NaN/inf with empty strings.
+    NaN/inf with empty strings, and converting complex types to strings.
     """
     # Replace NaN/inf values with empty strings
     df = df.replace([np.inf, -np.inf, np.nan], '')
     
-    # Ensure all text is UTF-8 encoded
+    # Iterate through all columns and cells to ensure they are valid for JSON
     for col in df.columns:
-        df[col] = df[col].astype(str).apply(lambda x: x.encode('utf-8', 'ignore').decode('utf-8'))
+        df[col] = df[col].apply(lambda x: json.dumps(x) if isinstance(x, (list, dict, pd.DataFrame)) else str(x))
     
     return df
 
@@ -79,8 +79,8 @@ def convert_to_geojson(df):
             }
             features.append(feature)
         except (json.JSONDecodeError, ValueError) as e:
-            print(f"Skipping row {index} due to data conversion error: {e}")
-            continue
+            # Re-raise the error so no features are skipped
+            raise Exception(f"Error converting row {index} to GeoJSON: {e}")
         
     geojson_data = {
         "type": "FeatureCollection",
