@@ -53,7 +53,7 @@ jobs:
         run: |
           python sheets_to_geojson.py --sheet_title "Landing Points_geojson" --geojson_path "data/puntos.geojson" --branch "test"
 
----
+
 
   pull-from-github:
     runs-on: ubuntu-latest
