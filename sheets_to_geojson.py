@@ -10,22 +10,34 @@ import sys
 def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
     """
     Reads data from a Google Sheet using its ID and returns it as a pandas DataFrame.
+    This version uses get_all_values() for more robust data handling.
     """
     try:
         gc = gspread.service_account(filename=credentials_path)
         sh = gc.open_by_key(sheet_id)
         worksheet = sh.worksheet(worksheet_name)
-        data = worksheet.get_all_records()
-        df = pd.DataFrame(data)
-
+        
+        # Get all values from the worksheet
+        all_values = worksheet.get_all_values()
+        
+        if not all_values:
+            raise ValueError("The worksheet is empty. Please check the sheet and its contents.")
+        
+        # The first row is the header
+        header = all_values[0]
+        # The remaining rows are the data
+        data = all_values[1:]
+        
+        df = pd.DataFrame(data, columns=header)
+        
         # Check for empty dataframe and raise a specific error
         if df.empty:
-            raise ValueError("The DataFrame is empty. This might be due to a problem reading the sheet or a missing header row.")
-
+            raise ValueError("The DataFrame is empty. This might be due to a problem with the header row or no data rows.")
+        
         print(f"Successfully read data from sheet with ID '{sheet_id}'.")
         return df
     except gspread.exceptions.SpreadsheetNotFound:
-        raise ValueError(f"Spreadsheet with ID '{sheet_id}' not found. Check the ID and sharing permissions.")
+        raise ValueError(f"Spreadsheet with ID '{sheet_id}' not not found. Check the ID and sharing permissions.")
     except gspread.exceptions.WorksheetNotFound:
         raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
     except Exception as e:
