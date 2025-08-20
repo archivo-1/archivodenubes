@@ -5,6 +5,8 @@ import argparse
 import os
 import requests
 import numpy as np
+import re
+from gspread.utils import a1_to_rowcol, rowcol_to_a1
 
 def get_data_from_github(repo_url, branch, file_path, github_token):
     """
@@ -50,9 +52,12 @@ def convert_to_dataframe(geojson_data):
     
     df = pd.DataFrame(data)
     
-    # Reindex to ensure all columns are present across all features
+    # Define a custom column order: 'name', 'type', then the rest alphabetically
+    fixed_cols = ['name', 'type']
+    remaining_cols = sorted([k for k in all_keys if k not in fixed_cols])
+    
     geometry_col = '__geometry__'
-    cols = sorted(list(all_keys)) + [geometry_col]
+    cols = fixed_cols + remaining_cols + [geometry_col]
     df = df.reindex(columns=cols, fill_value=None)
     
     df = clean_data(df)
@@ -61,15 +66,38 @@ def convert_to_dataframe(geojson_data):
 
 def update_google_sheet(df, sheet_title, worksheet_name, credentials_path):
     """
-    Updates a Google Sheet with data from a pandas DataFrame.
+    Updates a Google Sheet with data from a pandas DataFrame and applies formatting.
     """
     try:
         gc = gspread.service_account(filename=credentials_path)
         sh = gc.open(sheet_title)
         worksheet = sh.worksheet(worksheet_name)
+        
+        # Clear existing data and push the new DataFrame content
         worksheet.clear()
         worksheet.update([df.columns.values.tolist()] + df.values.tolist())
-        print(f"Successfully updated sheet '{sheet_title}'.")
+        
+        # Apply bold formatting to the header row
+        header_range = f'A1:{rowcol_to_a1(1, df.shape[1])}'
+        worksheet.format(header_range, {'textFormat': {'bold': True}})
+
+        # Find and color cells with valid hex codes
+        hex_code_pattern = re.compile(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')
+        
+        all_values = worksheet.get_all_values()
+        for row_index, row in enumerate(all_values):
+            for col_index, value in enumerate(row):
+                if hex_code_pattern.match(value):
+                    cell_address = rowcol_to_a1(row_index + 1, col_index + 1)
+                    worksheet.format(cell_address, {
+                        'backgroundColor': {
+                            'red': int(value[1:3], 16) / 255.0,
+                            'green': int(value[3:5], 16) / 255.0,
+                            'blue': int(value[5:7], 16) / 255.0
+                        }
+                    })
+        
+        print(f"Successfully updated and formatted sheet '{sheet_title}'.")
     except gspread.exceptions.WorksheetNotFound:
         raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
     except gspread.exceptions.APIError as e:
