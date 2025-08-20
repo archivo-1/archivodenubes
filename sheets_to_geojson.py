@@ -45,13 +45,14 @@ def clean_data(df):
     Cleans the DataFrame by ensuring all text is valid UTF-8 and replacing
     NaN/inf with empty strings.
     """
-    df = df.replace([np.inf, -np.inf], np.nan)
+    # Replace NaN/inf values with empty strings
+    df = df.replace([np.inf, -np.inf, np.nan], '')
     
-    # Force encode and decode to handle bad characters
+    # Ensure all text is UTF-8 encoded
     for col in df.columns:
         df[col] = df[col].astype(str).apply(lambda x: x.encode('utf-8', 'ignore').decode('utf-8'))
     
-    return df.fillna('')
+    return df
 
 def convert_to_geojson(df):
     """
@@ -59,6 +60,9 @@ def convert_to_geojson(df):
     """
     # Clean the data before conversion
     df = clean_data(df)
+
+    if '__geometry__' not in df.columns:
+        raise ValueError("The dataframe is missing the '__geometry__' column. Cannot convert to GeoJSON.")
 
     features = []
     
@@ -71,8 +75,17 @@ def convert_to_geojson(df):
         
         # Parse the geometry string back to a dictionary
         geometry_string = df.loc[index, '__geometry__']
-        geometry = json.loads(geometry_string)
         
+        # Handle empty geometry strings
+        if not geometry_string:
+            geometry = None
+        else:
+            try:
+                geometry = json.loads(geometry_string)
+            except json.JSONDecodeError:
+                print(f"Skipping row {index} due to invalid JSON in '__geometry__' column.")
+                continue
+
         feature = {
             "type": "Feature",
             "properties": properties,
