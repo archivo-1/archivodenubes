@@ -7,6 +7,7 @@ import requests
 import sys
 import numpy as np
 import re
+import base64
 
 def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
     """
@@ -123,7 +124,7 @@ def update_github_file(repo_url, file_path, new_content, branch, github_token):
     # Prepare the payload for the update/create
     payload = {
         "message": f"Update {file_path} from Google Sheets",
-        "content": new_content.encode("utf-8").hex(),
+        "content": base64.b64encode(new_content.encode('utf-8')).decode('utf-8'),
         "branch": branch,
     }
     
