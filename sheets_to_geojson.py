@@ -59,7 +59,6 @@ def convert_to_geojson(df):
     """
     Converts a pandas DataFrame back into a GeoJSON structure.
     """
-    # Clean the data before conversion
     df = clean_data(df)
 
     if '__geometry__' not in df.columns:
@@ -67,32 +66,21 @@ def convert_to_geojson(df):
 
     features = []
     
-    # Split the DataFrame into properties and geometry
-    prop_df = df.drop(columns=['__geometry__'])
-    
-    # Iterate over rows to build each GeoJSON feature
-    for index, row in prop_df.iterrows():
-        properties = row.to_dict()
-        
-        # Parse the geometry string back to a dictionary
-        geometry_string = df.loc[index, '__geometry__']
-        
-        # Handle empty geometry strings
-        if not geometry_string:
-            geometry = None
-        else:
-            try:
-                geometry = json.loads(geometry_string)
-            except json.JSONDecodeError:
-                print(f"Skipping row {index} due to invalid JSON in '__geometry__' column.")
-                continue
+    for index, row in df.iterrows():
+        try:
+            # Extract geometry and properties
+            geometry = json.loads(row['__geometry__']) if row['__geometry__'] else None
+            properties = row.drop('__geometry__').to_dict()
 
-        feature = {
-            "type": "Feature",
-            "properties": properties,
-            "geometry": geometry
-        }
-        features.append(feature)
+            feature = {
+                "type": "Feature",
+                "properties": properties,
+                "geometry": geometry
+            }
+            features.append(feature)
+        except (json.JSONDecodeError, ValueError) as e:
+            print(f"Skipping row {index} due to data conversion error: {e}")
+            continue
         
     geojson_data = {
         "type": "FeatureCollection",
