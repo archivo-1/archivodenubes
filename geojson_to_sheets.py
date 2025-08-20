@@ -64,6 +64,13 @@ def convert_to_dataframe(geojson_data):
     df = df.replace([np.inf, -np.inf], np.nan)
     df = df.fillna('')
     
+    # Convert lists and dictionaries within properties to JSON strings
+    for col in df.columns:
+        if col != '__geometry__':
+            df[col] = df[col].apply(
+                lambda x: json.dumps(x) if isinstance(x, (list, dict)) else x
+            )
+    
     return df
 
 def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
