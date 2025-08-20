@@ -3,14 +3,13 @@ import gspread
 import json
 import argparse
 import os
+import requests
 
 def get_data_from_github(repo_url, branch, file_path, github_token):
     """
     Reads the content of a GeoJSON file directly from a GitHub repository.
     """
-    import requests
     headers = {'Authorization': f'token {github_token}'}
-    # The raw URL for fetching file content
     raw_url = f"https://raw.githubusercontent.com/{repo_url.split('github.com/')[1].split('.git')[0]}/{branch}/{file_path}"
     response = requests.get(raw_url, headers=headers)
     response.raise_for_status()
@@ -24,13 +23,10 @@ def convert_to_dataframe(geojson_data):
     data = []
     for feature in features:
         row = feature['properties']
-        # Convert geometry to a JSON string and store in a dedicated column
         row['__geometry__'] = json.dumps(feature['geometry'])
         data.append(row)
     
-    # Handle potentially different columns across features
     df = pd.DataFrame(data)
-    # Reorder columns to have __geometry__ at the end
     geometry_col = '__geometry__'
     cols = [col for col in df.columns if col != geometry_col] + [geometry_col]
     return df[cols]
@@ -58,7 +54,6 @@ def main():
     parser.add_argument('--branch', required=True, help='The branch to read the GeoJSON from.')
     args = parser.parse_args()
 
-    # Define variables
     credentials_path = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
     github_token = os.environ.get('GITHUB_TOKEN')
     repo_url = 'https://github.com/archivo-1/archivodenubes'
@@ -66,11 +61,9 @@ def main():
     if not credentials_path or not github_token:
         raise ValueError("Environment variables GOOGLE_APPLICATION_CREDENTIALS and GITHUB_TOKEN must be set.")
 
-    # Fetch data and convert
     geojson_data = get_data_from_github(repo_url, args.branch, args.geojson_path, github_token)
     df = convert_to_dataframe(geojson_data)
     
-    # Update Google Sheet
     update_google_sheet(df, args.sheet_title, 'Sheet1', credentials_path)
 
 if __name__ == '__main__':
