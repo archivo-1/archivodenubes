@@ -1,0 +1,30 @@
+name: Update Google Sheets from GeoJSON
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install pandas gspread PyGithub requests
+      - name: Create Google credentials file
+        run: |
+          echo '${{ secrets.GOOGLE_CREDENTIALS }}' > google_credentials.json
+      - name: Run script for all files
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: google_credentials.json
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          python geojson_to_sheets.py --sheet_title "Cables Submarinos_geojson" --geojson_path "data/cable.geojson" --branch "main"
+          python geojson_to_sheets.py --sheet_title "Cables Terrestres_geojson" --geojson_path "data/land_cables.geojson" --branch "main"
+          python geojson_to_sheets.py --sheet_title "Data Centers_geojson" --geojson_path "data/data_centers.geojson" --branch "main"
+          python geojson_to_sheets.py --sheet_title "Landing Points_geojson" --geojson_path "data/puntos.geojson" --branch "main"
