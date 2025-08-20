@@ -75,8 +75,7 @@ def convert_to_dataframe(geojson_data):
 
 def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
     """
-    Updates a Google Sheet with data from a pandas DataFrame and applies formatting
-    using a single batch update request to avoid API rate limits.
+    Updates a Google Sheet with data from a pandas DataFrame and applies formatting.
     """
     try:
         gc = gspread.service_account(filename=credentials_path)
@@ -97,10 +96,11 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
         worksheet.clear()
         worksheet.update(all_values)
         
-        # Part 1: General formatting (bold, freeze, wrap)
-        general_requests = []
+        # Apply formatting
+        requests_body = []
         
-        general_requests.append({
+        # Freeze the header row
+        requests_body.append({
             'updateSheetProperties': {
                 'properties': {
                     'sheetId': worksheet.id,
@@ -112,7 +112,8 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
             }
         })
 
-        general_requests.append({
+        # Bold the header row
+        requests_body.append({
             'repeatCell': {
                 'range': {
                     'sheetId': worksheet.id,
@@ -130,9 +131,10 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
             }
         })
         
+        # Set text wrapping for all columns
         num_columns = df.shape[1]
         if num_columns > 1:
-            general_requests.append({
+            requests_body.append({
                 'repeatCell': {
                     'range': {
                         'sheetId': worksheet.id,
@@ -149,40 +151,8 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
                 }
             })
             
-        if general_requests:
-            worksheet.client.batch_update(sh.id, {'requests': general_requests})
-        
-        # Part 2: Color formatting (sent in a separate request)
-        color_requests = []
-        hex_code_pattern = re.compile(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')
-        
-        for row_index, row in enumerate(all_values):
-            for col_index, value in enumerate(row):
-                if isinstance(value, str) and hex_code_pattern.match(value):
-                    color_requests.append({
-                        'repeatCell': {
-                            'range': {
-                                'sheetId': worksheet.id,
-                                'startRowIndex': row_index,
-                                'endRowIndex': row_index + 1,
-                                'startColumnIndex': col_index,
-                                'endColumnIndex': col_index + 1
-                            },
-                            'cell': {
-                                'userEnteredFormat': {
-                                    'backgroundColor': {
-                                        'red': int(value[1:3], 16) / 255.0,
-                                        'green': int(value[3:5], 16) / 255.0,
-                                        'blue': int(value[5:7], 16) / 255.0
-                                    }
-                                }
-                            },
-                            'fields': 'userEnteredFormat.backgroundColor'
-                        }
-                    })
-
-        if color_requests:
-            worksheet.client.batch_update(sh.id, {'requests': color_requests})
+        if requests_body:
+            worksheet.client.batch_update(sh.id, {'requests': requests_body})
         
         print(f"Successfully updated and formatted sheet with ID '{sheet_id}'.")
     except gspread.exceptions.APIError as e:
