@@ -3,7 +3,8 @@ import gspread
 import json
 import argparse
 import os
-from github import Github
+import requests
+import numpy as np
 
 def get_data_from_google_sheet(sheet_title, worksheet_name, credentials_path):
     """
@@ -55,30 +56,41 @@ def convert_to_geojson(df):
 
 def update_github_file(repo_url, file_path, new_content, branch, github_token):
     """
-    Updates a file in a GitHub repository with new content.
+    Updates a file in a GitHub repository with new content using a direct API call.
     """
-    g = Github(github_token)
-    repo = g.get_repo(repo_url)
+    api_url = f"https://api.github.com/repos/{repo_url}/contents/{file_path}"
     
-    try:
-        contents = repo.get_contents(file_path, ref=branch)
-        repo.update_file(
-            contents.path,
-            f"Update {file_path} from Google Sheets",
-            new_content,
-            contents.sha,
-            branch=branch
-        )
+    headers = {
+        "Authorization": f"token {github_token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+
+    # Get the current file's SHA to update it
+    response = requests.get(api_url, headers=headers)
+    
+    sha = None
+    if response.status_code == 200:
+        sha = response.json().get("sha")
+    elif response.status_code != 404:
+        raise Exception(f"Failed to get file SHA: {response.text}")
+    
+    # Prepare the payload for the update/create
+    payload = {
+        "message": f"Update {file_path} from Google Sheets",
+        "content": new_content.encode("utf-8").hex(),
+        "branch": branch,
+    }
+    
+    if sha:
+        payload["sha"] = sha
+
+    # Make the API call to update or create the file
+    response = requests.put(api_url, json=payload, headers=headers)
+    
+    if response.status_code in [200, 201]:
         print(f"Successfully updated file '{file_path}' on branch '{branch}'.")
-    except Exception as e:
-        print(f"Could not update file '{file_path}': {e}")
-        repo.create_file(
-            file_path,
-            f"Create {file_path} from Google Sheets",
-            new_content,
-            branch=branch
-        )
-        print(f"Created new file '{file_path}' on branch '{branch}'.")
+    else:
+        raise Exception(f"Failed to update file '{file_path}': {response.text}")
 
 def main():
     parser = argparse.ArgumentParser(description='Update GeoJSON files from Google Sheets.')
