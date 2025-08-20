@@ -6,20 +6,20 @@ import os
 import requests
 import numpy as np
 
-def get_data_from_google_sheet(sheet_title, worksheet_name, credentials_path):
+def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
     """
-    Reads data from a Google Sheet and returns it as a pandas DataFrame.
+    Reads data from a Google Sheet using its ID and returns it as a pandas DataFrame.
     """
     try:
         gc = gspread.service_account(filename=credentials_path)
-        sh = gc.open(sheet_title)
+        sh = gc.open_by_key(sheet_id)
         worksheet = sh.worksheet(worksheet_name)
         data = worksheet.get_all_records()
         df = pd.DataFrame(data)
-        print(f"Successfully read data from sheet '{sheet_title}'.")
+        print(f"Successfully read data from sheet with ID '{sheet_id}'.")
         return df
     except gspread.exceptions.SpreadsheetNotFound:
-        raise ValueError(f"Spreadsheet '{sheet_title}' not found. Check the title and sharing permissions.")
+        raise ValueError(f"Spreadsheet with ID '{sheet_id}' not found. Check the ID and sharing permissions.")
     except gspread.exceptions.WorksheetNotFound:
         raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
 
@@ -94,7 +94,7 @@ def update_github_file(repo_url, file_path, new_content, branch, github_token):
 
 def main():
     parser = argparse.ArgumentParser(description='Update GeoJSON files from Google Sheets.')
-    parser.add_argument('--sheet_title', required=True, help='The exact title of the Google Sheet.')
+    parser.add_argument('--sheet_id', required=True, help='The unique ID of the Google Sheet.')
     parser.add_argument('--geojson_path', required=True, help='The path to the GeoJSON file in the GitHub repo.')
     parser.add_argument('--branch', required=True, help='The branch to read the GeoJSON from.')
     args = parser.parse_args()
@@ -107,7 +107,7 @@ def main():
         raise ValueError("Environment variables GOOGLE_APPLICATION_CREDENTIALS and GITHUB_TOKEN must be set.")
 
     # Get data from Google Sheets
-    df = get_data_from_google_sheet(args.sheet_title, 'Sheet1', credentials_path)
+    df = get_data_from_google_sheet(args.sheet_id, 'Sheet1', credentials_path)
 
     # Convert to GeoJSON
     geojson_data = convert_to_geojson(df)
