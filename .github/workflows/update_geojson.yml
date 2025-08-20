@@ -20,7 +20,7 @@ jobs:
           python-version: '3.10'
       - name: Install dependencies
         run: |
-          pip install pandas gspread PyGithub requests
+          pip install pandas gspread requests
       - name: Create Google credentials file
         run: |
           echo '${{ secrets.GOOGLE_CREDENTIALS }}' > google_credentials.json
@@ -28,8 +28,9 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: google_credentials.json
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          python sheets_to_geojson.py --sheet_title "Cables Submarinos_geojson" --geojson_path "data/cable.geojson" --branch "main"
-          python sheets_to_geojson.py --sheet_title "Cables Terrestres_geojson" --geojson_path "data/land_cables.geojson" --branch "main"
-          python sheets_to_geojson.py --sheet_title "Data Centers_geojson" --geojson_path "data/data_centers.geojson" --branch "main"
-          python sheets_to_geojson.py --sheet_title "Landing Points_geojson" --geojson_path "data/puntos.geojson" --branch "main"
+          python sheets_to_geojson.py --sheet_id "1GvyU-1fu8VEhX-V5_Cf0cMI3-47Sa1PxoXSOQLst4aE" --geojson_path "data/cable.geojson" --branch "main"
+          python sheets_to_geojson.py --sheet_id "1f8EP3Nk3qe9VbS1BNIdQyTy2tyAfumikn0qO0m5jPXY" --geojson_path "data/land_cables.geojson" --branch "main"
+          python sheets_to_geojson.py --sheet_id "18h39RUQYyK_nyCqcxqz_Vl3hhhLz3odw6t-a7FH9eKw" --geojson_path "data/data_centers.geojson" --branch "main"
+          python sheets_to_geojson.py --sheet_id "12g8XmTVcYPAbW0azH7rTRHB_mvKN04zs7xe4P4-Jia8" --geojson_path "data/puntos.geojson" --branch "main"
