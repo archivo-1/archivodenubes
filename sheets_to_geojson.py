@@ -4,8 +4,8 @@ import json
 import argparse
 import os
 import requests
-import numpy as np
 import sys
+import numpy as np
 import re
 
 def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
@@ -33,7 +33,7 @@ def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
         print(f"Successfully read data from sheet with ID '{sheet_id}'.")
         return df
     except gspread.exceptions.SpreadsheetNotFound:
-        raise ValueError(f"Spreadsheet with ID '{sheet_id}' not found. Check the ID and sharing permissions.")
+        raise ValueError(f"Spreadsheet with ID '{sheet_id}' not not found. Check the ID and sharing permissions.")
     except gspread.exceptions.WorksheetNotFound:
         raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
     except Exception as e:
