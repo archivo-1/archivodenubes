@@ -66,36 +66,72 @@ def convert_to_dataframe(geojson_data):
 
 def update_google_sheet(df, sheet_title, worksheet_name, credentials_path):
     """
-    Updates a Google Sheet with data from a pandas DataFrame and applies formatting.
+    Updates a Google Sheet with data from a pandas DataFrame and applies formatting
+    using a single batch update request to avoid API rate limits.
     """
     try:
         gc = gspread.service_account(filename=credentials_path)
         sh = gc.open(sheet_title)
         worksheet = sh.worksheet(worksheet_name)
         
-        # Clear existing data and push the new DataFrame content
+        # Prepare the data for a single update
+        all_values = [df.columns.values.tolist()] + df.values.tolist()
         worksheet.clear()
-        worksheet.update([df.columns.values.tolist()] + df.values.tolist())
+        worksheet.update(all_values)
         
-        # Apply bold formatting to the header row
+        requests_body = []
+        
+        # 1. Bold the header row
         header_range = f'A1:{rowcol_to_a1(1, df.shape[1])}'
-        worksheet.format(header_range, {'textFormat': {'bold': True}})
-
-        # Find and color cells with valid hex codes
+        requests_body.append({
+            'repeatCell': {
+                'range': {
+                    'sheetId': worksheet.id,
+                    'startRowIndex': 0,
+                    'endRowIndex': 1,
+                },
+                'cell': {
+                    'userEnteredFormat': {
+                        'textFormat': {
+                            'bold': True
+                        }
+                    }
+                },
+                'fields': 'userEnteredFormat.textFormat.bold'
+            }
+        })
+        
+        # 2. Collect all hex code coloring requests
         hex_code_pattern = re.compile(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')
         
-        all_values = worksheet.get_all_values()
         for row_index, row in enumerate(all_values):
             for col_index, value in enumerate(row):
                 if hex_code_pattern.match(value):
-                    cell_address = rowcol_to_a1(row_index + 1, col_index + 1)
-                    worksheet.format(cell_address, {
-                        'backgroundColor': {
-                            'red': int(value[1:3], 16) / 255.0,
-                            'green': int(value[3:5], 16) / 255.0,
-                            'blue': int(value[5:7], 16) / 255.0
+                    requests_body.append({
+                        'repeatCell': {
+                            'range': {
+                                'sheetId': worksheet.id,
+                                'startRowIndex': row_index,
+                                'endRowIndex': row_index + 1,
+                                'startColumnIndex': col_index,
+                                'endColumnIndex': col_index + 1
+                            },
+                            'cell': {
+                                'userEnteredFormat': {
+                                    'backgroundColor': {
+                                        'red': int(value[1:3], 16) / 255.0,
+                                        'green': int(value[3:5], 16) / 255.0,
+                                        'blue': int(value[5:7], 16) / 255.0
+                                    }
+                                }
+                            },
+                            'fields': 'userEnteredFormat.backgroundColor'
                         }
                     })
+
+        # Send all formatting requests in one batch
+        if requests_body:
+            worksheet.client.batch_update(sh.id, {'requests': requests_body})
         
         print(f"Successfully updated and formatted sheet '{sheet_title}'.")
     except gspread.exceptions.WorksheetNotFound:
