@@ -13,7 +13,7 @@ def get_data_from_github(repo_url, branch, file_path, github_token):
     Reads the content of a GeoJSON file directly from a GitHub repository.
     """
     headers = {'Authorization': f'token {github_token}'}
-    raw_url = f"https://raw.githubusercontent.com/{repo_url.split('github.com/')[1].split('.git')[0]}/{branch}/{file_path}"
+    raw_url = f"https://raw.githubusercontent.com/{repo_url}/{branch}/{file_path}"
     response = requests.get(raw_url, headers=headers)
     response.raise_for_status()
     return response.json()
