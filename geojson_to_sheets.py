@@ -106,7 +106,7 @@ def update_google_sheet(df, sheet_title, worksheet_name, credentials_path):
         
         for row_index, row in enumerate(all_values):
             for col_index, value in enumerate(row):
-                if hex_code_pattern.match(value):
+                if isinstance(value, str) and hex_code_pattern.match(value):
                     requests_body.append({
                         'repeatCell': {
                             'range': {
