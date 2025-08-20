@@ -1,3 +1,67 @@
+import pandas as pd
+import gspread
+import json
+import argparse
+import os
+import requests
+import re
+import sys
+import numpy as np
+
+def get_data_from_github(repo_url, branch, file_path, github_token):
+    """
+    Fetches the raw content of a GeoJSON file from a GitHub repository.
+    """
+    raw_url = f"https://raw.githubusercontent.com/{repo_url}/{branch}/{file_path}"
+    headers = {'Authorization': f'token {github_token}'}
+    
+    try:
+        response = requests.get(raw_url, headers=headers)
+        response.raise_for_status()
+        geojson_data = response.json()
+        print(f"Successfully fetched '{file_path}' from GitHub.")
+        return geojson_data
+    except requests.exceptions.HTTPError as e:
+        raise Exception(f"Failed to retrieve GeoJSON file from GitHub. Check repo name, branch, and file path. Error: {e}")
+    except json.JSONDecodeError:
+        raise Exception("Failed to decode JSON. The file might be corrupted or empty.")
+
+def convert_to_dataframe(geojson_data):
+    """
+    Converts a GeoJSON FeatureCollection to a pandas DataFrame.
+    """
+    features = geojson_data.get('features', [])
+    
+    if not features:
+        raise ValueError("GeoJSON file is empty or missing 'features'.")
+
+    data = []
+    
+    for feature in features:
+        properties = feature.get('properties', {})
+        geometry = feature.get('geometry', {})
+        
+        row = properties
+        row['__geometry__'] = json.dumps(geometry)
+        data.append(row)
+
+    df = pd.DataFrame(data)
+    
+    # Ensure all columns are present, even if some features are missing a property
+    all_keys = set()
+    for feature in features:
+        all_keys.update(feature.get('properties', {}).keys())
+    
+    for key in all_keys:
+        if key not in df.columns:
+            df[key] = None
+    
+    # Reorder columns to have __geometry__ at the end
+    cols = [col for col in df.columns if col != '__geometry__'] + ['__geometry__']
+    df = df[cols]
+    
+    return df
+
 def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
     """
     Updates a Google Sheet with data from a pandas DataFrame and applies formatting
@@ -8,14 +72,12 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
         sh = gc.open_by_key(sheet_id)
         worksheet = sh.worksheet(worksheet_name)
         
-        # Prepare the data for a single update
         all_values = [df.columns.values.tolist()] + df.values.tolist()
         worksheet.clear()
         worksheet.update(all_values)
         
         requests_body = []
         
-        # 1. Freeze the header row
         requests_body.append({
             'updateSheetProperties': {
                 'properties': {
@@ -28,7 +90,6 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
             }
         })
 
-        # 2. Bold the header row
         requests_body.append({
             'repeatCell': {
                 'range': {
@@ -47,7 +108,6 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
             }
         })
         
-        # 3. Clip text for all columns except the last one (__geometry__)
         num_columns = df.shape[1]
         if num_columns > 1:
             requests_body.append({
@@ -67,7 +127,6 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
                 }
             })
 
-        # 4. Collect all hex code coloring requests
         hex_code_pattern = re.compile(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')
         
         for row_index, row in enumerate(all_values):
@@ -95,7 +154,6 @@ def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
                         }
                     })
 
-        # Send all formatting requests in one batch
         if requests_body:
             worksheet.client.batch_update(sh.id, {'requests': requests_body})
         
