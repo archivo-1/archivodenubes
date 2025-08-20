@@ -4,150 +4,182 @@ import json
 import argparse
 import os
 import requests
+import re
 import sys
 import numpy as np
-import re
-import base64
 
-def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
+def get_data_from_github(repo_url, branch, file_path, github_token):
     """
-    Reads data from a Google Sheet using its ID and returns it as a pandas DataFrame.
+    Fetches the raw content of a GeoJSON file from a GitHub repository.
+    """
+    raw_url = f"https://raw.githubusercontent.com/{repo_url}/{branch}/{file_path}"
+    headers = {'Authorization': f'token {github_token}'}
+    
+    try:
+        response = requests.get(raw_url, headers=headers)
+        response.raise_for_status()
+        geojson_data = response.json()
+        print(f"Successfully fetched '{file_path}' from GitHub.")
+        return geojson_data
+    except requests.exceptions.HTTPError as e:
+        raise Exception(f"Failed to retrieve GeoJSON file from GitHub. Check repo name, branch, and file path. Error: {e}")
+    except json.JSONDecodeError:
+        raise Exception("Failed to decode JSON. The file might be corrupted or empty.")
+
+def convert_to_dataframe(geojson_data):
+    """
+    Converts a GeoJSON FeatureCollection to a pandas DataFrame.
+    """
+    features = geojson_data.get('features', [])
+    
+    if not features:
+        raise ValueError("GeoJSON file is empty or missing 'features'.")
+
+    data = []
+    
+    for feature in features:
+        properties = feature.get('properties', {})
+        geometry = feature.get('geometry', {})
+        
+        row = properties
+        row['__geometry__'] = json.dumps(geometry)
+        data.append(row)
+
+    df = pd.DataFrame(data)
+    
+    all_keys = set()
+    for feature in features:
+        all_keys.update(feature.get('properties', {}).keys())
+    
+    for key in all_keys:
+        if key not in df.columns:
+            df[key] = None
+    
+    cols = [col for col in df.columns if col != '__geometry__'] + ['__geometry__']
+    df = df[cols]
+    
+    df = df.replace([np.inf, -np.inf], np.nan)
+    df = df.fillna('')
+    
+    for col in df.columns:
+        if col != '__geometry__':
+            df[col] = df[col].apply(
+                lambda x: json.dumps(x) if isinstance(x, (list, dict)) else x
+            )
+            
+    # Add a final conversion to handle any remaining complex types
+    for col in df.columns:
+        df[col] = df[col].astype(str)
+
+    return df
+
+def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
+    """
+    Updates a Google Sheet with data from a pandas DataFrame and applies formatting
+    using a single batch update request to avoid API rate limits.
     """
     try:
         gc = gspread.service_account(filename=credentials_path)
         sh = gc.open_by_key(sheet_id)
         worksheet = sh.worksheet(worksheet_name)
         
-        all_values = worksheet.get_all_values()
+        all_values = [df.columns.values.tolist()] + df.values.tolist()
+        worksheet.clear()
+        worksheet.update(all_values)
         
-        # Check if the sheet is completely empty
-        if not all_values or not any(row for row in all_values):
-            print(f"Warning: Sheet with ID '{sheet_id}' is empty.")
-            return pd.DataFrame() # Return an empty DataFrame
+        requests_body = []
         
-        header = all_values[0]
-        data = all_values[1:]
+        requests_body.append({
+            'updateSheetProperties': {
+                'properties': {
+                    'sheetId': worksheet.id,
+                    'gridProperties': {
+                        'frozenRowCount': 1
+                    }
+                },
+                'fields': 'gridProperties.frozenRowCount'
+            }
+        })
+
+        requests_body.append({
+            'repeatCell': {
+                'range': {
+                    'sheetId': worksheet.id,
+                    'startRowIndex': 0,
+                    'endRowIndex': 1,
+                },
+                'cell': {
+                    'userEnteredFormat': {
+                        'textFormat': {
+                            'bold': True
+                        }
+                    }
+                },
+                'fields': 'userEnteredFormat.textFormat.bold'
+            }
+        })
         
-        df = pd.DataFrame(data, columns=header)
+        num_columns = df.shape[1]
+        if num_columns > 1:
+            requests_body.append({
+                'repeatCell': {
+                    'range': {
+                        'sheetId': worksheet.id,
+                        'startRowIndex': 0,
+                        'endRowIndex': worksheet.row_count,
+                        'endColumnIndex': num_columns - 1
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'wrapStrategy': 'CLIP'
+                        }
+                    },
+                    'fields': 'userEnteredFormat.wrapStrategy'
+                }
+            })
+
+        hex_code_pattern = re.compile(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')
         
-        if df.empty:
-            print(f"Warning: DataFrame is empty for sheet ID '{sheet_id}'. This may be due to only a header row existing.")
-            return pd.DataFrame()
+        for row_index, row in enumerate(all_values):
+            for col_index, value in enumerate(row):
+                if isinstance(value, str) and hex_code_pattern.match(value):
+                    requests_body.append({
+                        'repeatCell': {
+                            'range': {
+                                'sheetId': worksheet.id,
+                                'startRowIndex': row_index,
+                                'endRowIndex': row_index + 1,
+                                'startColumnIndex': col_index,
+                                'endColumnIndex': col_index + 1
+                            },
+                            'cell': {
+                                'userEnteredFormat': {
+                                    'backgroundColor': {
+                                        'red': int(value[1:3], 16) / 255.0,
+                                        'green': int(value[3:5], 16) / 255.0,
+                                        'blue': int(value[5:7], 16) / 255.0
+                                    }
+                                }
+                            },
+                            'fields': 'userEnteredFormat.backgroundColor'
+                        }
+                    })
+
+        if requests_body:
+            worksheet.client.batch_update(sh.id, {'requests': requests_body})
         
-        print(f"Successfully read data from sheet with ID '{sheet_id}'.")
-        return df
-    except gspread.exceptions.SpreadsheetNotFound:
-        raise ValueError(f"Spreadsheet with ID '{sheet_id}' not found. Check the ID and sharing permissions.")
+        print(f"Successfully updated and formatted sheet with ID '{sheet_id}'.")
     except gspread.exceptions.WorksheetNotFound:
         raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
+    except gspread.exceptions.APIError as e:
+        print(f"Google Sheets API Error: {e}")
+        raise
     except Exception as e:
-        print(f"An unexpected error occurred while reading the sheet: {e}", file=sys.stderr)
+        print(f"An unexpected error occurred: {e}")
         raise
 
-def clean_data(df):
-    """
-    Cleans the DataFrame by ensuring all text is valid UTF-8 and replacing
-    NaN/inf with empty strings.
-    """
-    df = df.replace([np.inf, -np.inf, np.nan], '')
-    for col in df.columns:
-        df[col] = df[col].astype(str).apply(lambda x: x.encode('utf-8', 'ignore').decode('utf-8'))
-    return df
-
-def convert_to_geojson(df):
-    """
-    Converts a pandas DataFrame back into a GeoJSON structure.
-    """
-    if df.empty:
-        return {"type": "FeatureCollection", "features": []}
-
-    df = clean_data(df)
-
-    if '__geometry__' not in df.columns:
-        raise ValueError("The dataframe is missing the '__geometry__' column. Cannot convert to GeoJSON.")
-
-    features = []
-    
-    for index, row in df.iterrows():
-        try:
-            properties_raw = row.drop('__geometry__').to_dict()
-            geometry_string = row['__geometry__']
-            
-            properties = {}
-            for key, value in properties_raw.items():
-                if pd.isna(value) or value == '':
-                    properties[key] = None
-                else:
-                    try:
-                        properties[key] = json.loads(value)
-                    except (json.JSONDecodeError, TypeError):
-                        properties[key] = value
-
-            geometry = None
-            if geometry_string and not pd.isna(geometry_string):
-                try:
-                    geometry = json.loads(geometry_string)
-                except (json.JSONDecodeError, TypeError):
-                    print(f"Warning: Corrupt geometry data found in row {index} for sheet ID '{args.sheet_id}'. Setting geometry to None.")
-                    geometry = None
-
-            feature = {
-                "type": "Feature",
-                "properties": properties,
-                "geometry": geometry
-            }
-            features.append(feature)
-        except Exception as e:
-            print(f"Error processing row {index} for sheet ID '{args.sheet_id}'. Skipping this row. Error: {e}")
-            continue
-        
-    geojson_data = {
-        "type": "FeatureCollection",
-        "features": features
-    }
-    
-    return geojson_data
-
-
-def update_github_file(repo_url, file_path, new_content, branch, github_token):
-    """
-    Updates a file in a GitHub repository with new content using a direct API call.
-    """
-    api_url = f"https://api.github.com/repos/{repo_url}/contents/{file_path}"
-    
-    headers = {
-        "Authorization": f"token {github_token}",
-        "Accept": "application/vnd.github.com.v3+json"
-    }
-
-    try:
-        response = requests.get(api_url, headers=headers)
-        response.raise_for_status()
-        sha = response.json().get("sha")
-    except requests.exceptions.HTTPError as e:
-        if e.response.status_code == 404:
-            sha = None
-        else:
-            raise Exception(f"Failed to get file SHA: {e.response.text}")
-    
-    payload = {
-        "message": f"Update {file_path} from Google Sheets",
-        "content": base64.b64encode(new_content.encode('utf-8')).decode('utf-8'),
-        "branch": branch,
-    }
-    
-    if sha:
-        payload["sha"] = sha
-
-    response = requests.put(api_url, json=payload, headers=headers)
-    
-    if response.status_code in [200, 201]:
-        print(f"Successfully updated file '{file_path}' on branch '{branch}'.")
-    else:
-        raise Exception(f"Failed to update file '{file_path}': {response.text}")
-
 def main():
-    parser = argparse.ArgumentParser(description='Update GeoJSON files from Google Sheets.')
+    parser = argparse.ArgumentParser(description='Update Google Sheets from GeoJSON files.')
     parser.add_argument('--sheet_id', required=True, help='The unique ID of the Google Sheet.')
     parser.add_argument('--geojson_path', required=True, help='The path to the GeoJSON file in the GitHub repo.')
     parser.add_argument('--branch', required=True, help='The branch to read the GeoJSON from.')
@@ -160,12 +192,10 @@ def main():
     if not credentials_path or not github_token:
         raise ValueError("Environment variables GOOGLE_APPLICATION_CREDENTIALS and GITHUB_TOKEN must be set.")
 
-    df = get_data_from_google_sheet(args.sheet_id, 'Sheet1', credentials_path)
-
-    geojson_data = convert_to_geojson(df)
-    new_content = json.dumps(geojson_data, indent=2)
-
-    update_github_file(repo_url, args.geojson_path, new_content, args.branch, github_token)
+    geojson_data = get_data_from_github(repo_url, args.branch, args.geojson_path, github_token)
+    df = convert_to_dataframe(geojson_data)
+    
+    update_google_sheet(df, args.sheet_id, 'Sheet1', credentials_path)
 
 if __name__ == '__main__':
     main()
