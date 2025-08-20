@@ -18,9 +18,14 @@ def get_data_from_github(repo_url, branch, file_path, github_token):
 
 def clean_data(df):
     """
-    Removes non-JSON-compliant values like NaN and inf from the DataFrame.
+    Cleans the DataFrame by converting non-scalar values to strings
+    and replacing NaN/inf with empty strings.
     """
     df = df.replace([np.inf, -np.inf], np.nan)
+    
+    for col in df.columns:
+        df[col] = df[col].apply(lambda x: str(x) if isinstance(x, (list, dict)) else x)
+    
     return df.fillna('')
 
 def convert_to_dataframe(geojson_data):
@@ -29,18 +34,26 @@ def convert_to_dataframe(geojson_data):
     """
     features = geojson_data.get('features', [])
     data = []
+    
+    if not features:
+        return pd.DataFrame()
+
+    # Consolidate all possible property keys across all features
+    all_keys = set()
     for feature in features:
-        row = feature['properties']
-        row['__geometry__'] = json.dumps(feature['geometry'])
+        all_keys.update(feature.get('properties', {}).keys())
+
+    for feature in features:
+        row = feature.get('properties', {})
+        row['__geometry__'] = json.dumps(feature.get('geometry', {}))
         data.append(row)
     
     df = pd.DataFrame(data)
-    geometry_col = '__geometry__'
-    cols = [col for col in df.columns if col != geometry_col] + [geometry_col]
     
-    # Reindex to ensure all columns are present, filling with None
-    all_cols = list(set(df.columns) | set(data[0].keys() if data else []))
-    df = df.reindex(columns=all_cols, fill_value=None)
+    # Reindex to ensure all columns are present across all features
+    geometry_col = '__geometry__'
+    cols = sorted(list(all_keys)) + [geometry_col]
+    df = df.reindex(columns=cols, fill_value=None)
     
     df = clean_data(df)
     
