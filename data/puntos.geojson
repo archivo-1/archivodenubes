@@ -8,14 +8,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -32,14 +32,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
+        "size": 3,
         "address": "-",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -56,14 +56,14 @@
         "type": "Landing Point",
         "shape": "circler",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -80,14 +80,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -104,14 +104,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -125,17 +125,17 @@
       "type": "Feature",
       "properties": {
         "name": "Boca Raton, Florida (EE.UU.)",
-        "type": "",
+        "type": null,
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -152,14 +152,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -176,14 +176,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -200,14 +200,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -224,14 +224,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
+        "size": 3,
         "address": "-",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -248,14 +248,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -272,14 +272,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -296,14 +296,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -317,17 +317,17 @@
       "type": "Feature",
       "properties": {
         "name": "t.b.d. Polinesia Francesa 1",
-        "type": "",
+        "type": null,
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -341,17 +341,17 @@
       "type": "Feature",
       "properties": {
         "name": "t.b.d. Polinesia Francesa 2",
-        "type": "",
+        "type": null,
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -368,14 +368,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -392,14 +392,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -416,14 +416,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -440,14 +440,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -464,14 +464,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -488,7 +488,7 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
+        "size": 3,
         "address": "Muelle San Antonio",
         "capacity": "200 Tbps",
         "date_commissioned": "2018-05-15",
@@ -512,14 +512,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
+        "size": 3,
         "address": "-",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -536,14 +536,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
+        "size": 3,
         "address": "-",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -560,14 +560,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
+        "size": 3,
         "address": "-",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -584,14 +584,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
+        "size": 3,
         "address": "-",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -608,14 +608,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
+        "size": 3,
         "address": "-",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -632,14 +632,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
+        "size": 3,
         "address": "Playa Las Torpederas",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -656,14 +656,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -680,14 +680,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -704,14 +704,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -728,14 +728,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -752,14 +752,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -776,14 +776,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -800,14 +800,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -824,14 +824,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -848,14 +848,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -872,14 +872,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -896,14 +896,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -920,14 +920,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -944,14 +944,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -968,14 +968,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -992,14 +992,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -1016,14 +1016,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -1040,14 +1040,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -1064,14 +1064,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -1088,14 +1088,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
@@ -1112,14 +1112,14 @@
         "type": "Landing Point",
         "shape": "circle",
         "color": "#2BAB64",
-        "size": "3",
-        "address": "",
-        "capacity": "",
-        "date_commissioned": "",
-        "operator": "",
-        "connections": "",
-        "source": "",
-        "reference_link": ""
+        "size": 3,
+        "address": null,
+        "capacity": null,
+        "date_commissioned": null,
+        "operator": null,
+        "connections": null,
+        "source": null,
+        "reference_link": null
       },
       "geometry": {
         "coordinates": [
