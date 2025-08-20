@@ -70,7 +70,9 @@ def convert_to_geojson(df):
     for index, row in df.iterrows():
         try:
             properties_raw = row.drop('__geometry__').to_dict()
-            geometry_string = row['__geometry__']
+            
+            # This is the new, more robust fix
+            geometry_string = str(row['__geometry__'])
             
             properties = {}
             for key, value in properties_raw.items():
@@ -78,9 +80,9 @@ def convert_to_geojson(df):
                     properties[key] = None
                 else:
                     try:
-                        properties[key] = json.loads(value)
+                        properties[key] = json.loads(str(value))
                     except (json.JSONDecodeError, TypeError):
-                        properties[key] = value
+                        properties[key] = str(value)
 
             geometry = None
             if geometry_string and not pd.isna(geometry_string):
