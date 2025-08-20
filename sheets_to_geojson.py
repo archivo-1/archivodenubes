@@ -44,14 +44,14 @@ def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
 def clean_data(df):
     """
     Cleans the DataFrame by ensuring all text is valid UTF-8 and replacing
-    NaN/inf with empty strings, and converting complex types to strings.
+    NaN/inf with empty strings.
     """
     # Replace NaN/inf values with empty strings
     df = df.replace([np.inf, -np.inf, np.nan], '')
     
-    # Iterate through all columns and cells to ensure they are valid for JSON
+    # Ensure all text is UTF-8 encoded
     for col in df.columns:
-        df[col] = df[col].apply(lambda x: json.dumps(x) if isinstance(x, (list, dict, pd.DataFrame)) else str(x))
+        df[col] = df[col].astype(str).apply(lambda x: x.encode('utf-8', 'ignore').decode('utf-8'))
     
     return df
 
@@ -66,21 +66,41 @@ def convert_to_geojson(df):
 
     features = []
     
+    # Iterate over rows to build each GeoJSON feature
     for index, row in df.iterrows():
-        try:
-            # Extract geometry and properties
-            geometry = json.loads(row['__geometry__']) if row['__geometry__'] else None
-            properties = row.drop('__geometry__').to_dict()
+        # Get properties and geometry data from the row
+        properties_raw = row.drop('__geometry__').to_dict()
+        geometry_string = row['__geometry__']
+        
+        # Prepare properties for JSON serialization
+        properties = {}
+        for key, value in properties_raw.items():
+            if pd.isna(value) or value == '':
+                properties[key] = None
+            else:
+                try:
+                    # Attempt to load as JSON to handle nested lists/dicts
+                    properties[key] = json.loads(value)
+                except (json.JSONDecodeError, TypeError):
+                    # If it's not a valid JSON string, use the raw string value
+                    properties[key] = value
 
-            feature = {
-                "type": "Feature",
-                "properties": properties,
-                "geometry": geometry
-            }
-            features.append(feature)
-        except (json.JSONDecodeError, ValueError) as e:
-            # Re-raise the error so no features are skipped
-            raise Exception(f"Error converting row {index} to GeoJSON: {e}")
+        # Safely convert geometry string to a JSON object
+        geometry = None
+        if geometry_string and not pd.isna(geometry_string):
+            try:
+                geometry = json.loads(geometry_string)
+            except (json.JSONDecodeError, TypeError):
+                # If geometry is corrupt, set it to None and continue
+                print(f"Warning: Corrupt geometry data found in row {index}. Setting geometry to None.")
+                geometry = None
+
+        feature = {
+            "type": "Feature",
+            "properties": properties,
+            "geometry": geometry
+        }
+        features.append(feature)
         
     geojson_data = {
         "type": "FeatureCollection",
@@ -88,6 +108,7 @@ def convert_to_geojson(df):
     }
     
     return geojson_data
+
 
 def update_github_file(repo_url, file_path, new_content, branch, github_token):
     """
