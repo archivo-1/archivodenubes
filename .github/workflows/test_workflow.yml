@@ -1,0 +1,10 @@
+name: Test Workflow
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: A simple greeting
+        run: echo "Hello world!"
