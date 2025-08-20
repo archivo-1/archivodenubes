@@ -20,8 +20,10 @@ def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
         
         all_values = worksheet.get_all_values()
         
-        if not all_values:
-            raise ValueError("The worksheet is empty. Please check the sheet and its contents.")
+        # Check if the sheet is completely empty
+        if not all_values or not any(row for row in all_values):
+            print(f"Warning: Sheet with ID '{sheet_id}' is empty.")
+            return pd.DataFrame() # Return an empty DataFrame
         
         header = all_values[0]
         data = all_values[1:]
@@ -29,12 +31,13 @@ def get_data_from_google_sheet(sheet_id, worksheet_name, credentials_path):
         df = pd.DataFrame(data, columns=header)
         
         if df.empty:
-            raise ValueError("The DataFrame is empty. This might be due to a problem with the header row or no data rows.")
+            print(f"Warning: DataFrame is empty for sheet ID '{sheet_id}'. This may be due to only a header row existing.")
+            return pd.DataFrame()
         
         print(f"Successfully read data from sheet with ID '{sheet_id}'.")
         return df
     except gspread.exceptions.SpreadsheetNotFound:
-        raise ValueError(f"Spreadsheet with ID '{sheet_id}' not not found. Check the ID and sharing permissions.")
+        raise ValueError(f"Spreadsheet with ID '{sheet_id}' not found. Check the ID and sharing permissions.")
     except gspread.exceptions.WorksheetNotFound:
         raise ValueError(f"Worksheet '{worksheet_name}' not found. Check the name.")
     except Exception as e:
@@ -46,19 +49,18 @@ def clean_data(df):
     Cleans the DataFrame by ensuring all text is valid UTF-8 and replacing
     NaN/inf with empty strings.
     """
-    # Replace NaN/inf values with empty strings
     df = df.replace([np.inf, -np.inf, np.nan], '')
-    
-    # Ensure all text is UTF-8 encoded
     for col in df.columns:
         df[col] = df[col].astype(str).apply(lambda x: x.encode('utf-8', 'ignore').decode('utf-8'))
-    
     return df
 
 def convert_to_geojson(df):
     """
     Converts a pandas DataFrame back into a GeoJSON structure.
     """
+    if df.empty:
+        return {"type": "FeatureCollection", "features": []}
+
     df = clean_data(df)
 
     if '__geometry__' not in df.columns:
@@ -66,41 +68,38 @@ def convert_to_geojson(df):
 
     features = []
     
-    # Iterate over rows to build each GeoJSON feature
     for index, row in df.iterrows():
-        # Get properties and geometry data from the row
-        properties_raw = row.drop('__geometry__').to_dict()
-        geometry_string = row['__geometry__']
-        
-        # Prepare properties for JSON serialization
-        properties = {}
-        for key, value in properties_raw.items():
-            if pd.isna(value) or value == '':
-                properties[key] = None
-            else:
+        try:
+            properties_raw = row.drop('__geometry__').to_dict()
+            geometry_string = row['__geometry__']
+            
+            properties = {}
+            for key, value in properties_raw.items():
+                if pd.isna(value) or value == '':
+                    properties[key] = None
+                else:
+                    try:
+                        properties[key] = json.loads(value)
+                    except (json.JSONDecodeError, TypeError):
+                        properties[key] = value
+
+            geometry = None
+            if geometry_string and not pd.isna(geometry_string):
                 try:
-                    # Attempt to load as JSON to handle nested lists/dicts
-                    properties[key] = json.loads(value)
+                    geometry = json.loads(geometry_string)
                 except (json.JSONDecodeError, TypeError):
-                    # If it's not a valid JSON string, use the raw string value
-                    properties[key] = value
+                    print(f"Warning: Corrupt geometry data found in row {index} for sheet ID '{args.sheet_id}'. Setting geometry to None.")
+                    geometry = None
 
-        # Safely convert geometry string to a JSON object
-        geometry = None
-        if geometry_string and not pd.isna(geometry_string):
-            try:
-                geometry = json.loads(geometry_string)
-            except (json.JSONDecodeError, TypeError):
-                # If geometry is corrupt, set it to None and continue
-                print(f"Warning: Corrupt geometry data found in row {index}. Setting geometry to None.")
-                geometry = None
-
-        feature = {
-            "type": "Feature",
-            "properties": properties,
-            "geometry": geometry
-        }
-        features.append(feature)
+            feature = {
+                "type": "Feature",
+                "properties": properties,
+                "geometry": geometry
+            }
+            features.append(feature)
+        except Exception as e:
+            print(f"Error processing row {index} for sheet ID '{args.sheet_id}'. Skipping this row. Error: {e}")
+            continue
         
     geojson_data = {
         "type": "FeatureCollection",
@@ -121,16 +120,16 @@ def update_github_file(repo_url, file_path, new_content, branch, github_token):
         "Accept": "application/vnd.github.com.v3+json"
     }
 
-    # Get the current file's SHA to update it
-    response = requests.get(api_url, headers=headers)
-    
-    sha = None
-    if response.status_code == 200:
+    try:
+        response = requests.get(api_url, headers=headers)
+        response.raise_for_status()
         sha = response.json().get("sha")
-    elif response.status_code != 404:
-        raise Exception(f"Failed to get file SHA: {response.text}")
+    except requests.exceptions.HTTPError as e:
+        if e.response.status_code == 404:
+            sha = None
+        else:
+            raise Exception(f"Failed to get file SHA: {e.response.text}")
     
-    # Prepare the payload for the update/create
     payload = {
         "message": f"Update {file_path} from Google Sheets",
         "content": base64.b64encode(new_content.encode('utf-8')).decode('utf-8'),
@@ -140,7 +139,6 @@ def update_github_file(repo_url, file_path, new_content, branch, github_token):
     if sha:
         payload["sha"] = sha
 
-    # Make the API call to update or create the file
     response = requests.put(api_url, json=payload, headers=headers)
     
     if response.status_code in [200, 201]:
