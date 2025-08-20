@@ -27,7 +27,7 @@ jobs:
       - name: Run script for all files
         env:
           GOOGLE_APPLICATION_CREDENTIALS: google_credentials.json
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python sheets_to_geojson.py --sheet_title "Cables Submarinos_geojson" --geojson_path "data/cable.geojson" --branch "main"
           python sheets_to_geojson.py --sheet_title "Cables Terrestres_geojson" --geojson_path "data/land_cables.geojson" --branch "main"
