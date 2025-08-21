@@ -2408,6 +2408,76 @@
         ],
         "type": "Polygon"
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Valpara\u00edso CLS",
+        "type": "Landing Station",
+        "shape": "triangle",
+        "color": "#2BAB64",
+        "size": 6,
+        "Empresa": null,
+        "A\u00f1o": null,
+        "Comuna": null,
+        "address": null,
+        "Consultora": null,
+        "Superficie predial": null,
+        "Superficie construida": null,
+        "Inversion": null,
+        "sistemas_refrigeracion": null,
+        "emisiones": null,
+        "pue": null,
+        "wue": null,
+        "Evaluacion Ambiental": null,
+        "image": "https://placehold.co/600x400",
+        "reference_link": "http://ejemplo.com/algo.pdf",
+        "source": null,
+        "tecnologias": null
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -71.6418996768635,
+              -33.02140813050215
+            ],
+            [
+              -71.64210486234636,
+              -33.0221233976783
+            ],
+            [
+              -71.64120146239472,
+              -33.02244156832478
+            ],
+            [
+              -71.64088906205318,
+              -33.021943700129206
+            ],
+            [
+              -71.64085504002087,
+              -33.02186011175414
+            ],
+            [
+              -71.64086611696146,
+              -33.02177519649741
+            ],
+            [
+              -71.64106634408871,
+              -33.02154807790276
+            ],
+            [
+              -71.64110309558446,
+              -33.02150982495431
+            ],
+            [
+              -71.6418996768635,
+              -33.02140813050215
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
     }
   ]
 }
