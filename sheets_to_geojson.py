@@ -15,7 +15,7 @@ def df_to_geojson(df, lat='latitude', lon='longitude', properties=None):
     
     # Identify property columns dynamically
     # These are the columns to exclude from properties
-    special_columns = ['geojson', 'type', 'id', 'geometry', 'shape', 'colour', 'size', 'width', 'lineDash']
+    special_columns = ['geojson', 'type', 'id', 'geometry', 'shape', 'colour', 'size', 'width', 'lineDash', 'name']
     property_columns = [col for col in df.columns if col not in special_columns]
 
     for _, row in df.iterrows():
