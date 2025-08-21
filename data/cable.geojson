@@ -59,12 +59,12 @@
       "properties": {
         "name": "Humboldt",
         "type": "Cable Submarino",
-        "capacidad": "",
-        "color": "#2BAB64",
         "longitud": "14.100 km",
         "propietario": "Google",
         "proveedor": "",
-        "width": 2
+        "capacidad": "",
+        "width": 2,
+        "color": "#2BAB64"
       }
     },
     {
@@ -173,12 +173,12 @@
       "properties": {
         "name": "Curie",
         "type": "Cable Submarino",
-        "capacidad": "",
-        "color": "#2BAB64",
         "longitud": "10.476 km",
         "propietario": "Google",
         "proveedor": "Subcom",
-        "width": 2
+        "capacidad": "",
+        "width": 2,
+        "color": "#2BAB64"
       }
     },
     {
@@ -463,12 +463,12 @@
       "properties": {
         "name": "South American Crossing (SAC)",
         "type": "Cable Submarino",
-        "capacidad": "3.840 Gbp",
-        "color": "#2BAB64",
         "longitud": "20.000 km",
         "propietario": "Cirion Technologies, Sparkle",
         "proveedor": "ASN",
-        "width": 2
+        "capacidad": "3.840 Gbp",
+        "width": 2,
+        "color": "#2BAB64"
       }
     },
     {
@@ -577,12 +577,12 @@
       "properties": {
         "name": "South Pacific Cable System (SPCS)/Mistral",
         "type": "Cable Submarino",
-        "capacidad": "",
-        "color": "#2BAB64",
         "longitud": "7.300 km",
         "propietario": "Am\u00e9rica M\u00f3vil (Claro), Telxius",
         "proveedor": "Subcom",
-        "width": 2
+        "capacidad": "",
+        "width": 2,
+        "color": "#2BAB64"
       }
     },
     {
@@ -999,12 +999,12 @@
       "properties": {
         "name": "South America-1 (SAm-1)",
         "type": "Cable Submarino",
-        "capacidad": "1.920 Gbps",
-        "color": "#2BAB64",
         "longitud": "25.000 km",
         "propietario": "Telxius",
         "proveedor": "Subcom",
-        "width": 2
+        "capacidad": "1.920 Gbps",
+        "width": 2,
+        "color": "#2BAB64"
       }
     },
     {
@@ -1187,12 +1187,12 @@
       "properties": {
         "name": "Prat",
         "type": "Cable Submarino",
-        "capacidad": "",
-        "color": "#2BAB64",
         "longitud": "3.500 km",
         "propietario": "Grupo GTD",
         "proveedor": "Prysmian",
-        "width": 2
+        "capacidad": "",
+        "width": 2,
+        "color": "#2BAB64"
       }
     },
     {
@@ -1311,12 +1311,12 @@
       "properties": {
         "name": "Fibra Optica Austral",
         "type": "Cable Submarino",
-        "capacidad": "",
-        "color": "#2BAB64",
         "longitud": "2.800 km",
         "propietario": "Subtel",
         "proveedor": "HMN Tech",
-        "width": 2
+        "capacidad": "",
+        "width": 2,
+        "color": "#2BAB64"
       }
     },
     {
@@ -1371,12 +1371,12 @@
       "properties": {
         "name": "FOS Quell\u00f3n-Chacabuco",
         "type": "Cable Submarino",
-        "capacidad": "",
-        "color": "#2BAB64",
         "longitud": "350 km",
         "propietario": "Grupo GTD",
         "proveedor": "",
-        "width": 2
+        "capacidad": "",
+        "width": 2,
+        "color": "#2BAB64"
       }
     },
     {
@@ -1403,12 +1403,12 @@
       "properties": {
         "name": "Segunda FOS Canal de Chacao",
         "type": "Cable Submarino",
-        "capacidad": "",
-        "color": "#2BAB64",
         "longitud": "40 km",
         "propietario": "Grupo GTD",
         "proveedor": "",
-        "width": 2
+        "capacidad": "",
+        "width": 2,
+        "color": "#2BAB64"
       }
     },
     {
@@ -1525,12 +1525,12 @@
       "properties": {
         "name": "Halaihai",
         "type": "Cable Submarino",
-        "capacidad": "",
-        "color": "#2BAB64",
         "longitud": "17.483 km",
         "propietario": "Google",
         "proveedor": "Subcom",
-        "width": 2
+        "capacidad": "",
+        "width": 2,
+        "color": "#2BAB64"
       }
     }
   ]
