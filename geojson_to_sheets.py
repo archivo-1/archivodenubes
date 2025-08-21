@@ -1,185 +1,101 @@
-import pandas as pd
-import gspread
 import json
-import argparse
-import os
-import requests
-import re
+import gspread
+import pandas as pd
 import sys
-import numpy as np
+import os
+from gspread.exceptions import APIError
+from gspread_pandas import Spread
+from gspread_dataframe import set_with_dataframe
 
-def get_data_from_github(repo_url, branch, file_path, github_token):
-    """
-    Fetches the raw content of a GeoJSON file from a GitHub repository.
-    """
-    raw_url = f"https://raw.githubusercontent.com/{repo_url}/{branch}/{file_path}"
-    headers = {'Authorization': f'token {github_token}'}
-    
-    try:
-        response = requests.get(raw_url, headers=headers)
-        response.raise_for_status()
-        geojson_data = response.json()
-        print(f"Successfully fetched '{file_path}' from GitHub.")
-        return geojson_data
-    except requests.exceptions.HTTPError as e:
-        raise Exception(f"Failed to retrieve GeoJSON file from GitHub. Check repo name, branch, and file path. Error: {e}")
-    except json.JSONDecodeError:
-        raise Exception("Failed to decode JSON. The file might be corrupted or empty.")
-
-def convert_to_dataframe(geojson_data):
-    """
-    Converts a GeoJSON FeatureCollection to a pandas DataFrame.
-    """
-    features = geojson_data.get('features', [])
-    
-    if not features:
-        return pd.DataFrame()
-
-    data = []
-    
-    for feature in features:
-        properties = feature.get('properties', {})
-        geometry = feature.get('geometry', {})
-        
-        row = properties
-        row['__geometry__'] = json.dumps(geometry)
-        data.append(row)
-
-    df = pd.DataFrame(data)
-    
-    all_keys = set()
-    for feature in features:
-        all_keys.update(feature.get('properties', {}).keys())
-    
-    for key in all_keys:
-        if key not in df.columns:
-            df[key] = None
-    
-    cols = [col for col in df.columns if col != '__geometry__'] + ['__geometry__']
-    df = df[cols]
-    
-    df = df.replace([np.inf, -np.inf], np.nan)
-    df = df.fillna('')
-    
-    for col in df.columns:
-        if col != '__geometry__':
-            df[col] = df[col].apply(
-                lambda x: json.dumps(x) if isinstance(x, (list, dict)) else x
-            )
-            
-    # Add a final conversion to handle any remaining complex types
-    for col in df.columns:
-        df[col] = df[col].astype(str)
-
-    return df
-
-def update_google_sheet(df, sheet_id, worksheet_name, credentials_path):
-    """
-    Updates a Google Sheet with data from a pandas DataFrame and applies formatting.
-    """
-    try:
-        gc = gspread.service_account(filename=credentials_path)
-        sh = gc.open_by_key(sheet_id)
-        
+def get_sheet_id(url_or_id):
+    if 'docs.google.com/spreadsheets' in url_or_id:
         try:
-            worksheet = sh.worksheet(worksheet_name)
-        except gspread.exceptions.WorksheetNotFound:
-            print(f"Worksheet '{worksheet_name}' not found. Creating a new one.")
-            worksheet = sh.add_worksheet(title=worksheet_name, rows=100, cols=20)
-        
-        if df.empty:
-            print(f"No data to update for worksheet '{worksheet_name}'. Clearing the sheet.")
-            worksheet.clear()
-            return
-            
-        all_values = [df.columns.values.tolist()] + df.values.tolist()
-        worksheet.clear()
-        worksheet.update(all_values)
-        
-        # Apply formatting
-        requests_body = []
-        
-        # Freeze the header row
-        requests_body.append({
-            'updateSheetProperties': {
-                'properties': {
-                    'sheetId': worksheet.id,
-                    'gridProperties': {
-                        'frozenRowCount': 1
-                    }
-                },
-                'fields': 'gridProperties.frozenRowCount'
-            }
-        })
-
-        # Bold the header row
-        requests_body.append({
-            'repeatCell': {
-                'range': {
-                    'sheetId': worksheet.id,
-                    'startRowIndex': 0,
-                    'endRowIndex': 1,
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'textFormat': {
-                            'bold': True
-                        }
-                    }
-                },
-                'fields': 'userEnteredFormat.textFormat.bold'
-            }
-        })
-        
-        # Set text wrapping for all columns
-        num_columns = df.shape[1]
-        if num_columns > 1:
-            requests_body.append({
-                'repeatCell': {
-                    'range': {
-                        'sheetId': worksheet.id,
-                        'startRowIndex': 0,
-                        'endRowIndex': worksheet.row_count,
-                        'endColumnIndex': num_columns - 1
-                    },
-                    'cell': {
-                        'userEnteredFormat': {
-                            'wrapStrategy': 'CLIP'
-                        }
-                    },
-                    'fields': 'userEnteredFormat.wrapStrategy'
-                }
-            })
-            
-        if requests_body:
-            worksheet.client.batch_update(sh.id, {'requests': requests_body})
-        
-        print(f"Successfully updated and formatted sheet with ID '{sheet_id}'.")
-    except gspread.exceptions.APIError as e:
-        print(f"Google Sheets API Error: {e}")
-        raise
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        raise
+            from urllib.parse import urlparse
+            parsed = urlparse(url_or_id)
+            return parsed.path.split('/')[3]
+        except:
+            return None
+    return url_or_id
 
 def main():
-    parser = argparse.ArgumentParser(description='Update Google Sheets from GeoJSON files.')
-    parser.add_argument('--sheet_id', required=True, help='The unique ID of the Google Sheet.')
-    parser.add_argument('--geojson_path', required=True, help='The path to the GeoJSON file in the GitHub repo.')
-    parser.add_argument('--branch', required=True, help='The branch to read the GeoJSON from.')
-    args = parser.parse_args()
+    if len(sys.argv) < 5:
+        print("Usage: python geojson_to_sheets.py --geojson_path <path> --sheet_id <sheet_id> --branch <branch_name>")
+        sys.exit(1)
 
-    credentials_path = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    github_token = os.environ.get('GITHUB_TOKEN')
-    repo_url = os.environ.get('GITHUB_REPOSITORY')
-    
-    if not credentials_path or not github_token:
-        raise ValueError("Environment variables GOOGLE_APPLICATION_CREDENTIALS and GITHUB_TOKEN must be set.")
+    geojson_path_arg = sys.argv.index('--geojson_path') + 1
+    sheet_id_arg = sys.argv.index('--sheet_id') + 1
+    branch_arg = sys.argv.index('--branch') + 1
 
-    geojson_data = get_data_from_github(repo_url, args.branch, args.geojson_path, github_token)
-    df = convert_to_dataframe(geojson_data)
+    geojson_path = sys.argv[geojson_path_arg]
+    sheet_id = get_sheet_id(sys.argv[sheet_id_arg])
+    branch = sys.argv[branch_arg]
+
+    # Ensure the script runs from the repository root
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(script_dir)
+    os.chdir("..")
+
+    # Git pull to get the latest changes
+    os.system(f'git checkout {branch}')
+    os.system(f'git pull origin {branch}')
     
-    update_google_sheet(df, args.sheet_id, 'Sheet1', credentials_path)
+    gc = gspread.service_account(filename=os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'))
+
+    try:
+        sh = gc.open_by_key(sheet_id)
+        ws = sh.worksheet("Hoja 1")
+    except APIError as e:
+        print(f"Error accessing Google Sheet: {e.response.text}")
+        sys.exit(1)
+
+    with open(geojson_path, 'r') as f:
+        geojson_data = json.load(f)
+
+    if 'features' not in geojson_data:
+        print("Invalid GeoJSON file: 'features' key not found.")
+        sys.exit(1)
+
+    # Prepare DataFrame columns
+    df_data = []
+    
+    # Identify all possible properties
+    all_properties = set()
+    for feature in geojson_data['features']:
+        if 'properties' in feature and feature['properties'] is not None:
+            all_properties.update(feature['properties'].keys())
+
+    # Build the list of columns for the dataframe
+    column_order = ['id', 'geojson']
+    for prop in sorted(list(all_properties)):
+        if prop not in column_order:
+            column_order.append(prop)
+
+    for feature in geojson_data['features']:
+        row_dict = {}
+        if 'id' in feature:
+            row_dict['id'] = feature['id']
+        else:
+            row_dict['id'] = None
+
+        if 'geometry' in feature and 'type' in feature['geometry']:
+            row_dict['geojson'] = json.dumps({
+                'type': feature['geometry']['type'],
+                'coordinates': feature['geometry']['coordinates']
+            }).replace(' ', '')
+        
+        # Add all properties dynamically
+        for prop, value in feature.get('properties', {}).items():
+            row_dict[prop] = value
+
+        df_data.append(row_dict)
+
+    df = pd.DataFrame(df_data, columns=column_order)
+    df = df.applymap(lambda x: str(x) if isinstance(x, (dict, list)) else x)
+
+    # Set the new DataFrame to the Google Sheet
+    ws.clear()
+    set_with_dataframe(ws, df)
+    print("Google Sheet updated successfully.")
 
 if __name__ == '__main__':
     main()
