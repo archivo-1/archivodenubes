@@ -10,13 +10,19 @@ from urllib.parse import urlparse
 import sys
 import numpy as np
 
-def df_to_geojson(df, lat='latitude', lon='longitude', properties=None):
+def df_to_geojson(df, properties=None):
     geojson = {'type':'FeatureCollection', 'features':[]}
     
+    # Define the columns that should always be at the top level of the feature, not inside properties
+    top_level_special = ['geojson', 'id', 'geometry']
+    
+    # Define the columns that are considered "special" properties
+    # They should be passed to the GeoJSON, but not treated as regular properties for dynamic inclusion
+    special_property_columns = ['name', 'type', 'shape', 'colour', 'size', 'width', 'lineDash']
+    
     # Identify property columns dynamically
-    # These are the columns to exclude from properties
-    special_columns = ['geojson', 'type', 'id', 'geometry', 'shape', 'colour', 'size', 'width', 'lineDash', 'name']
-    property_columns = [col for col in df.columns if col not in special_columns]
+    all_known_columns = top_level_special + special_property_columns
+    property_columns = [col for col in df.columns if col not in all_known_columns]
 
     for _, row in df.iterrows():
         # Handle rows with missing geojson data
@@ -34,6 +40,11 @@ def df_to_geojson(df, lat='latitude', lon='longitude', properties=None):
         for col in property_columns:
             # Check for NaN values and skip them
             if pd.notna(row[col]):
+                properties[col] = row[col]
+                
+        # Add the special properties
+        for col in special_property_columns:
+            if col in row and pd.notna(row[col]):
                 properties[col] = row[col]
 
         feature = {
@@ -76,7 +87,7 @@ def main():
 
     try:
         sh = gc.open_by_key(sheet_id)
-        ws = sh.worksheet("Sheet1")
+        ws = sh.worksheet("Sheet1") # Use your specific sheet name here
     except APIError as e:
         print(f"Error accessing Google Sheet: {e.response.text}")
         sys.exit(1)
