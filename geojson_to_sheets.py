@@ -34,7 +34,7 @@ def main():
 
     try:
         sh = gc.open_by_key(sheet_id)
-        ws = sh.worksheet("Hoja 1")
+        ws = sh.worksheet("Sheet1")
     except APIError as e:
         print(f"Error accessing Google Sheet: {e.response.text}")
         sys.exit(1)
