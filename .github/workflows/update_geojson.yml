@@ -1,8 +1,6 @@
 name: Update GeoJSON from Google Sheets
 
 on:
-  schedule:
-    - cron: '59 * * * *'
   workflow_dispatch:
 
 permissions:
