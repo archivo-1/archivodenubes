@@ -6,6 +6,7 @@ import os
 from gspread.exceptions import APIError
 from gspread_pandas import Spread
 from gspread_dataframe import set_with_dataframe
+import numpy as np
 
 def get_sheet_id(url_or_id):
     if 'docs.google.com/spreadsheets' in url_or_id:
@@ -19,26 +20,16 @@ def get_sheet_id(url_or_id):
 
 def main():
     if len(sys.argv) < 5:
-        print("Usage: python geojson_to_sheets.py --geojson_path <path> --sheet_id <sheet_id> --branch <branch_name>")
+        print("Usage: python geojson_to_sheets.py --geojson_path <path> --sheet_id <sheet_id>")
         sys.exit(1)
 
     geojson_path_arg = sys.argv.index('--geojson_path') + 1
     sheet_id_arg = sys.argv.index('--sheet_id') + 1
-    branch_arg = sys.argv.index('--branch') + 1
 
     geojson_path = sys.argv[geojson_path_arg]
     sheet_id = get_sheet_id(sys.argv[sheet_id_arg])
-    branch = sys.argv[branch_arg]
-
-    # Ensure the script runs from the repository root
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(script_dir)
-    os.chdir("..")
-
-    # Git pull to get the latest changes
-    os.system(f'git checkout {branch}')
-    os.system(f'git pull origin {branch}')
     
+    # We now get the credentials from the environment variable directly
     gc = gspread.service_account(filename=os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'))
 
     try:
@@ -67,21 +58,24 @@ def main():
     # Build the list of columns for the dataframe
     column_order = ['id', 'geojson']
     for prop in sorted(list(all_properties)):
-        if prop not in column_order:
+        if prop not in ['id', 'geojson']:
             column_order.append(prop)
 
     for feature in geojson_data['features']:
         row_dict = {}
-        if 'id' in feature:
-            row_dict['id'] = feature['id']
-        else:
-            row_dict['id'] = None
+        row_dict['id'] = feature.get('id', '')
 
-        if 'geometry' in feature and 'type' in feature['geometry']:
-            row_dict['geojson'] = json.dumps({
-                'type': feature['geometry']['type'],
-                'coordinates': feature['geometry']['coordinates']
-            }).replace(' ', '')
+        if 'geometry' in feature and feature['geometry'] is not None:
+            # Check for coordinates to prevent errors on empty geometries
+            if 'coordinates' in feature['geometry']:
+                row_dict['geojson'] = json.dumps({
+                    'type': feature['geometry']['type'],
+                    'coordinates': feature['geometry']['coordinates']
+                }).replace(' ', '')
+            else:
+                row_dict['geojson'] = ''
+        else:
+            row_dict['geojson'] = ''
         
         # Add all properties dynamically
         for prop, value in feature.get('properties', {}).items():
@@ -90,11 +84,11 @@ def main():
         df_data.append(row_dict)
 
     df = pd.DataFrame(df_data, columns=column_order)
-    df = df.applymap(lambda x: str(x) if isinstance(x, (dict, list)) else x)
+    df = df.applymap(lambda x: str(x) if isinstance(x, (dict, list, np.ndarray)) else x)
 
     # Set the new DataFrame to the Google Sheet
     ws.clear()
-    set_with_dataframe(ws, df)
+    set_with_dataframe(ws, df, include_index=False)
     print("Google Sheet updated successfully.")
 
 if __name__ == '__main__':
