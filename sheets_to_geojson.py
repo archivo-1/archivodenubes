@@ -86,8 +86,6 @@ def main():
 
     df = pd.DataFrame(ws.get_all_records())
 
-    # Ensure all column names are lowercase for consistency
-    df.columns = df.columns.str.lower()
     
     # Check for required geojson column
     if 'geojson' not in df.columns:
