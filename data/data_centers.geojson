@@ -1505,7 +1505,7 @@
       "type": "Feature",
       "properties": {
         "name": "Opciones Concepci\u00f3n",
-        "type": "Data Centers",
+        "type": "Data Center",
         "shape": "square",
         "color": "#2BAB64",
         "size": 6,
@@ -1593,7 +1593,7 @@
       "type": "Feature",
       "properties": {
         "name": "Opciones Puerto Montt",
-        "type": "Data Centers",
+        "type": "Data Center",
         "shape": "square",
         "color": "#2BAB64",
         "size": 6,
