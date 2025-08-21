@@ -18,7 +18,8 @@ jobs:
           python-version: '3.10'
       - name: Install dependencies
         run: |
-          pip install pandas gspread requests
+          pip install --upgrade pip
+          pip install pandas gspread gspread_pandas gspread_dataframe
       - name: Create Google credentials file
         run: |
           echo '${{ secrets.GOOGLE_CREDENTIALS }}' > google_credentials.json
