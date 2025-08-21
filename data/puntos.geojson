@@ -11,6 +11,8 @@
         ]
       },
       "properties": {
+        "name": "Col\u00f3n, Panam\u00e1",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -19,8 +21,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Col\u00f3n, Panam\u00e1",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -35,6 +35,8 @@
         ]
       },
       "properties": {
+        "name": "Puerto Viejo, Venezuela",
+        "type": "Landing Point",
         "address": "-",
         "capacity": "",
         "color": "#2BAB64",
@@ -43,8 +45,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Puerto Viejo, Venezuela",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -59,6 +59,8 @@
         ]
       },
       "properties": {
+        "name": "El Segundo, California",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -67,8 +69,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "El Segundo, California",
-        "type": "Landing Point",
         "shape": "circler",
         "size": 3
       }
@@ -83,6 +83,8 @@
         ]
       },
       "properties": {
+        "name": "Puerto Barrios, Panam\u00e1",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -91,8 +93,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Puerto Barrios, Panam\u00e1",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -107,6 +107,8 @@
         ]
       },
       "properties": {
+        "name": "Barranquilla, Colombia",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -115,8 +117,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Barranquilla, Colombia",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -131,6 +131,8 @@
         ]
       },
       "properties": {
+        "name": "Boca Raton, Florida (EE.UU.)",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -139,8 +141,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Boca Raton, Florida (EE.UU.)",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -155,6 +155,8 @@
         ]
       },
       "properties": {
+        "name": "Punta Cana, Rep\u00fablica Dominicana",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -163,8 +165,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Punta Cana, Rep\u00fablica Dominicana",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -179,6 +179,8 @@
         ]
       },
       "properties": {
+        "name": "San Ju\u00e1n, Puerto Rico (EE.UU)",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -187,8 +189,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "San Ju\u00e1n, Puerto Rico (EE.UU)",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -203,6 +203,8 @@
         ]
       },
       "properties": {
+        "name": "Salvador, Brasil",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -211,8 +213,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Salvador, Brasil",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -227,6 +227,8 @@
         ]
       },
       "properties": {
+        "name": "Lurin, Per\u00fa",
+        "type": "Landing Point",
         "address": "-",
         "capacity": "",
         "color": "#2BAB64",
@@ -235,8 +237,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Lurin, Per\u00fa",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -251,6 +251,8 @@
         ]
       },
       "properties": {
+        "name": "Sydney, Australia",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -259,8 +261,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Sydney, Australia",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -275,6 +275,8 @@
         ]
       },
       "properties": {
+        "name": "Tanguisson, Guam",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -283,8 +285,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Tanguisson, Guam",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -299,6 +299,8 @@
         ]
       },
       "properties": {
+        "name": "Tinian, Islas Marinas del Norte",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -307,8 +309,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Tinian, Islas Marinas del Norte",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -323,6 +323,8 @@
         ]
       },
       "properties": {
+        "name": "t.b.d. Polinesia Francesa 1",
+        "type": "",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -331,8 +333,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "t.b.d. Polinesia Francesa 1",
-        "type": "",
         "shape": "circle",
         "size": 3
       }
@@ -347,6 +347,8 @@
         ]
       },
       "properties": {
+        "name": "t.b.d. Polinesia Francesa 2",
+        "type": "",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -355,8 +357,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "t.b.d. Polinesia Francesa 2",
-        "type": "",
         "shape": "circle",
         "size": 3
       }
@@ -371,6 +371,8 @@
         ]
       },
       "properties": {
+        "name": "Puerto San Jos\u00e9, Guatemala",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -379,8 +381,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Puerto San Jos\u00e9, Guatemala",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -395,6 +395,8 @@
         ]
       },
       "properties": {
+        "name": "Salina, Ecuador",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -403,8 +405,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Salina, Ecuador",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -419,6 +419,8 @@
         ]
       },
       "properties": {
+        "name": "St. Coix, Virgin Islands (EE.UU.)",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -427,8 +429,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "St. Coix, Virgin Islands (EE.UU.)",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -443,6 +443,8 @@
         ]
       },
       "properties": {
+        "name": "Macora, Per\u00fa",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -451,8 +453,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Macora, Per\u00fa",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -467,6 +467,8 @@
         ]
       },
       "properties": {
+        "name": "Punta Carnero, Ecuador",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -475,8 +477,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Punta Carnero, Ecuador",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -491,6 +491,8 @@
         ]
       },
       "properties": {
+        "name": "San Antonio, Chile",
+        "type": "Landing Point",
         "address": "Muelle San Antonio",
         "capacity": "200 Tbps",
         "color": "#2BAB64",
@@ -499,8 +501,6 @@
         "operator": "Google",
         "reference_link": "https://www.submarinenetworks.com/en/systems/trans-pacific/humboldt-cable",
         "source": "-",
-        "name": "San Antonio, Chile",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -515,6 +515,8 @@
         ]
       },
       "properties": {
+        "name": "Buenaventura, Colombia",
+        "type": "Landing Point",
         "address": "-",
         "capacity": "",
         "color": "#2BAB64",
@@ -523,8 +525,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Buenaventura, Colombia",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -539,6 +539,8 @@
         ]
       },
       "properties": {
+        "name": "Fortaleza, Brasil",
+        "type": "Landing Point",
         "address": "-",
         "capacity": "",
         "color": "#2BAB64",
@@ -547,8 +549,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Fortaleza, Brasil",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -563,6 +563,8 @@
         ]
       },
       "properties": {
+        "name": "Rio de Janeiro, Brasil",
+        "type": "Landing Point",
         "address": "-",
         "capacity": "",
         "color": "#2BAB64",
@@ -571,8 +573,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Rio de Janeiro, Brasil",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -587,6 +587,8 @@
         ]
       },
       "properties": {
+        "name": "Praia Grande, Brasil",
+        "type": "Landing Point",
         "address": "-",
         "capacity": "",
         "color": "#2BAB64",
@@ -595,8 +597,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Praia Grande, Brasil",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -611,6 +611,8 @@
         ]
       },
       "properties": {
+        "name": "Las Toninas, Argentina",
+        "type": "Landing Point",
         "address": "-",
         "capacity": "",
         "color": "#2BAB64",
@@ -619,8 +621,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Las Toninas, Argentina",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -635,6 +635,8 @@
         ]
       },
       "properties": {
+        "name": "Valpara\u00edso, Chile",
+        "type": "Landing Point",
         "address": "Playa Las Torpederas",
         "capacity": "",
         "color": "#2BAB64",
@@ -643,8 +645,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Valpara\u00edso, Chile",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -659,6 +659,8 @@
         ]
       },
       "properties": {
+        "name": "Balboa, Panama",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -667,8 +669,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Balboa, Panama",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -683,6 +683,8 @@
         ]
       },
       "properties": {
+        "name": "Papeete, Polinesia Francesa",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -691,8 +693,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Papeete, Polinesia Francesa",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -707,6 +707,8 @@
         ]
       },
       "properties": {
+        "name": "Arica, Arica y Parinacota",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -715,8 +717,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Arica, Arica y Parinacota",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -731,6 +731,8 @@
         ]
       },
       "properties": {
+        "name": "Iquique, Trarapac\u00e1",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -739,8 +741,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Iquique, Trarapac\u00e1",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -755,6 +755,8 @@
         ]
       },
       "properties": {
+        "name": "Tocopilla, Antofagasta",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -763,8 +765,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Tocopilla, Antofagasta",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -779,6 +779,8 @@
         ]
       },
       "properties": {
+        "name": "Antofagasta, Antofagasta",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -787,8 +789,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Antofagasta, Antofagasta",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -803,6 +803,8 @@
         ]
       },
       "properties": {
+        "name": "Caldera, Atacama",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -811,8 +813,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Caldera, Atacama",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -827,6 +827,8 @@
         ]
       },
       "properties": {
+        "name": "La Serena, Coquimbo",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -835,8 +837,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "La Serena, Coquimbo",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -851,6 +851,8 @@
         ]
       },
       "properties": {
+        "name": "Cartagena, Valpara\u00edso",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -859,8 +861,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Cartagena, Valpara\u00edso",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -875,6 +875,8 @@
         ]
       },
       "properties": {
+        "name": "Constituci\u00f3n, Maule",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -883,8 +885,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Constituci\u00f3n, Maule",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -899,6 +899,8 @@
         ]
       },
       "properties": {
+        "name": "Concepci\u00f3n, Biob\u00edo",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -907,8 +909,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Concepci\u00f3n, Biob\u00edo",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -923,6 +923,8 @@
         ]
       },
       "properties": {
+        "name": "Puerto Saavedra, Araucan\u00eda",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -931,8 +933,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Puerto Saavedra, Araucan\u00eda",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -947,6 +947,8 @@
         ]
       },
       "properties": {
+        "name": "Puerto Montt, Los Lagos",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -955,8 +957,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Puerto Montt, Los Lagos",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -971,6 +971,8 @@
         ]
       },
       "properties": {
+        "name": "Maim\u00e9n, Los Lagos",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -979,8 +981,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Maim\u00e9n, Los Lagos",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -995,6 +995,8 @@
         ]
       },
       "properties": {
+        "name": "Linao, Los Lagos",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -1003,8 +1005,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Linao, Los Lagos",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -1019,6 +1019,8 @@
         ]
       },
       "properties": {
+        "name": "Puerto Chacabuco, Ays\u00e9n",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -1027,8 +1029,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Puerto Chacabuco, Ays\u00e9n",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -1043,6 +1043,8 @@
         ]
       },
       "properties": {
+        "name": "Quell\u00f3n, Los Lagos",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -1051,8 +1053,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Quell\u00f3n, Los Lagos",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -1067,6 +1067,8 @@
         ]
       },
       "properties": {
+        "name": "Tortel, Ays\u00e9n",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -1075,8 +1077,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Tortel, Ays\u00e9n",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -1091,6 +1091,8 @@
         ]
       },
       "properties": {
+        "name": "Punta Arenas, Magallanes",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -1099,8 +1101,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Punta Arenas, Magallanes",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
@@ -1115,6 +1115,8 @@
         ]
       },
       "properties": {
+        "name": "Puerto Williams, Magallanes",
+        "type": "Landing Point",
         "address": "",
         "capacity": "",
         "color": "#2BAB64",
@@ -1123,8 +1125,6 @@
         "operator": "",
         "reference_link": "",
         "source": "",
-        "name": "Puerto Williams, Magallanes",
-        "type": "Landing Point",
         "shape": "circle",
         "size": 3
       }
