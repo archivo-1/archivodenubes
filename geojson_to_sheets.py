@@ -29,7 +29,6 @@ def main():
     geojson_path = sys.argv[geojson_path_arg]
     sheet_id = get_sheet_id(sys.argv[sheet_id_arg])
     
-    # We now get the credentials from the environment variable directly
     gc = gspread.service_account(filename=os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'))
 
     try:
@@ -46,27 +45,38 @@ def main():
         print("Invalid GeoJSON file: 'features' key not found.")
         sys.exit(1)
 
-    # Prepare DataFrame columns
     df_data = []
     
-    # Identify all possible properties
+    
     all_properties = set()
     for feature in geojson_data['features']:
         if 'properties' in feature and feature['properties'] is not None:
             all_properties.update(feature['properties'].keys())
 
-    # Build the list of columns for the dataframe
-    column_order = ['id', 'geojson']
+    
+    special_property_order = ['id', 'shape', 'colour', 'size', 'width', 'lineDash']
+    
+    
+    column_order = ['name', 'type']
+    
+    # Add other properties dynamically, excluding the special ones
     for prop in sorted(list(all_properties)):
-        if prop not in ['id', 'geojson']:
+        if prop not in column_order and prop not in special_property_order:
             column_order.append(prop)
+    
+    # Add the other special properties
+    for prop in special_property_order:
+        if prop in all_properties:
+            column_order.append(prop)
+
+    # Add the geojson column at the end
+    column_order.append('geojson')
 
     for feature in geojson_data['features']:
         row_dict = {}
         row_dict['id'] = feature.get('id', '')
 
         if 'geometry' in feature and feature['geometry'] is not None:
-            # Check for coordinates to prevent errors on empty geometries
             if 'coordinates' in feature['geometry']:
                 row_dict['geojson'] = json.dumps({
                     'type': feature['geometry']['type'],
@@ -77,7 +87,6 @@ def main():
         else:
             row_dict['geojson'] = ''
         
-        # Add all properties dynamically
         for prop, value in feature.get('properties', {}).items():
             row_dict[prop] = value
 
@@ -86,7 +95,6 @@ def main():
     df = pd.DataFrame(df_data, columns=column_order)
     df = df.applymap(lambda x: str(x) if isinstance(x, (dict, list, np.ndarray)) else x)
 
-    # Set the new DataFrame to the Google Sheet
     ws.clear()
     set_with_dataframe(ws, df, include_index=False)
     print("Google Sheet updated successfully.")
