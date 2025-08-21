@@ -11,19 +11,16 @@ import sys
 import numpy as np
 
 def df_to_geojson(df, properties=None):
+    """
+    Converts a pandas DataFrame to a GeoJSON FeatureCollection.
+    The order of properties in the GeoJSON is preserved from the DataFrame's column order.
+    """
     geojson = {'type':'FeatureCollection', 'features':[]}
     
-    # Define the columns that should always be at the top level of the feature, not inside properties
-    top_level_special = ['geojson', 'id', 'geometry']
+    # Identify all columns that should become properties in the GeoJSON object.
+    # The order of this list is crucial and matches the DataFrame's column order.
+    property_columns = [col for col in df.columns if col not in ['geojson', 'id']]
     
-    # Define the columns that are considered "special" properties
-    # They should be passed to the GeoJSON, but not treated as regular properties for dynamic inclusion
-    special_property_columns = ['name', 'type', 'shape', 'colour', 'size', 'width', 'lineDash']
-    
-    # Identify property columns dynamically
-    all_known_columns = top_level_special + special_property_columns
-    property_columns = [col for col in df.columns if col not in all_known_columns]
-
     for _, row in df.iterrows():
         # Handle rows with missing geojson data
         if pd.isna(row.get('geojson')):
@@ -34,17 +31,12 @@ def df_to_geojson(df, properties=None):
         except (json.JSONDecodeError, TypeError) as e:
             print(f"Skipping row due to invalid GeoJSON: {e}")
             continue
-        
-        # Create the properties dictionary
+            
+        # Create the properties dictionary, preserving the order of columns from the DataFrame.
         properties = {}
         for col in property_columns:
             # Check for NaN values and skip them
             if pd.notna(row[col]):
-                properties[col] = row[col]
-                
-        # Add the special properties
-        for col in special_property_columns:
-            if col in row and pd.notna(row[col]):
                 properties[col] = row[col]
 
         feature = {
