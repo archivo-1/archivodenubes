@@ -68,7 +68,11 @@
         "sistemas_refrigeracion": "Chillers + sistema hidr\u00e1ulico cerrado",
         "source": "N/A",
         "tecnologias": "",
-        "wue": 1
+        "wue": 1,
+        "name": "Proyecto ODATA San Bernardo",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -250,7 +254,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Centro de Almacenamiento de Datos Huechuraba",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -308,7 +316,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Data Center III Entel -Pudahuel",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -366,7 +378,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Centro de Almacenamiento de Datos Padre Hurtado",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -452,7 +468,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Oficinas SONDA, Parque Empresarial Aconcagua",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -526,7 +546,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Ampliaci\u00f3n Data Center PARAM",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -576,7 +600,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Data Center Chile 2",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -626,7 +654,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Ampliaci\u00f3n Data Center PARAM",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -696,7 +728,11 @@
         "sistemas_refrigeracion": "Refrigeraci\u00f3n evaporativa directa",
         "source": "http://ejemplo.com/algo.html",
         "tecnologias": "",
-        "wue": 134
+        "wue": 134,
+        "name": "Proyecto Microsoft SCL03",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -746,7 +782,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Data Center Cirion",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -816,7 +856,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Data Hall",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -878,7 +922,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Centro de Almacenamiento de Datos Puente Alto",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -964,7 +1012,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Scala Data Center Curauma",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1054,7 +1106,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Datacenter ST5",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1156,7 +1212,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Data Center EDCSCL11",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1266,7 +1326,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Claro-Chile, Data Center Colina",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1376,7 +1440,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Quilicura Google",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1426,7 +1494,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Anacondaweb: Temuco Downtown Data Center",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1476,7 +1548,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Opciones Concepci\u00f3n",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1506,7 +1582,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Apoapsis",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1556,7 +1636,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Opciones Puerto Montt",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1614,7 +1698,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "DATACENTER TIER III - TELEF\u00d3NICA DEL SUR - GRUPO GTD",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1728,7 +1816,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Equinix ST4",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1858,7 +1950,11 @@
         "sistemas_refrigeracion": "Agua - Sistema cerrado con reposici\u00f3n de agua.",
         "source": "http://ejemplo.com/algo.pdf",
         "tecnologias": "",
-        "wue": 1
+        "wue": 1,
+        "name": "Cerrillos Data Center",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1912,7 +2008,11 @@
         "sistemas_refrigeracion": "Chillers",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "SCALA Data Center Campus",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -1962,7 +2062,11 @@
         "sistemas_refrigeracion": "Chillers",
         "source": "N/A",
         "tecnologias": "",
-        "wue": 1
+        "wue": 1,
+        "name": "Regularizaci\u00f3n Data Center Hewlett Packard Chile Comercial Ltda.",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -2028,7 +2132,11 @@
         "sistemas_refrigeracion": "Chillers",
         "source": "N/A",
         "tecnologias": "",
-        "wue": 1
+        "wue": 1,
+        "name": "Data Center SCL04",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -2078,7 +2186,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Proyecto ODATA Datacenter ST 01",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -2128,7 +2240,11 @@
         "sistemas_refrigeracion": "N/A",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Proyecto ODATA Datacenter ST 02",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -2178,7 +2294,11 @@
         "sistemas_refrigeracion": "Chillers",
         "source": "N/A",
         "tecnologias": "",
-        "wue": 1
+        "wue": 1,
+        "name": "Data Center SCL02",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -2228,7 +2348,11 @@
         "sistemas_refrigeracion": "Equipos condensadores CRAC modelo DS250",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Data Center SCL03",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -2278,7 +2402,11 @@
         "sistemas_refrigeracion": "Chillers",
         "source": "N/A",
         "tecnologias": "N/A",
-        "wue": 1
+        "wue": 1,
+        "name": "Data Center EDCSCL01",
+        "type": "Data Center",
+        "shape": "square",
+        "size": 6
       }
     },
     {
@@ -2344,7 +2472,11 @@
         "sistemas_refrigeracion": "",
         "source": "",
         "tecnologias": "",
-        "wue": ""
+        "wue": "",
+        "name": "Valpara\u00edso CLS",
+        "type": "Landing Station",
+        "shape": "triangle",
+        "size": 6
       }
     }
   ]
